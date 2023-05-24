@@ -68,7 +68,9 @@ h1 {
 #choixperso{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+ justify-content: center;
+padding-top: 100px;
+padding-left: 200px;
  
 }
 .card-deck{
@@ -76,5 +78,8 @@ h1 {
   
 }
 
+.card-img{
+      width: 50%;
+}
 
 
