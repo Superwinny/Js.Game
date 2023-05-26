@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style/style.css" rel="stylesheet" type="text/css">
+    <title>Game</title>
+</head>
+
+<body class="body">
+
+    <section id="selectedImageSection">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img id="selectedImage" class="card-img" alt="Selected Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+    <script>
+        // Récupérer l'URL de l'image à partir des paramètres d'URL
+        let imageURL = decodeURIComponent(new URLSearchParams(window.location.search).get('image'));
+    
+        // Charger l'image dans l'élément image
+        let selectedImageElement = document.getElementById('selectedImage');
+        selectedImageElement.src = imageURL;
+      </script>
+
+</body>
+
+</html>
