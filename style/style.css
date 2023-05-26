@@ -96,7 +96,10 @@ h1 {
 }
 
 
-
+#selectedImage{
+  padding: 200px;
+  width: 33%;
+}
 
 
 
