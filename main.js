@@ -115,3 +115,41 @@ let buttonAchat = document.getElementById('buttonAchat');
 
 // Ajouter un gestionnaire d'événements pour le clic sur le bouton d'achat
 buttonAchat.addEventListener('click', acheter);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TEST
+
+// // Tableau contenant un seul adversaire
+// const adversaires = [
+//   {
+//     image: 'img/Hero,svg',
+//     pointsDeVie: 100,
+//     arme: 'Main',
+//     degats: 20,
+//     faiblesses: ['Tranchant']
+//   }
+// ];
+
+// // Récupérer l'adversaire sélectionné (premier adversaire du tableau)
+// const adversaireSelectionne = adversaires[0];
+
+// // Mettre à jour les informations de l'adversaire dans les éléments HTML
+// document.getElementById('enemyImage').src = adversaireSelectionne.image;
+// document.getElementById('pvEnemy').textContent = adversaireSelectionne.pointsDeVie;
+// document.getElementById('armeEnemy').textContent = adversaireSelectionne.arme;
+// document.getElementById('degatsEnemy').textContent = adversaireSelectionne.degats;
+// document.getElementById('faiblesseEnemy').textContent = adversaireSelectionne.faiblesses.join(', ');
