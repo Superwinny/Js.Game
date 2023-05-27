@@ -147,8 +147,8 @@ padding-left: 200px;
 #buttonAttack {
   width: 7%;
   position: fixed;
-  bottom: 400px;
-  left: 35%;
+ top: 300px;
+  left: 47%;
   transform: translateX(-50%);
   border: 2px solid transparent;
   border-radius: 50px;
@@ -161,8 +161,8 @@ padding-left: 200px;
 #buttonAchat {
   width: 7%;
   position: fixed;
-  bottom: 400px;
-  right: 35%;
+  top: 400px;
+  right: 46%;
   transform: translateX(-50%);
   border: 2px solid transparent;
   border-radius: 50px;
@@ -176,7 +176,13 @@ padding-left: 200px;
 
 .infoGame{
   position: fixed;
- left: 10%;
+ left: 11%;
+  top: 60%;
+  color: #ffcccc;
+}
+.infoEnemy{
+  position: fixed;
+  right: 32%;
   top: 60%;
   color: #ffcccc;
 }
