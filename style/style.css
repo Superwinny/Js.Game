@@ -1,23 +1,25 @@
 body {
   max-width: 1880px;
-	background-color: #1d1d1d;
-	/* color: #f1f1f1; */
-	margin: 0;
-    padding: 0;
-}
-h1 {
-	
-	color: #13fdd7;
-	font-size: 70px;
-	text-align: center;
-    padding-top: 150px;
+  background-color: #1d1d1d;
+  /* color: #f1f1f1; */
+  margin: 0;
+  padding: 0;
 }
 
-#btnplay{
+h1 {
+
+  color: #13fdd7;
+  font-size: 70px;
+  text-align: center;
+  padding-top: 150px;
+}
+
+#btnplay {
   display: flex;
   justify-content: center;
   padding: 150px;
 }
+
 .btn.btn-primary.btn-lg {
   padding-left: 40px;
   padding-right: 40px;
@@ -33,7 +35,7 @@ h1 {
 }
 
 .btn.btn-primary.btn-lg:hover {
-  background-color:#1d1d1d;
+  background-color: #1d1d1d;
   color: #fff;
   border-color: #ff3333;
 }
@@ -51,9 +53,10 @@ h1 {
   z-index: -1;
   border-radius: 50px;
 }
+
 .btn.btn-primary.btn-lg:hover::after {
   opacity: 1;
-} 
+}
 
 
 .btn.btn-primary.btn-lg2 {
@@ -73,7 +76,7 @@ h1 {
 }
 
 .btn.btn-primary.btn-lg2:hover {
-  background-color:#1d1d1d;
+  background-color: #1d1d1d;
   color: #fff;
   border-color: #ff3333;
 }
@@ -91,38 +94,42 @@ h1 {
   z-index: -1;
   border-radius: 50px;
 }
+
 .btn.btn-primary.btn-lg2:hover::after {
   opacity: 1;
 }
 
 
-#selectedImage{
+#selectedImage {
   padding: 200px;
   width: 40%;
 }
-#enemyImage{
+
+#enemyImage {
   padding: 200px;
   width: 20%;
 }
- .col-md-4{
+
+.col-md-4 {
   display: flex;
   justify-content: space-between;
- }
+}
 
-#choixperso{
+#choixperso {
   display: flex;
   flex-direction: row;
- justify-content: center;
-padding-top: 100px;
-padding-left: 200px;
- 
-}
-.card-deck{
-  display: flex;
-  
+  justify-content: center;
+  padding-top: 100px;
+  padding-left: 200px;
+
 }
 
-.card-img{
+.card-deck {
+  display: flex;
+
+}
+
+.card-img {
   width: 50%;
 }
 
@@ -147,17 +154,18 @@ padding-left: 200px;
 #buttonAttack {
   width: 7%;
   position: fixed;
- top: 300px;
+  top: 300px;
   left: 47%;
   transform: translateX(-50%);
   border: 2px solid transparent;
   border-radius: 50px;
   text-align: center;
   align-items: center;
-  
-  font-size: 15px; 
-  padding: 5px 5px; 
+
+  font-size: 15px;
+  padding: 5px 5px;
 }
+
 #buttonAchat {
   width: 7%;
   position: fixed;
@@ -168,19 +176,20 @@ padding-left: 200px;
   border-radius: 50px;
   text-align: center;
   align-items: center;
-  
-  font-size: 15px; 
-  padding: 5px 5px; 
+
+  font-size: 15px;
+  padding: 5px 5px;
 }
 
 
-.infoGame{
+.infoGame {
   position: fixed;
- left: 11%;
+  left: 11%;
   top: 60%;
   color: #ffcccc;
 }
-.infoEnemy{
+
+.infoEnemy {
   position: fixed;
   right: 32%;
   top: 60%;

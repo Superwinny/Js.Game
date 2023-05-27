@@ -2,60 +2,60 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style/style.css" rel="stylesheet" type="text/css">
-    <title>Game</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style/style.css" rel="stylesheet" type="text/css">
+  <title>Game</title>
 </head>
 
 <body class="body">
 
   <section id="selectedImageSection">
-  <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <div>
-             <img id="selectedImage" alt="Selected Image">
-             <div class="infoGame">
-               <p>PV </p>
-               <p>Potion de soin </p>
-               <p>Arme </p>
-               <p>Equipement </p>
-               <p>Gold </p>
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <div>
+            <img id="selectedImage" alt="Selected Image">
+            <div class="infoGame">
+              <p>PV </p>
+              <p>Potion de soin </p>
+              <p>Arme </p>
+              <p>Equipement </p>
+              <p>Gold </p>
 
-             </div>
-        </div>
-       
-        <img src="img/Hero.svg" id="enemyImage" alt="Image Enemy">
-        <div class="infoEnemy">
+            </div>
+          </div>
+
+          <img src="img/Hero.svg" id="enemyImage" alt="Image Enemy">
+          <div class="infoEnemy">
             <p>PV </p>
             <p>Arme </p>
             <p>Degats </p>
             <p>Faiblesse </p>
           </div>
-      </div>
-      
+        </div>
+
       </div>
     </div>
-  </div>
+    </div>
 
-  <button type="button" id="buttonAttack">Attaquer</button>
-  <button type="button" id="buttonAchat">Acheter</button>
+    <button type="button" id="buttonAttack">Attaquer</button>
+    <button type="button" id="buttonAchat">Acheter</button>
 
-</section>
-   
-    
+  </section>
 
-    <script src="main.js"></script>
-    <script>
-        // Récupérer l'URL de l'image à partir des paramètres d'URL
-        let imageURL = decodeURIComponent(new URLSearchParams(window.location.search).get('image'));
-    
-        // Charger l'image dans l'élément image
-        let selectedImageElement = document.getElementById('selectedImage');
-        selectedImageElement.src = imageURL;
-      </script>
+
+
+  <script src="main.js"></script>
+  <script>
+    // Récupérer l'URL de l'image à partir des paramètres d'URL
+    let imageURL = decodeURIComponent(new URLSearchParams(window.location.search).get('image'));
+
+    // Charger l'image dans l'élément image
+    let selectedImageElement = document.getElementById('selectedImage');
+    selectedImageElement.src = imageURL;
+  </script>
 
 </body>
 
