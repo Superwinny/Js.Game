@@ -39,3 +39,79 @@ if (selectedImageURL) {
   alert('Veuillez sélectionner une image avant de valider votre choix.');
 }
 });
+
+
+
+// Sélectionner le bouton "Attaquer"
+const buttonAttack = document.getElementById('buttonAttack');
+
+// Ajouter un écouteur d'événements au clic sur le bouton
+buttonAttack.addEventListener('click', attaquer);
+
+// Variable pour stocker l'image sélectionnée par l'utilisateur
+let imageSelectionnee = ""; // Mettez à jour cette variable avec l'image sélectionnée
+
+function attaquer() {
+  // Récupérer l'arme sélectionnée par l'utilisateur
+  let armeSelect = document.querySelector('input[name="arme"]:checked').value;
+
+  let degats = 0;
+  let typeDegats = "";
+
+  switch (armeSelect) {
+    case "guerrier":
+      degats = Math.floor(Math.random() * 10) + 1;
+      typeDegats = "tranchante";
+      break;
+    case "mage":
+      degats = Math.floor(Math.random() * 8) + 5;
+      typeDegats = "magic";
+      break;
+    case "chasseur":
+      let chanceCritique = Math.random();
+      if (chanceCritique < 0.3) {
+        degats = Math.floor(Math.random() * 15) + 10;
+        typeDegats = "critique";
+      } else {
+        degats = Math.floor(Math.random() * 8) + 5;
+        typeDegats = "normal";
+      }
+      break;
+    
+  }
+
+  // Calculer les dégâts en fonction du type d'arme
+  switch (typeDegats) {
+    case "tranchante":
+      degats = degats + 5; // Exemple : dégâts supplémentaires pour une arme tranchante
+      break;
+    case "magic":
+      degats = degats + 3; // Exemple : dégâts supplémentaires pour une arme de type magic
+      break;
+    case "critique":
+      degats = degats * 2; // Exemple : dégâts doublés pour un coup critique
+      break;
+    case "normal":
+      // Pas de modifications supplémentaires pour les dégâts normaux
+      break;
+    default:
+      console.log("Type de dégâts non reconnu.");
+  }
+
+  // Appliquer les dégâts à l'adversaire (exemple : soustraire les dégâts à ses points de vie)
+  adversaire.pointsDeVie -= degats;
+
+  // Afficher les informations de l'attaque et les dégâts infligés
+  console.log("Attaque réussie !");
+  console.log("Dégâts infligés : " + degats);
+  console.log("Points de vie restants de l'adversaire : " + adversaire.pointsDeVie);
+}
+
+
+
+
+// Récupérer la référence du bouton d'achat
+let buttonAchat = document.getElementById('buttonAchat');
+
+// Ajouter un gestionnaire d'événements pour le clic sur le bouton d'achat
+buttonAchat.addEventListener('click', acheter);
