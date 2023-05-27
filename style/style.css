@@ -98,7 +98,7 @@ h1 {
 
 #selectedImage{
   padding: 200px;
-  width: 20%;
+  width: 40%;
 }
 #enemyImage{
   padding: 200px;
@@ -171,4 +171,12 @@ padding-left: 200px;
   
   font-size: 15px; 
   padding: 5px 5px; 
+}
+
+
+.infoGame{
+  position: fixed;
+ left: 10%;
+  top: 60%;
+  color: #ffcccc;
 }
