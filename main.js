@@ -51,6 +51,13 @@ buttonAttack.addEventListener('click', attaquer);
 // Variable pour stocker l'image sélectionnée par l'utilisateur
 let imageSelectionnee = ""; // Mettez à jour cette variable avec l'image sélectionnée
 
+let adversaire = {
+  pointsDeVie: 100,
+  arme: 'Épée',
+  degats: 20,
+  faiblesses: ['Tranchant']
+};
+
 function attaquer() {
   // Récupérer l'arme sélectionnée par l'utilisateur
   let armeSelect = document.querySelector('input[name="arme"]:checked').value;
@@ -86,7 +93,7 @@ function attaquer() {
       degats = degats + 5; // Exemple : dégâts supplémentaires pour une arme tranchante
       break;
     case "magic":
-      degats = degats + 3; // Exemple : dégâts supplémentaires pour une arme de type magic
+      degats = degats + 3; // Exemple : dégâts supplémentaires pour une arme de type magi
       break;
     case "critique":
       degats = degats * 2; // Exemple : dégâts doublés pour un coup critique
@@ -132,24 +139,21 @@ buttonAchat.addEventListener('click', acheter);
 
 
 // TEST
-
-// // Tableau contenant un seul adversaire
-// const adversaires = [
-//   {
-//     image: 'img/Hero,svg',
-//     pointsDeVie: 100,
-//     arme: 'Main',
-//     degats: 20,
-//     faiblesses: ['Tranchant']
-//   }
-// ];
-
-// // Récupérer l'adversaire sélectionné (premier adversaire du tableau)
-// const adversaireSelectionne = adversaires[0];
-
-// // Mettre à jour les informations de l'adversaire dans les éléments HTML
-// document.getElementById('enemyImage').src = adversaireSelectionne.image;
-// document.getElementById('pvEnemy').textContent = adversaireSelectionne.pointsDeVie;
-// document.getElementById('armeEnemy').textContent = adversaireSelectionne.arme;
-// document.getElementById('degatsEnemy').textContent = adversaireSelectionne.degats;
-// document.getElementById('faiblesseEnemy').textContent = adversaireSelectionne.faiblesses.join(', ');
+//  //Tableau contenant un seul adversaire
+//  const adversaires = [
+//    {
+//      image: 'img/Hero,svg',
+//      pointsDeVie: 100,
+//      arme: 'Main',
+//      degats: 20,
+//      faiblesses: ['Tranchant']
+//    }
+//  ];
+//  //Récupérer l'adversaire sélectionné (premier adversaire du tableau)
+//  const adversaireSelectionne = adversaires[0];
+//  //Mettre à jour les informations de l'adversaire dans les éléments HTML
+//  document.getElementById('enemyImage').src = adversaireSelectionne.image;
+//  document.getElementById('pvEnemy').textContent = adversaireSelectionne.pointsDeVie;
+//  document.getElementById('armeEnemy').textContent = adversaireSelectionne.arme;
+//  document.getElementById('degatsEnemy').textContent = adversaireSelectionne.degats;
+//  document.getElementById('faiblesseEnemy').textContent = adversaireSelectionne.faiblesses.join(', ');
