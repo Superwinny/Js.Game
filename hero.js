@@ -154,7 +154,7 @@ class Marchand {
       "Potion": { prix: 8, effet: "soin" },
     };
 
-    this.#magasinMageArmes = {
+    this.#magasinMage = {
       "Bâton": { prix: 12, degats: 12 },
       "Gros Bâton": { prix: 22, degats: 22 },
       "Robe": { prix: 18, ptnVie: 10 },
