@@ -1,3 +1,6 @@
+
+
+// Déclaration des variables globales
 let imageURL;
 const selectedImageElement = document.getElementById('selectedImage');
 selectedImageElement.onload = () => {
@@ -8,7 +11,7 @@ selectedImageElement.onload = () => {
 const ptnVieElement = document.querySelector('.infoGame p:nth-child(1)');
 const potionSoinElement = document.querySelector('.infoGame p:nth-child(2)');
 const armeElement = document.querySelector('.infoGame p:nth-child(3)');
-const goldElement = document.querySelector('.infoGame p:nth-child(5)');
+const goldElement = document.querySelector('.infoGame p:nth-child(4)');
 const pvEnemyElement = document.getElementById('pvEnemy');
 const armeEnemyElement = document.getElementById('armeEnemy');
 const degatsEnemyElement = document.getElementById('degatsEnemy');

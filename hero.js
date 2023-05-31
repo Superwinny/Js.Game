@@ -2,7 +2,7 @@
 /******** Hero  **************/
 /**********************************************************/
 
-class Hero {
+ class Hero {
     #ptnVie;
     #imgURL;
     #gold;
@@ -81,12 +81,14 @@ class Guerrier extends Hero {
       this.typeAttack = "tranchante";
       this.imgURL = "img/Guerrier.svg";
       this.degats = 10;
+      this.arme = "Hache";
+      this.gold = 0;
+      this.ptnVie = 100;
     }
-
+ 
     attaquer() {
       let degats = Math.floor(Math.random() * 10) + 1;
-      let typeAttack = "tranchante";
-
+      
       // Effectuez ici les opérations spécifiques à l'attaque du guerrier
       console.log("Le guerrier attaque !");
       console.log("Dégâts infligés : " + degats);

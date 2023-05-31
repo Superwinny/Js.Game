@@ -20,17 +20,3 @@ let selectedImageURL = null;
 const buttonAttack = document.getElementById('buttonAttack');
 console.log(buttonAttack)
 
-// Ajouter un écouteur d'événements au clic sur le bouton
-buttonAttack.addEventListener('click', attaquer);
-
-
-
-
-
-// Récupérer la référence du bouton d'achat
-let buttonAchat = document.getElementById('buttonAchat');
-
-// Ajouter un gestionnaire d'événements pour le clic sur le bouton d'achat
-buttonAchat.addEventListener('click', acheter);
-
-
