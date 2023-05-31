@@ -10,7 +10,7 @@ class Hero {
     #typeAttack;
     #degats;
 
-    constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
+    constructor(ptnVie, imgURL, gold = 5, arme, typeAttack, degats) {
       this.#ptnVie = ptnVie;
       this.#imgURL = imgURL;
       this.#gold = gold;
@@ -38,7 +38,22 @@ class Hero {
         return null;
       }
     }
-  }
+
+
+    utiliserPotion() {
+        if (this.#potionSoin > 0) {
+          this.#ptnVie += 50; 
+          this.#potionSoin--; 
+    
+          console.log(`${this.constructor.name} utilise une potion de soin.`);
+          console.log(`Points de vie actuels : ${this.#ptnVie}`);
+          console.log(`Potions de soin restantes : ${this.#potionSoin}`);
+        } else {
+          console.log(`${this.constructor.name} n'a pas de potion de soin.`);
+        }
+      }
+}
+  
 
 
 /**********************************************************/
@@ -128,7 +143,7 @@ class Chasseur extends Hero {
 
 class Marchand {
     #magasinGuerrier;
-    #magasinMageArmes;
+    #magasinMage;
     #magasinChasseur;
 
   constructor() {
