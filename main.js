@@ -29,16 +29,7 @@ image.addEventListener('click', function() {
 });
 });
 
-// // Gestionnaire d'événement de clic pour le bouton de validation
-// confirmButton.addEventListener('click', function() {
-// // Vérifier si une image est sélectionnée
-// if (selectedImageURL) {
-//   // Rediriger vers la page "index3.html" avec l'URL de l'image sélectionnée
-//   window.location.href = 'index3.html?image=' + encodeURIComponent(selectedImageURL);
-// } else {
-//   alert('Veuillez sélectionner une image avant de valider votre choix.');
-// }
-// });
+
 
 
 

@@ -9,15 +9,17 @@ class Hero {
     #arme;
     #typeAttack;
     #degats;
+    #potionSoin;
 
-    constructor(ptnVie, imgURL, gold = 5, arme, typeAttack, degats) {
-      this.#ptnVie = ptnVie;
-      this.#imgURL = imgURL;
-      this.#gold = gold;
-      this.#arme = arme;
-      this.#typeAttack = typeAttack;
-      this.#degats = degats;
-    }
+    constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
+        this.#ptnVie = ptnVie;
+        this.#imgURL = imgURL;
+        this.#gold = gold;
+        this.#arme = arme;
+        this.#typeAttack = typeAttack;
+        this.#degats = degats;
+        this.#potionSoin = 0; 
+      }
 
     attaquer() {
       let degats = Math.floor(Math.random() * 10) + 1;
