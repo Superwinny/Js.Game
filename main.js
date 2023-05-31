@@ -10,12 +10,6 @@ let images = document.querySelectorAll('.card-img');
 let confirmButton = document.getElementById('confirmButton');
 let selectedImageURL = null;
 
-
-
-
-
-
-
 // Sélectionner le bouton "Attaquer"
 const buttonAttack = document.getElementById('buttonAttack');
 console.log(buttonAttack)

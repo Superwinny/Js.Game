@@ -1,8 +1,13 @@
 
-
 // Déclaration des variables globales
-let imageURL;
-const selectedImageElement = document.getElementById('selectedImage');
+let selectedImageElement = document.getElementById('selectedImage');
+let imageURL = localStorage.getItem('selectedImage');
+
+// Vérifier si une image a été sélectionnée
+if (imageURL) {
+  selectedImageElement.src = imageURL;
+}
+
 selectedImageElement.onload = () => {
   imageURL = selectedImageElement.src;
 };
