@@ -29,24 +29,26 @@ image.addEventListener('click', function() {
 });
 });
 
-// Gestionnaire d'événement de clic pour le bouton de validation
-confirmButton.addEventListener('click', function() {
-// Vérifier si une image est sélectionnée
-if (selectedImageURL) {
-  // Rediriger vers la page "index3.html" avec l'URL de l'image sélectionnée
-  window.location.href = 'index3.html?image=' + encodeURIComponent(selectedImageURL);
-} else {
-  alert('Veuillez sélectionner une image avant de valider votre choix.');
-}
-});
+// // Gestionnaire d'événement de clic pour le bouton de validation
+// confirmButton.addEventListener('click', function() {
+// // Vérifier si une image est sélectionnée
+// if (selectedImageURL) {
+//   // Rediriger vers la page "index3.html" avec l'URL de l'image sélectionnée
+//   window.location.href = 'index3.html?image=' + encodeURIComponent(selectedImageURL);
+// } else {
+//   alert('Veuillez sélectionner une image avant de valider votre choix.');
+// }
+// });
 
 
 
 // Sélectionner le bouton "Attaquer"
 const buttonAttack = document.getElementById('buttonAttack');
+console.log(buttonAttack)
 
 // Ajouter un écouteur d'événements au clic sur le bouton
 buttonAttack.addEventListener('click', attaquer);
+
 
 // Variable pour stocker l'image sélectionnée par l'utilisateur
 let imageSelectionnee = ""; // Mettez à jour cette variable avec l'image sélectionnée
@@ -59,6 +61,7 @@ let adversaire = {
 };
 
 function attaquer() {
+  
   // Récupérer l'arme sélectionnée par l'utilisateur
   let armeSelect = document.querySelector('input[name="arme"]:checked').value;
 
