@@ -8,7 +8,6 @@ selectedImageElement.onload = () => {
 const ptnVieElement = document.querySelector('.infoGame p:nth-child(1)');
 const potionSoinElement = document.querySelector('.infoGame p:nth-child(2)');
 const armeElement = document.querySelector('.infoGame p:nth-child(3)');
-const equipementElement = document.querySelector('.infoGame p:nth-child(4)');
 const goldElement = document.querySelector('.infoGame p:nth-child(5)');
 const pvEnemyElement = document.getElementById('pvEnemy');
 const armeEnemyElement = document.getElementById('armeEnemy');
@@ -26,7 +25,6 @@ if (hero) {
   ptnVieElement.textContent = 'PV ' + hero.getPtnVie();
   potionSoinElement.textContent = 'Potion de soin ' + hero.getPotionSoin();
   armeElement.textContent = 'Arme ' + hero.getArme();
-  equipementElement.textContent = 'Équipement ' + hero.getEquipement();
   goldElement.textContent = 'Gold ' + hero.getGold();
 
   // Fonction pour attaquer

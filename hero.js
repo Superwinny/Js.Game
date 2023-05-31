@@ -50,6 +50,11 @@ class Hero {
       getArme (){
         return this.#arme;
       }
+      getGold() {
+        return this.#gold;
+      }
+
+    
     utiliserPotion() {
         if (this.#potionSoin > 0) {
           this.#ptnVie += 50; 
