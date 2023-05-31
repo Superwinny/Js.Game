@@ -10,24 +10,7 @@ let images = document.querySelectorAll('.card-img');
 let confirmButton = document.getElementById('confirmButton');
 let selectedImageURL = null;
 
-// Ajouter un gestionnaire d'événement de clic à chaque image
-images.forEach(function(image) {
-image.addEventListener('click', function() {
-  // Supprimer la classe "selected" de toutes les images
-  images.forEach(function(img) {
-    img.classList.remove('selected');
-  });
 
-  // Ajouter la classe "selected" à l'image cliquée
-  this.classList.add('selected');
-
-  // Enregistrer l'URL de l'image sélectionnée
-  selectedImageURL = this.getAttribute('data-image-url');
-
-  // Activer le bouton de validation
-  confirmButton.disabled = false;
-});
-});
 
 
 

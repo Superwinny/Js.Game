@@ -40,8 +40,16 @@ class Hero {
         return null;
       }
     }
+    getPtnVie() {
+        return this.#ptnVie;
+      }
 
-
+      getPotionSoin() {
+        return this.#potionSoin;
+      }
+      getArme (){
+        return this.#arme;
+      }
     utiliserPotion() {
         if (this.#potionSoin > 0) {
           this.#ptnVie += 50; 
@@ -66,7 +74,7 @@ class Guerrier extends Hero {
     constructor(ptnVie, gold, arme, typeAttack, imgURL, degats) {
       super(ptnVie, imgURL, gold, arme, typeAttack, degats);
       this.typeAttack = "tranchante";
-      this.imgURL = "img/Guerrier";
+      this.imgURL = "img/Guerrier.svg";
       this.degats = 10;
     }
 
@@ -90,7 +98,7 @@ class Mage extends Hero {
     constructor(ptnVie, gold, arme, typeAttack, imgURL, degats) {
       super(ptnVie, imgURL, gold, arme, typeAttack, degats);
       this.typeAttack = "magique";
-      this.imgURL = "img/Mage";
+      this.imgURL = "img/Mage.svg";
       this.degats = 6;
     }
 
@@ -114,7 +122,7 @@ class Chasseur extends Hero {
     constructor(ptnVie, gold, arme, typeAttack, imgURL, degats) {
       super(ptnVie, imgURL, gold, arme, typeAttack, degats);
       this.typeAttack = "";
-      this.imgURL = "img/Chasseur";
+      this.imgURL = "img/Chasseur.svg";
       this.degats = 8;
     }
 
