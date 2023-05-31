@@ -141,7 +141,8 @@ class Marchand {
 
     this.#magasinMageArmes = {
       "Bâton": { prix: 12, degats: 12 },
-      "Robe": { prix: 18, ptnVie: 8 },
+      "Gros Bâton": { prix: 22, degats: 22 },
+      "Robe": { prix: 18, ptnVie: 10 },
       "Potion": { prix: 8, effet: "soin" },
     };
 
@@ -174,7 +175,7 @@ class Marchand {
     if (hero instanceof Guerrier) {
       magasin = this.#magasinGuerrier;
     } else if (hero instanceof Mage) {
-      magasin = this.#magasinMageArmes;
+      magasin = this.#magasinMage;
     } else if (hero instanceof Chasseur) {
       magasin = this.#magasinChasseur;
     } else {
