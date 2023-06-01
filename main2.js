@@ -38,7 +38,7 @@ heroImages.forEach((image, index) => {
     localStorage.setItem("hero", JSON.stringify(hero));
 
     // Récupérez l'URL de l'image du héros à partir de la classe correspondante
-    const imageURL = hero.imgURL;
+    const imageURL = hero.img;
 
     // Mettez à jour l'image source avec l'URL du héros sélectionné
     image.setAttribute("src", imageURL);

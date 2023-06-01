@@ -3,14 +3,6 @@
 let selectedImageElement = document.getElementById('selectedImage');
 let imageURL = localStorage.getItem('selectedImage');
 
-// Vérifier si une image a été sélectionnée
-if (imageURL) {
-  selectedImageElement.src = imageURL;
-}
-
-selectedImageElement.onload = () => {
-  imageURL = selectedImageElement.src;
-};
 
 // Sélectionner les éléments de l'interface utilisateur
 const ptnVieElement = document.querySelector('.infoGame p:nth-child(1)');
@@ -29,12 +21,14 @@ const hero = Hero.getHeroFromLocalStorage();
 
 // Vérifier si un héros a été sélectionné
 if (hero) {
+  console.log(hero)
   // Afficher les informations du héros dans l'interface utilisateur
-  ptnVieElement.textContent = 'PV ' + hero.getPtnVie();
-  potionSoinElement.textContent = 'Potion de soin ' + hero.getPotionSoin();
-  armeElement.textContent = 'Arme ' + hero.getArme();
-  goldElement.textContent = 'Gold ' + hero.getGold();
-
+  selectedImageElement.src = hero.img;
+  // ptnVieElement.textContent = 'PV ' + hero.getPtnVie();
+  // potionSoinElement.textContent = 'Potion de soin ' + hero.getPotionSoin();
+  // armeElement.textContent = 'Arme ' + hero.getArme();
+  // goldElement.textContent = 'Gold ' + hero.getGold();
+hero.afficher(ptnVieElement);
   // Fonction pour attaquer
   const attaquer = () => {
     hero.attaquer();

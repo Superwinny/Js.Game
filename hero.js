@@ -3,24 +3,47 @@
 /**********************************************************/
 
  class Hero {
-    #ptnVie;
-    #imgURL;
-    #gold;
-    #arme;
-    #typeAttack;
-    #degats;
-    #potionSoin;
+   #ptnVie;
+      #imgURL;
+      #gold;
+    // #arme;
+    // #typeAttack;
+    // #degats;
+    // #potionSoin;   
 
     constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
         this.#ptnVie = ptnVie;
         this.#imgURL = imgURL;
         this.#gold = gold;
-        this.#arme = arme;
-        this.#typeAttack = typeAttack;
-        this.#degats = degats;
-        this.#potionSoin = 0; 
+        this.arme = arme;
+        this.typeAttack = typeAttack;
+        this.degats = degats;
+        this.potionSoin = 0; 
       }
 
+
+get img(){
+  return this.#imgURL
+}
+get ptnVie()
+{
+  return this.#ptnVie
+}
+
+set ptnVie(ptn){
+  this.#ptnVie= ptn;
+}
+
+acheter(item){
+  if(this.#gold < item.prix)
+     return -1
+  this.#gold -= item.prix
+  //toDO : Gerer les items pour le changement d'înfo du hero
+}
+afficher(ptnVieElement){
+ptnVieElement.textcontent =  'PV ' + this.ptnVie;
+
+}
     attaquer() {
       let degats = Math.floor(Math.random() * 10) + 1;
       let typeAttack = "";
@@ -40,33 +63,33 @@
         return null;
       }
     }
-    getPtnVie() {
-        return this.#ptnVie;
-      }
+     getPtnVie() {
+         return this.ptnVie;
+       }
 
-      getPotionSoin() {
-        return this.#potionSoin;
-      }
-      getArme (){
-        return this.#arme;
-      }
-      getGold() {
-        return this.#gold;
-      }
+       getPotionSoin() {
+         return this.potionSoin;
+       }
+       getArme (){
+         return this.arme;
+       }
+       getGold() {
+         return this.gold;
+       }
 
     
-    utiliserPotion() {
-        if (this.#potionSoin > 0) {
-          this.#ptnVie += 50; 
-          this.#potionSoin--; 
+     utiliserPotion() {
+         if (this.potionSoin > 0) {
+           this.ptnVie += 50; 
+           this.potionSoin--; 
     
-          console.log(`${this.constructor.name} utilise une potion de soin.`);
-          console.log(`Points de vie actuels : ${this.#ptnVie}`);
-          console.log(`Potions de soin restantes : ${this.#potionSoin}`);
-        } else {
-          console.log(`${this.constructor.name} n'a pas de potion de soin.`);
-        }
-      }
+           console.log(`${this.constructor.name} utilise une potion de soin.`);
+           console.log(`Points de vie actuels : ${this.ptnVie}`);
+           console.log(`Potions de soin restantes : ${this.potionSoin}`);
+         } else {
+           console.log(`${this.constructor.name} n'a pas de potion de soin.`);
+         }
+       }
 }
   
 
@@ -76,20 +99,17 @@
 /**********************************************************/
 
 class Guerrier extends Hero {
-    constructor(ptnVie, gold, arme, typeAttack, imgURL, degats) {
-      super(ptnVie, imgURL, gold, arme, typeAttack, degats);
-      this.typeAttack = "tranchante";
-      this.imgURL = "img/Guerrier.svg";
-      this.degats = 10;
-      this.arme = "Hache";
-      this.gold = 0;
-      this.ptnVie = 100;
+    constructor() {
+      super(100, "img/Guerrier.svg", 0, "hache", "tranchant", 10);
+      
     }
- 
+  
+
     attaquer() {
+      this.ptnVie = 2
       let degats = Math.floor(Math.random() * 10) + 1;
       
-      // Effectuez ici les opérations spécifiques à l'attaque du guerrier
+      //Effectuez ici les opérations spécifiques à l'attaque du guerrier
       console.log("Le guerrier attaque !");
       console.log("Dégâts infligés : " + degats);
       console.log("Type d'attaque : " + typeAttack);
@@ -187,8 +207,8 @@ class Marchand {
   }
 
   getMagasin(classe) {
-    switch (classe) {
-      case "Guerrier":
+    switch (true) {
+      case classe instanceof Guerrier:
         return this.#magasinGuerrier;
       case "Mage":
         return this.#magasinMage;
