@@ -6,32 +6,58 @@
    #ptnVie;
       #imgURL;
       #gold;
-    // #arme;
-    // #typeAttack;
-    // #degats;
-    // #potionSoin;   
+      #arme;
+      #typeAttack;
+      #degats;
+      #potionSoin;   
 
     constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
         this.#ptnVie = ptnVie;
         this.#imgURL = imgURL;
         this.#gold = gold;
-        this.arme = arme;
-        this.typeAttack = typeAttack;
-        this.degats = degats;
-        this.potionSoin = 0; 
+        this.#arme = arme;
+        this.#typeAttack = typeAttack;
+        this.#degats = degats;
+        this.#potionSoin = 0; 
       }
 
+/******** GET  **************/  
 
+get potionSoin(){
+  return this.#potionSoin
+}
+get degats(){
+  return this.#degats
+}
+get typeAttack(){
+  return this.#typeAttack
+}
+get arme(){
+  return this.#arme
+}
 get img(){
   return this.#imgURL
 }
 get ptnVie()
 {
   return this.#ptnVie
+}  
+
+/******** SET  **************/
+set degats(dgs){
+  this.#degats = dgs;
+}
+
+set potionSoin(pts){
+  this.#potionSoin = pts;
 }
 
 set ptnVie(ptn){
-  this.#ptnVie= ptn;
+  this.#ptnVie = ptn;
+}
+
+set arme(arm){
+  this.#arme = arm;
 }
 
 acheter(item){
@@ -122,17 +148,14 @@ class Guerrier extends Hero {
 /**********************************************************/
 
 class Mage extends Hero {
-    constructor(ptnVie, gold, arme, typeAttack, imgURL, degats) {
-      super(ptnVie, imgURL, gold, arme, typeAttack, degats);
-      this.typeAttack = "magique";
-      this.imgURL = "img/Mage.svg";
-      this.degats = 6;
+    constructor() {
+      super(60, "img/Mage.svg", 0, "Baguette", "Magique", 6);
+      
     }
 
     attaquer() {
       let degats = Math.floor(Math.random() * 8) + 5;
-      let typeAttack = "magique";
-
+      
       // Effectuez ici les opérations spécifiques à l'attaque du mage
       console.log("Le mage attaque !");
       console.log("Dégâts infligés : " + degats);
@@ -146,16 +169,13 @@ class Mage extends Hero {
 /**********************************************************/
 
 class Chasseur extends Hero {
-    constructor(ptnVie, gold, arme, typeAttack, imgURL, degats) {
-      super(ptnVie, imgURL, gold, arme, typeAttack, degats);
-      this.typeAttack = "";
-      this.imgURL = "img/Chasseur.svg";
-      this.degats = 8;
+    constructor() {
+      super(80, "img/Chasseur.svg", 0, "Couteau", "classique", 8);
+      
     }
 
     attaquer() {
       let chanceCritique = Math.random();
-      let degats = 0;
       let typeAttack = "";
 
       if (chanceCritique < 0.2) {
@@ -210,9 +230,9 @@ class Marchand {
     switch (true) {
       case classe instanceof Guerrier:
         return this.#magasinGuerrier;
-      case "Mage":
+      case classe instanceof Mage:
         return this.#magasinMage;
-      case "Chasseur":
+      case classe instanceof Chasseur:
         return this.#magasinChasseur;
       default:
         return {};
