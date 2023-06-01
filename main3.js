@@ -3,7 +3,7 @@
 let selectedImageElement = document.getElementById('selectedImage');
 let imageURL = localStorage.getItem('selectedImage');
 
-// Sélectionner les éléments de l'interface utilisateur
+
 
 // Modifier les sélecteurs des éléments de l'interface utilisateur
 const ptnVieElement = document.querySelector('.infoGame #ptnVie');
