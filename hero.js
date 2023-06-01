@@ -18,7 +18,7 @@
         this.#arme = arme;
         this.#typeAttack = typeAttack;
         this.#degats = degats;
-        this.#potionSoin = 0; 
+        this.#potionSoin = potionSoin; 
       }
 
 /******** GET  **************/  
@@ -43,6 +43,11 @@ get ptnVie()
   return this.#ptnVie
 }  
 
+get gold()
+{
+  return this.#gold
+}  
+
 /******** SET  **************/
 set degats(dgs){
   this.#degats = dgs;
@@ -59,6 +64,9 @@ set ptnVie(ptn){
 set arme(arm){
   this.#arme = arm;
 }
+set gold(gold){
+  this.#gold = gold;
+}
 
 acheter(item){
   if(this.#gold < item.prix)
@@ -68,6 +76,10 @@ acheter(item){
 }
 afficher(ptnVieElement){
 ptnVieElement.textcontent =  'PV ' + this.ptnVie;
+potionSoinElement.textcontent =  'Potion de soin ' + this.potionSoin;
+armeElement.textcontent =  'Arme ' + this.arme;
+goldElement.textcontent =  'Gold ' + this.gold;
+
 
 }
     attaquer() {

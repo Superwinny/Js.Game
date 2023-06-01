@@ -24,11 +24,12 @@ if (hero) {
   console.log(hero)
   // Afficher les informations du héros dans l'interface utilisateur
   selectedImageElement.src = hero.img;
-  // ptnVieElement.textContent = 'PV ' + hero.getPtnVie();
-  // potionSoinElement.textContent = 'Potion de soin ' + hero.getPotionSoin();
-  // armeElement.textContent = 'Arme ' + hero.getArme();
-  // goldElement.textContent = 'Gold ' + hero.getGold();
-hero.afficher(ptnVieElement);
+
+  hero.afficher(ptnVieElement);
+  hero.afficher(potionSoinElement);
+  hero.afficher(armeElement);
+  hero.afficher(goldElement);
+  
   // Fonction pour attaquer
   const attaquer = () => {
     hero.attaquer();
