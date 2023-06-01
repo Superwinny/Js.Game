@@ -49,6 +49,7 @@ get gold()
 }  
 
 /******** SET  **************/
+
 set degats(dgs){
   this.#degats = dgs;
 }
@@ -75,17 +76,15 @@ acheter(item){
   //toDO : Gerer les items pour le changement d'înfo du hero
 }
 afficher(ptnVieElement,potionSoinElement,armeElement,goldElement){
-ptnVieElement.textcontent =  'PV ' + this.ptnVie;
-potionSoinElement.textcontent =  'Potion de soin ' + this.potionSoin;
-armeElement.textcontent =  'Arme ' + this.arme;
-goldElement.textcontent =  'Gold ' + this.gold;
-
-
+ptnVieElement.textContent =  'PV ' + this.ptnVie;
+potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
+armeElement.textContent =  'Arme ' + this.arme;
+goldElement.textContent =  'Gold ' + this.gold;
 }
+
     attaquer() {
       let degats = Math.floor(Math.random() * 10) + 1;
-      let typeAttack = "";
-
+     
       // Effectuez ici les opérations spécifiques à l'attaque du héros
       console.log("Le héros attaque !");
       console.log("Dégâts infligés : " + degats);
@@ -101,20 +100,7 @@ goldElement.textcontent =  'Gold ' + this.gold;
         return null;
       }
     }
-    getPtnVie() {
-        return this.ptnVie;
-      }
-
-      getPotionSoin() {
-        return this.potionSoin;
-      }
-      getArme (){
-        return this.arme;
-      }
-      getGold() {
-        return this.gold;
-      }
-
+    
     
      utiliserPotion() {
          if (this.potionSoin > 0) {
@@ -144,8 +130,9 @@ class Guerrier extends Hero {
   
 
     attaquer() {
-      // this.ptnVie = 2
+     this.ptnVie = 2
       let degats = Math.floor(Math.random() * 10) + 1;
+      let typeAttack = this.typeAttack;
       
       //Effectuez ici les opérations spécifiques à l'attaque du guerrier
       console.log("Le guerrier attaque !");
@@ -167,6 +154,7 @@ class Mage extends Hero {
 
     attaquer() {
       let degats = Math.floor(Math.random() * 8) + 5;
+      let typeAttack = this.typeAttack;
       
       // Effectuez ici les opérations spécifiques à l'attaque du mage
       console.log("Le mage attaque !");
@@ -188,8 +176,7 @@ class Chasseur extends Hero {
 
     attaquer() {
       let chanceCritique = Math.random();
-      let typeAttack = "";
-
+      let typeAttack = this.typeAttack;
       if (chanceCritique < 0.2) {
         degats = Math.floor(Math.random() * 10) + 10;
         typeAttack = "critique";
@@ -256,16 +243,16 @@ class Marchand {
   vendreItem(hero, item) {
     let magasin;
   
-    if (hero instanceof Guerrier) {
-      magasin = this.#magasinGuerrier;
-    } else if (hero instanceof Mage) {
-      magasin = this.#magasinMage;
-    } else if (hero instanceof Chasseur) {
-      magasin = this.#magasinChasseur;
-    } else {
-      console.log("Classe invalide.");
-      return;
-    }
+    // if (hero instanceof Guerrier) {
+    //   magasin = this.#magasinGuerrier;
+    // } else if (hero instanceof Mage) {
+    //   magasin = this.#magasinMage;
+    // } else if (hero instanceof Chasseur) {
+    //   magasin = this.#magasinChasseur;
+    // } else {
+    //   console.log("Classe invalide.");
+    //   return;
+    // }
   
     if (magasin[item]) {
       const { prix, ...details } = magasin[item];
