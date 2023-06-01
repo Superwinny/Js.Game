@@ -24,31 +24,32 @@
 /******** GET  **************/  
 
 get potionSoin(){
-  return this.#potionSoin
+  return this.#potionSoin;
 }
 get degats(){
-  return this.#degats
+  return this.#degats;
 }
 get typeAttack(){
-  return this.#typeAttack
+  return this.#typeAttack;
 }
 get arme(){
-  return this.#arme
+  return this.#arme;
 }
 get img(){
-  return this.#imgURL
+  return this.#imgURL;
 }
 get ptnVie()
 {
-  return this.#ptnVie
+  return this.#ptnVie;
 }  
 
 get gold()
 {
-  return this.#gold
+  return this.#gold;
 }  
 
 /******** SET  **************/
+
 
 set degats(dgs){
   this.#degats = dgs;
@@ -62,21 +63,45 @@ set ptnVie(ptn){
   this.#ptnVie = ptn;
 }
 
-set arme(arm){
-  this.#arme = arm;
+set arme(arme){
+  this.#arme = arme;
 }
 set gold(gold){
   this.#gold = gold;
 }
 
-acheter(item){
-  if(this.#gold < item.prix)
-     return -1
-  this.#gold -= item.prix
-  //toDO : Gerer les items pour le changement d'înfo du hero
+acheter(item, classe) {
+  if (this.#gold < item.prix) {
+    return -1; // Retourne -1 si le héros n'a pas assez d'or pour acheter l'item
+  }
+  
+  this.#gold -= item.prix; // Déduit le prix de l'item de l'or du héros
+  
+  // Mettre à jour les informations du héros en fonction du type d'item acheté
+  const magasin = new Marchand().getMagasin(classe);
+  
+  for (const type in magasin) {
+    if (magasin[type] === item) {
+      switch (type) {
+        case "Arme":
+          this.#arme = item;
+          console.log(`Nouvelle arme achetée : ${item.nom}`);
+          break;
+        case "Potion":
+          this.#potionSoin = item;
+          console.log(`Nouvelle potion achetée : ${item.nom}`);
+          break;
+        default:
+          console.log("Type d'item invalide.");
+          break;
+      }
+      break;
+    }
+  }
 }
+
 afficher(ptnVieElement,potionSoinElement,armeElement,goldElement){
-ptnVieElement.textContent =  'PV ' + this.ptnVie;
+ptnVieElement.textContent =  'Point de vie' + this.ptnVie;
 potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
 armeElement.textContent =  'Arme ' + this.arme;
 goldElement.textContent =  'Gold ' + this.gold;
@@ -130,7 +155,7 @@ class Guerrier extends Hero {
   
 
     attaquer() {
-     this.ptnVie = 2
+    //  this.ptnVie = 2
       let degats = Math.floor(Math.random() * 10) + 1;
       let typeAttack = this.typeAttack;
       
@@ -224,35 +249,23 @@ class Marchand {
       "Potion": { prix: 8, effet: "soin" },
     };
   }
-
+  
   getMagasin(classe) {
     switch (true) {
-      case classe instanceof Guerrier:
+      case classe === Guerrier:
         return this.#magasinGuerrier;
-      case classe instanceof Mage:
+      case classe === Mage:
         return this.#magasinMage;
-      case classe instanceof Chasseur:
+      case classe === Chasseur:
         return this.#magasinChasseur;
       default:
+        console.log("Classe de héros invalide.");
         return {};
     }
   }
 
-
-
-  vendreItem(hero, item) {
-    let magasin;
-  
-    // if (hero instanceof Guerrier) {
-    //   magasin = this.#magasinGuerrier;
-    // } else if (hero instanceof Mage) {
-    //   magasin = this.#magasinMage;
-    // } else if (hero instanceof Chasseur) {
-    //   magasin = this.#magasinChasseur;
-    // } else {
-    //   console.log("Classe invalide.");
-    //   return;
-    // }
+  vendreItem(hero) {
+    const magasin = this.getMagasin(hero.constructor);
   
     if (magasin[item]) {
       const { prix, ...details } = magasin[item];
@@ -263,4 +276,6 @@ class Marchand {
       console.log(`L'item ${item} n'est pas disponible pour ${hero.constructor.name}.`);
     }
   }
+  
+  
 }

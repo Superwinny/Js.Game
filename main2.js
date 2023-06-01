@@ -42,6 +42,7 @@ heroImages.forEach((image, index) => {
 
     // Mettez à jour l'image source avec l'URL du héros sélectionné
     image.setAttribute("src", imageURL);
+   
 
     // Supprimez l'attribut disabled du bouton de validation
     confirmButton.removeAttribute("disabled");

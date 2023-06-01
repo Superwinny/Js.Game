@@ -10,8 +10,6 @@ const ptnVieElement = document.querySelector('.infoGame #ptnVie');
 const potionSoinElement = document.querySelector('.infoGame #potionSoin');
 const armeElement = document.querySelector('.infoGame #arme');
 const goldElement = document.querySelector('.infoGame #gold');
-
-
 const pvEnemyElement = document.getElementById('pvEnemy');
 const armeEnemyElement = document.getElementById('armeEnemy');
 const degatsEnemyElement = document.getElementById('degatsEnemy');
@@ -35,12 +33,11 @@ if (hero) {
     hero.attaquer();
   };
 
-  // Fonction pour acheter
-  const acheter = () => {
-    const marchand = new Marchand();
-    marchand.vendreItem(hero);
-  };
-
+// Fonction pour acheter
+const acheter = () => {
+  const marchand = new Marchand();
+  marchand.vendreItem(hero.classe); // Passer la classe du héros
+};
   // Ajouter un écouteur d'événements au clic sur le bouton d'attaque
   buttonAttack.addEventListener('click', attaquer);
 
