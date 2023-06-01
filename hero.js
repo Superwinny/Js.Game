@@ -18,7 +18,7 @@
         this.#arme = arme;
         this.#typeAttack = typeAttack;
         this.#degats = degats;
-        this.#potionSoin = potionSoin; 
+        this.#potionSoin = 0; 
       }
 
 /******** GET  **************/  
@@ -74,7 +74,7 @@ acheter(item){
   this.#gold -= item.prix
   //toDO : Gerer les items pour le changement d'înfo du hero
 }
-afficher(ptnVieElement){
+afficher(ptnVieElement,potionSoinElement,armeElement,goldElement){
 ptnVieElement.textcontent =  'PV ' + this.ptnVie;
 potionSoinElement.textcontent =  'Potion de soin ' + this.potionSoin;
 armeElement.textcontent =  'Arme ' + this.arme;
@@ -101,19 +101,19 @@ goldElement.textcontent =  'Gold ' + this.gold;
         return null;
       }
     }
-     getPtnVie() {
-         return this.ptnVie;
-       }
+    getPtnVie() {
+        return this.ptnVie;
+      }
 
-       getPotionSoin() {
-         return this.potionSoin;
-       }
-       getArme (){
-         return this.arme;
-       }
-       getGold() {
-         return this.gold;
-       }
+      getPotionSoin() {
+        return this.potionSoin;
+      }
+      getArme (){
+        return this.arme;
+      }
+      getGold() {
+        return this.gold;
+      }
 
     
      utiliserPotion() {
@@ -144,7 +144,7 @@ class Guerrier extends Hero {
   
 
     attaquer() {
-      this.ptnVie = 2
+      // this.ptnVie = 2
       let degats = Math.floor(Math.random() * 10) + 1;
       
       //Effectuez ici les opérations spécifiques à l'attaque du guerrier
