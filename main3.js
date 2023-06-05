@@ -15,50 +15,45 @@ const faiblesseEnemyElement = document.getElementById('faiblesseEnemy');
 const buttonAttack = document.getElementById('buttonAttack');
 const buttonAchat = document.getElementById('buttonAchat');
 
-// Récupérer le héros depuis le stockage local
-//const hero = Hero.getHeroFromLocalStorage();
-// const enemy = Enemy.getEnemyFromLocalStorage();
-
-
-
 
 function jouerPartie() {
-  // const hero = Hero.getHeroFromLocalStorage();
-  const marchand = new Marchand();
-  // let phase = 1;
+    const hero = Hero.getHeroFromLocalStorage();
+    const marchand = new Marchand();
+  
   let enemyIndex = 0;
-  /*
-  const enemyList = [
-    new Loup(),
-    new ZombieAffamer(),
-    new Zombie(),
-    new Squelette(),
-    new PetitDragon(),
-    new Ours(),
-    new Minotor(),
-    new MasterDragon(),
-    new Hydre(),
-    new GuerrierOrc(),
-    new GrosZombie(),
-    new Gorille(),
-    new Golem(),
-    new Fantome(),
-    new DragonRouge(),
-    new DragonBleu(),
-    new Demon(),
-    new ChienATroisTete(),
-    new ChevalierCorrompu()
-  ];
-  */
+  
+   const enemyList = [
+     new Loup(),
+     new ZombieAffamer(),
+     new Zombie(),
+     new Squelette(),
+     new PetitDragon(),
+     new Ours(),
+     new Minotor(),
+     new MasterDragon(),
+     new Hydre(),
+     new GuerrierOrc(),
+     new GrosZombie(),
+     new Gorille(),
+     new Golem(),
+     new Fantome(),
+     new DragonRouge(),
+     new DragonBleu(),
+     new Demon(),
+     new ChienATroisTete(),
+     new ChevalierCorrompu()
+   ];
+  
   // Vérifier si un héros a été sélectionné
-// if (hero) {
+ if (hero) {
   
 //   // Afficher les informations du héros dans l'interface utilisateur
-//   hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement,selectedImageElement);
-
-// } else {
-//  // Rediriger sur le premier index 
-// }
+   hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement,selectedImageElement);
+  
+ } else {
+  // Rediriger sur le premier index 
+  // window.location.href = "index.html";
+ }
 
   // Fonction pour l'attaque de l'ennemi
   const enemyAttaque = (enemy, hero) => {
@@ -131,20 +126,6 @@ function jouerPartie() {
   // Initialiser l'interface utilisateur
   mettreAJourInterface();
   
-
-
-  // Faire un FOR
-  // while (enemyIndex < enemyList.length && hero.ptnVie > 0) {
-  //   console.log(`Phase ${phase}`);
-  //   const currentEnemy = enemyList[enemyIndex];
-  //   console.log(`Prochain ennemi: ${currentEnemy.constructor.name}`);
-  //   currentEnemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement);
-
-    // Attente de l'action du joueur (attaque ou achat)
-    // Mettez ici la logique pour gérer les actions du joueur et les mises à jour de l'interface utilisateur
-
-  //   phase++;
-  // }
 }
 
-jouerPartie()
+ jouerPartie()

@@ -23,9 +23,6 @@ class Enemy {
  get degats(){
    return this.#degats;
  }
- get typeAttack(){
-   return this.#typeAttack;
- }
  get arme(){
    return this.#arme;
  }
@@ -36,9 +33,9 @@ class Enemy {
  {
    return this.#ptnVie;
  }  
- get faiblesseAtttack()
+ get faiblesseAttack()
  {
-   return this.#faiblesseAtttack;
+   return this.#faiblesseAttack;
  }  
  
  
@@ -50,6 +47,27 @@ class Enemy {
     faiblesseEnemyElement.textContent =  'Faiblesse ' + this.faiblesseAttack;
  
  }
+//  setEnemyIntoLocalStorage() {
+//   const properties = {
+//     ptnVie : this.ptnVie,
+//     imgUrl: this.img,
+//     gold : this.gold,
+//     arme: this.arme,
+//     typeAttack: this.typeAttack,
+//     degats: this.degats,
+//     faiblesseAtttack: this.faiblesseAtttack,
+//   }
+//   localStorage.setItem("enemy",JSON.stringify(properties))
+// }
+// static getEnemyFromLocalStorage() {
+//   const enemyData = localStorage.getItem("enemy");
+//   if (enemyData) {
+//     console.log("parsing enemy", JSON.parse(enemyData))
+//     const { ptnVie, imgUrl, gold, arme, typeAttack, degats, typeenemy } = JSON.parse(enemyData);
+   
+    
+//   }
+// }
  
   // Méthode pour attaquer
   attaquer(cible) {

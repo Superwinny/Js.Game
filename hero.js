@@ -12,7 +12,6 @@
       #potionSoin;   
 
     constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
-        console.log(imgURL)
         this.#ptnVie = ptnVie;
         this.#imgURL = imgURL;
         this.#gold = gold;
@@ -20,7 +19,6 @@
         this.#typeAttack = typeAttack;
         this.#degats = degats;
         this.#potionSoin = 0; 
-        console.log(this.#imgURL)
       }
 
 /******** GET  **************/  
@@ -108,7 +106,6 @@ potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
 armeElement.textContent =  'Arme ' + this.arme;
 goldElement.textContent =  'Gold ' + this.gold;
 selectedImageElement.src =  this.img;
-console.log(this)
 
 }
 
@@ -129,14 +126,15 @@ console.log(this)
         arme: this.arme,
         typeAttack: this.typeAttack,
         degats: this.degats,
-        typeHero: this.typeHero
+        typeHero: this.typeHero,
       }
       localStorage.setItem("hero",JSON.stringify(properties))
+      console.log(properties)
     }
     static getHeroFromLocalStorage() {
       const heroData = localStorage.getItem("hero");
       if (heroData) {
-        console.log("parsing hero", JSON.parse(heroData))
+        console.log("parsing hero", JSON.parse(heroData)) 
         const { ptnVie, imgUrl, gold, arme, typeAttack, degats, typeHero } = JSON.parse(heroData);
         switch(typeHero){
           case "Guerrier":
