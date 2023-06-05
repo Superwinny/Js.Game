@@ -151,9 +151,7 @@ console.log(this)
             default:
               console.log("Classe invalide.");
               return;
-
         }
-        //return new Hero(ptnVie, imgUrl, gold, arme, typeAttack, degats);
       } else {
         return null;
       }
@@ -182,8 +180,8 @@ console.log(this)
 /**********************************************************/
 
 class Guerrier extends Hero {
-    constructor() {
-      super(100, "img/Guerrier.svg", 0, "hache", "tranchant", 10);
+    constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
+      super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
       
     }
   
@@ -192,7 +190,6 @@ class Guerrier extends Hero {
     }
 
     attaquer() {
-    //  this.ptnVie = 2
       let degats = Math.floor(Math.random() * 10) + 1;
       let typeAttack = this.typeAttack;
       
@@ -210,9 +207,7 @@ class Guerrier extends Hero {
 
 class Mage extends Hero {
     constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
-      super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
-      //super(60, "img/Mage.svg", 0, "Baguette", "Magique", 6);
-      
+      super(ptnVie, imgUrl, gold, arme, typeAttack, degats);  
     }
 
     get typeHero(){
@@ -236,8 +231,8 @@ class Mage extends Hero {
 /**********************************************************/
 
 class Chasseur extends Hero {
-    constructor() {
-      super(80, "img/Chasseur.svg", 0, "Couteau", "classique", 8);
+    constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
+      super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
       
     }
 
