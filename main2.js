@@ -24,7 +24,7 @@ heroImages.forEach((image, index) => {
         hero = new Guerrier();
         break;
       case "Mage":
-        hero = new Mage();
+        hero = new Mage(60, "img/Mage.svg", 0, "Baguette", "Magique", 6);
         break;
       case "Chasseur":
         hero = new Chasseur();
@@ -35,7 +35,8 @@ heroImages.forEach((image, index) => {
     }
 
     // Enregistrez l'instance du héros dans le stockage local
-    localStorage.setItem("hero", JSON.stringify(hero));
+   hero.setHeroIntoLocalStorage();
+
 
     // Récupérez l'URL de l'image du héros à partir de la classe correspondante
     const imageURL = hero.img;
@@ -48,5 +49,6 @@ heroImages.forEach((image, index) => {
     confirmButton.removeAttribute("disabled");
 
     console.log("Héros sélectionné :", hero);
+    console.log( localStorage.getItem("hero"))
   });
 });

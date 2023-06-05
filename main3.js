@@ -1,8 +1,6 @@
 
 // Déclaration des variables globales
 let selectedImageElement = document.getElementById('selectedImage');
-let imageURL = localStorage.getItem('selectedImage');
-
 
 
 // Modifier les sélecteurs des éléments de l'interface utilisateur
@@ -18,41 +16,18 @@ const buttonAttack = document.getElementById('buttonAttack');
 const buttonAchat = document.getElementById('buttonAchat');
 
 // Récupérer le héros depuis le stockage local
-const hero = Hero.getHeroFromLocalStorage();
+//const hero = Hero.getHeroFromLocalStorage();
+// const enemy = Enemy.getEnemyFromLocalStorage();
 
-// Vérifier si un héros a été sélectionné
-if (hero) {
-  console.log(hero);
-  // Afficher les informations du héros dans l'interface utilisateur
-  selectedImageElement.src = hero.img;
 
-  hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement);
-  
-  // Fonction pour attaquer
-  const attaquer = () => {
-    hero.attaquer();
-  };
-
-// Fonction pour acheter
-const acheter = () => {
-  const marchand = new Marchand();
-  marchand.vendreItem(hero.classe); // Passer la classe du héros
-};
-  // Ajouter un écouteur d'événements au clic sur le bouton d'attaque
-  buttonAttack.addEventListener('click', attaquer);
-
-  // Ajouter un écouteur d'événements au clic sur le bouton d'achat
-  buttonAchat.addEventListener('click', acheter);
-} else {
-  console.log("Aucun héros sélectionné.");
-}
 
 
 function jouerPartie() {
-  const hero = Hero.getHeroFromLocalStorage();
+  // const hero = Hero.getHeroFromLocalStorage();
   const marchand = new Marchand();
-  let phase = 1;
+  // let phase = 1;
   let enemyIndex = 0;
+  /*
   const enemyList = [
     new Loup(),
     new ZombieAffamer(),
@@ -74,6 +49,16 @@ function jouerPartie() {
     new ChienATroisTete(),
     new ChevalierCorrompu()
   ];
+  */
+  // Vérifier si un héros a été sélectionné
+// if (hero) {
+  
+//   // Afficher les informations du héros dans l'interface utilisateur
+//   hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement,selectedImageElement);
+
+// } else {
+//  // Rediriger sur le premier index 
+// }
 
   // Fonction pour l'attaque de l'ennemi
   const enemyAttaque = (enemy, hero) => {
@@ -90,6 +75,7 @@ function jouerPartie() {
 
   // Fonction pour attaquer
   const attaquer = () => {
+    alert("attaquer clické")
     const currentEnemy = enemyList[enemyIndex];
 
     if (currentEnemy && currentEnemy.ptnVie > 0) {
@@ -124,6 +110,7 @@ function jouerPartie() {
 
   // Fonction pour acheter
   const acheter = () => {
+    alert("cheter clické")
     const magasin = marchand.getMagasin(hero.constructor);
     // Afficher le magasin dans l'interface utilisateur et gérer l'achat
   };
@@ -143,16 +130,21 @@ function jouerPartie() {
 
   // Initialiser l'interface utilisateur
   mettreAJourInterface();
+  
 
-  while (enemyIndex < enemyList.length && hero.ptnVie > 0) {
-    console.log(`Phase ${phase}`);
-    const currentEnemy = enemyList[enemyIndex];
-    console.log(`Prochain ennemi: ${currentEnemy.constructor.name}`);
-    currentEnemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement);
+
+  // Faire un FOR
+  // while (enemyIndex < enemyList.length && hero.ptnVie > 0) {
+  //   console.log(`Phase ${phase}`);
+  //   const currentEnemy = enemyList[enemyIndex];
+  //   console.log(`Prochain ennemi: ${currentEnemy.constructor.name}`);
+  //   currentEnemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement);
 
     // Attente de l'action du joueur (attaque ou achat)
     // Mettez ici la logique pour gérer les actions du joueur et les mises à jour de l'interface utilisateur
 
-    phase++;
-  }
+  //   phase++;
+  // }
 }
+
+jouerPartie()

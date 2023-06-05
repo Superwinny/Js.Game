@@ -12,6 +12,7 @@
       #potionSoin;   
 
     constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
+        console.log(imgURL)
         this.#ptnVie = ptnVie;
         this.#imgURL = imgURL;
         this.#gold = gold;
@@ -19,6 +20,7 @@
         this.#typeAttack = typeAttack;
         this.#degats = degats;
         this.#potionSoin = 0; 
+        console.log(this.#imgURL)
       }
 
 /******** GET  **************/  
@@ -100,11 +102,14 @@ acheter(item, classe) {
   }
 }
 
-afficher(ptnVieElement,potionSoinElement,armeElement,goldElement){
+afficher(ptnVieElement,potionSoinElement,armeElement,goldElement,selectedImageElement){
 ptnVieElement.textContent =  'Point de vie' + this.ptnVie;
 potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
 armeElement.textContent =  'Arme ' + this.arme;
 goldElement.textContent =  'Gold ' + this.gold;
+selectedImageElement.src =  this.img;
+console.log(this)
+
 }
 
     attaquer() {
@@ -116,11 +121,39 @@ goldElement.textContent =  'Gold ' + this.gold;
       console.log("Type d'attaque : " + typeAttack);
     }
 
+     setHeroIntoLocalStorage() {
+      const properties = {
+        ptnVie : this.ptnVie,
+        imgUrl: this.img,
+        gold : this.gold,
+        arme: this.arme,
+        typeAttack: this.typeAttack,
+        degats: this.degats,
+        typeHero: this.typeHero
+      }
+      localStorage.setItem("hero",JSON.stringify(properties))
+    }
     static getHeroFromLocalStorage() {
       const heroData = localStorage.getItem("hero");
       if (heroData) {
-        const { ptnVie, imgURL, gold, arme, typeAttack, degats } = JSON.parse(heroData);
-        return new Hero(ptnVie, imgURL, gold, arme, typeAttack, degats);
+        console.log("parsing hero", JSON.parse(heroData))
+        const { ptnVie, imgUrl, gold, arme, typeAttack, degats, typeHero } = JSON.parse(heroData);
+        switch(typeHero){
+          case "Guerrier":
+            return new Guerrier(ptnVie, imgUrl, gold, arme, typeAttack, degats)
+          break;
+          case "Mage":
+            return new Mage(ptnVie, imgUrl, gold, arme, typeAttack, degats)
+            break
+          case "Chasseur":
+            return new Chasseur(ptnVie, imgUrl, gold, arme, typeAttack, degats)
+            break;
+            default:
+              console.log("Classe invalide.");
+              return;
+
+        }
+        //return new Hero(ptnVie, imgUrl, gold, arme, typeAttack, degats);
       } else {
         return null;
       }
@@ -139,6 +172,7 @@ goldElement.textContent =  'Gold ' + this.gold;
            console.log(`${this.constructor.name} n'a pas de potion de soin.`);
          }
        }
+      
 }
   
 
@@ -153,6 +187,9 @@ class Guerrier extends Hero {
       
     }
   
+    get typeHero() {
+      return "Guerrier"
+    }
 
     attaquer() {
     //  this.ptnVie = 2
@@ -172,9 +209,14 @@ class Guerrier extends Hero {
 /**********************************************************/
 
 class Mage extends Hero {
-    constructor() {
-      super(60, "img/Mage.svg", 0, "Baguette", "Magique", 6);
+    constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
+      super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
+      //super(60, "img/Mage.svg", 0, "Baguette", "Magique", 6);
       
+    }
+
+    get typeHero(){
+      return "Mage"
     }
 
     attaquer() {
@@ -197,6 +239,10 @@ class Chasseur extends Hero {
     constructor() {
       super(80, "img/Chasseur.svg", 0, "Couteau", "classique", 8);
       
+    }
+
+    get typeHero() {
+      return "Chasseur"
     }
 
     attaquer() {
