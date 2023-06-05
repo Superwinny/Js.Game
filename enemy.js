@@ -36,12 +36,13 @@ class Enemy {
     return this.#faiblesseAttack;
   }
 
-  afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageElement) {
+  afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageEnemy) {
     pvEnemyElement.textContent = 'Point de vie : ' + this.ptnVie;
     degatsEnemyElement.textContent = 'Dégâts : ' + this.degats;
     armeEnemyElement.textContent = 'Arme : ' + this.arme;
     faiblesseEnemyElement.textContent = 'Faiblesse : ' + this.faiblesseAttack;
-    selectedImageElement.src = this.img;
+    selectedImageEnemy.src = this.img;
+    
   }
 
   setEnemyIntoLocalStorage() {
@@ -140,8 +141,9 @@ class Enemy {
 /******** Loup **************/
 /**********************************************************/
 class Loup extends Enemy {
-    constructor() {
-      super(20, "img/imEnemy/Loup.svg", "Croc", "magic", 5);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      // super(20, "img/imEnemy/Loup.svg", "Croc", "magic", 5);
     }
   
     attaquer(cible) {
@@ -153,8 +155,9 @@ class Loup extends Enemy {
   /******** ZombieAffameur **************/
   /**********************************************************/
   class ZombieAffamer extends Enemy {
-    constructor() {
-      super(40, "img/imEnemy/ZombieAffamer.svg", "Griffes", "tranchant", 10);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(40, "img/imEnemy/ZombieAffamer.svg", "Griffes", "tranchant", 10);
     }
   
     attaquer(cible) {
@@ -166,8 +169,9 @@ class Loup extends Enemy {
   /******** Zombie **************/
   /**********************************************************/
   class Zombie extends Enemy {
-    constructor() {
-      super(35, "img/imEnemy/Zombie.svg", "Mains", "trnahcant", 8);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(35, "img/imEnemy/Zombie.svg", "Mains", "trnahcant", 8);
     }
   
     attaquer(cible) {
@@ -179,8 +183,9 @@ class Loup extends Enemy {
   /******** Squelette **************/
   /**********************************************************/
   class Squelette extends Enemy {
-    constructor() {
-      super(25, "img/imEnemy/Squelette.svg", "Épée", "critique", 6);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(25, "img/imEnemy/Squelette.svg", "Épée", "critique", 6);
     }
   
     attaquer(cible) {
@@ -192,8 +197,9 @@ class Loup extends Enemy {
   /******** PetitDragon **************/
   /**********************************************************/
   class PetitDragon extends Enemy {
-    constructor() {
-      super(50, "img/imEnemy/PetitDragon.svg", "Flammes", "Glace", 12);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(50, "img/imEnemy/PetitDragon.svg", "Flammes", "Glace", 12);
     }
   
     attaquer(cible) {
@@ -205,8 +211,10 @@ class Loup extends Enemy {
   /******** Ours **************/
   /**********************************************************/
   class Ours extends Enemy {
-    constructor() {
-      super(45, "img/imEnemy/Ours.svg", "Griffes", "Feu", 10);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(45, "img/imEnemy/Ours.svg", "Griffes", "Feu", 10);
+
     }
   
     attaquer(cible) {
@@ -218,8 +226,9 @@ class Loup extends Enemy {
   /******** Minotor **************/
   /**********************************************************/
   class Minotor extends Enemy {
-    constructor() {
-      super(55, "img/imEnemy/Minotor.svg", "Hache", "critique", 14);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(55, "img/imEnemy/Minotor.svg", "Hache", "critique", 14);
     }
   
     attaquer(cible) {
@@ -231,8 +240,9 @@ class Loup extends Enemy {
   /******** MasterDragon **************/
   /**********************************************************/
   class MasterDragon extends Enemy {
-    constructor() {
-      super(100, "img/imEnemy/MasterDragon.svg", "Feu", "Glace", 25);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(100, "img/imEnemy/MasterDragon.svg", "Feu", "Glace", 25);
     }
   
     attaquer(cible) {
@@ -244,8 +254,9 @@ class Loup extends Enemy {
   /******** Hydre **************/
   /**********************************************************/
   class Hydre extends Enemy {
-    constructor() {
-      super(75, "img/imEnemy/Hydre.svg", "Crocs venimeux", "Feu", 16);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(75, "img/imEnemy/Hydre.svg", "Crocs venimeux", "Feu", 16);
     }
   
     attaquer(cible) {
@@ -257,8 +268,9 @@ class Loup extends Enemy {
   /******** Guerrier Orc **************/
   /**********************************************************/
   class GuerrierOrc extends Enemy {
-    constructor() {
-      super(55, "img/imEnemy/GuerrierOrc.svg", "Hache", "critique", 12);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(55, "img/imEnemy/GuerrierOrc.svg", "Hache", "critique", 12);
     }
   
     attaquer(cible) {
@@ -270,8 +282,9 @@ class Loup extends Enemy {
   /******** Gros Zombie **************/
   /**********************************************************/
   class GrosZombie extends Enemy {
-    constructor() {
-      super(60, "img/imEnemy/GrosZombie.svg", "Mains", "tranchant", 14);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(60, "img/imEnemy/GrosZombie.svg", "Mains", "tranchant", 14);
     }
   
     attaquer(cible) {
@@ -283,8 +296,9 @@ class Loup extends Enemy {
   /******** Gorille **************/
   /**********************************************************/
   class Gorille extends Enemy {
-    constructor() {
-      super(50, "img/imEnemy/Gorille.svg", "Poings", "critique", 12);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(50, "img/imEnemy/Gorille.svg", "Poings", "critique", 12);
     }
   
     attaquer(cible) {
@@ -296,8 +310,9 @@ class Loup extends Enemy {
   /******** Golem **************/
   /**********************************************************/
   class Golem extends Enemy {
-    constructor() {
-      super(65, "img/imEnemy/Golem.svg", "Massue", "magic", 15);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(65, "img/imEnemy/Golem.svg", "Massue", "magic", 15);
     }
   
     attaquer(cible) {
@@ -309,8 +324,9 @@ class Loup extends Enemy {
   /******** Fantôme **************/
   /**********************************************************/
   class Fantome extends Enemy {
-    constructor() {
-      super(30, "img/imEnemy/Fantome.svg", "Ectoplasme", "magic", 8);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(30, "img/imEnemy/Fantome.svg", "Ectoplasme", "magic", 8);
     }
   
     attaquer(cible) {
@@ -322,8 +338,9 @@ class Loup extends Enemy {
   /******** Dragon Rouge **************/
   /**********************************************************/
   class DragonRouge extends Enemy {
-    constructor() {
-      super(90, "img/imEnemy/DragonRouge.svg", "Souffle de feu", "critique", 20);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(90, "img/imEnemy/DragonRouge.svg", "Souffle de feu", "critique", 20);
     }
   
     attaquer(cible) {
@@ -335,8 +352,9 @@ class Loup extends Enemy {
   /******** Dragon Bleu **************/
   /**********************************************************/
   class DragonBleu extends Enemy {
-    constructor() {
-      super(85, "img/imEnemy/DragonBleu.svg", "Souffle de glace", "critique", 18);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(85, "img/imEnemy/DragonBleu.svg", "Souffle de glace", "critique", 18);
     }
   
     attaquer(cible) {
@@ -348,8 +366,9 @@ class Loup extends Enemy {
   /******** Démon **************/
   /**********************************************************/
   class Demon extends Enemy {
-    constructor() {
-      super(65, "img/imEnemy/Demon.svg", "Trident", "tranchant", 14);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(65, "img/imEnemy/Demon.svg", "Trident", "tranchant", 14);
     }
   
     attaquer(cible) {
@@ -361,8 +380,9 @@ class Loup extends Enemy {
   /******** Chien à Trois Têtes **************/
   /**********************************************************/
   class ChienATroisTete extends Enemy {
-    constructor() {
-      super(70, "img/imEnemy/ChienATroisTete.svg", "Crocs", "tranchant", 16);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(70, "img/imEnemy/ChienATroisTete.svg", "Crocs", "tranchant", 16);
     }
   
     attaquer(cible) {
@@ -374,8 +394,9 @@ class Loup extends Enemy {
   /******** Chevalier Corrompu **************/
   /**********************************************************/
   class ChevalierCorrompu extends Enemy {
-    constructor() {
-      super(75, "img/imEnemy/ChevalierCorrompu.svg", "Épée maudite", "critique", 18);
+    constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+      super(ptnVie, imgURL, arme, faiblesseAttack, degats);
+      //super(75, "img/imEnemy/ChevalierCorrompu.svg", "Épée maudite", "critique", 18);
     }
   
     attaquer(cible) {

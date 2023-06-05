@@ -1,7 +1,7 @@
 
 // Déclaration des variables globales
 let selectedImageElement = document.getElementById('selectedImage');
-
+let selectedImageEnemy = document.getElementById('selectedImageEnemy');
 
 // Modifier les sélecteurs des éléments de l'interface utilisateur
 const ptnVieElement = document.querySelector('.infoGame #ptnVie');
@@ -18,7 +18,7 @@ const buttonAchat = document.getElementById('buttonAchat');
 
 function jouerPartie() {
     const hero = Hero.getHeroFromLocalStorage();
-     const enemy = Enemy.getEnemyFromLocalStorage();
+    const enemy = Enemy.getEnemyFromLocalStorage();
     const marchand = new Marchand();
   
   let enemyIndex = 0;
@@ -54,11 +54,11 @@ function jouerPartie() {
   // Rediriger sur le premier index 
   // window.location.href = "index.html";
  }
-//  if(enemy){
-//   enemy.afficher(pvEnemyElement, degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageElement)
-//  }else{
-//   return null
-//  }
+ if(enemy){
+  enemy.afficher(pvEnemyElement, degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageElement)
+ }else{
+  
+ }
 
   // Fonction pour l'attaque de l'ennemi
   const enemyAttaque = (enemy, hero) => {
@@ -110,7 +110,7 @@ function jouerPartie() {
 
   // Fonction pour acheter
   const acheter = () => {
-    alert("cheter clické")
+    alert("acheter clické")
     const magasin = marchand.getMagasin(hero.constructor);
     // Afficher le magasin dans l'interface utilisateur et gérer l'achat
   };
