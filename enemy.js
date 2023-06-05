@@ -40,34 +40,94 @@ class Enemy {
  
  
  
- afficher(pvEnemyElement,degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement){
+ afficher(pvEnemyElement,degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageElement){
     pvEnemyElement.textContent =  'Point de vie' + this.ptnVie;
     degatsEnemyElement.textContent =  'Dégats ' + this.degats;
     armeEnemyElement.textContent =  'Arme ' + this.arme;
     faiblesseEnemyElement.textContent =  'Faiblesse ' + this.faiblesseAttack;
+    selectedImageElement.src =  this.img;
  
  }
-//  setEnemyIntoLocalStorage() {
-//   const properties = {
-//     ptnVie : this.ptnVie,
-//     imgUrl: this.img,
-//     gold : this.gold,
-//     arme: this.arme,
-//     typeAttack: this.typeAttack,
-//     degats: this.degats,
-//     faiblesseAtttack: this.faiblesseAtttack,
-//   }
-//   localStorage.setItem("enemy",JSON.stringify(properties))
-// }
-// static getEnemyFromLocalStorage() {
-//   const enemyData = localStorage.getItem("enemy");
-//   if (enemyData) {
-//     console.log("parsing enemy", JSON.parse(enemyData))
-//     const { ptnVie, imgUrl, gold, arme, typeAttack, degats, typeenemy } = JSON.parse(enemyData);
-   
-    
-//   }
-// }
+ setEnemyIntoLocalStorage() {
+  const properties = {
+    ptnVie : this.ptnVie,
+    imgUrl: this.img,
+    arme: this.arme,
+    degats: this.degats,
+    faiblesseAtttack: this.faiblesseAtttack,
+    typeEnemy: this.typeEnemy,
+  }
+  localStorage.setItem("enemy",JSON.stringify(properties))
+}
+static getEnemyFromLocalStorage() {
+  const enemyData = localStorage.getItem("enemy");
+  if (enemyData) {
+    const { ptnVie, imgUrl, arme, faiblesseAtttack, degats, typeEnemy } = JSON.parse(enemyData);
+    switch(typeEnemy){
+      case "Loup":
+        return new Loup(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "ZombieAffameur":
+        return new ZombieAffameur(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Zombie":
+        return new Zombie(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Squelette":
+        return new Squelette(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "PetitDragon":
+        return new PetitDragon(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Ours":
+        return new Ours(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Minotor":
+        return new Minotor(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "MasterDragon":
+        return new MasterDragon(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Hydre":
+        return new Hydre(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "GuerrierOrc":
+        return new GuerrierOrc(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "GrosZombie":
+        return new GrosZombie(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Gorille":
+        return new Gorille(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Golem":
+        return new Golem(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Fantome":
+        return new Fantome(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "DragonRouge":
+        return new DragonRouge(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "DragonBleu":
+        return new DragonBleu(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "Demon":
+        return new Demon(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "ChienATroisTete":
+        return new ChienATroisTete(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      case "ChevalierCorrompu":
+        return new ChevalierCorrompu(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
+        break;
+      default:
+        return null;
+    }
+  }
+  return null;
+}
+}
  
   // Méthode pour attaquer
   attaquer(cible) {

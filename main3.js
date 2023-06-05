@@ -18,6 +18,7 @@ const buttonAchat = document.getElementById('buttonAchat');
 
 function jouerPartie() {
     const hero = Hero.getHeroFromLocalStorage();
+    // const enemy = Enemy.getEnemyFromLocalStorage();
     const marchand = new Marchand();
   
   let enemyIndex = 0;

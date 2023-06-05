@@ -36,7 +36,7 @@ heroImages.forEach((image, index) => {
 
     // Enregistrez l'instance du héros dans le stockage local
     hero.setHeroIntoLocalStorage();
-  // localStorage.setItem("hero", JSON.stringify(hero));
+  
 
 
     // Récupérez l'URL de l'image du héros à partir de la classe correspondante
