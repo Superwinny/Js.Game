@@ -18,7 +18,7 @@ const buttonAchat = document.getElementById('buttonAchat');
 
 function jouerPartie() {
     const hero = Hero.getHeroFromLocalStorage();
-    // const enemy = Enemy.getEnemyFromLocalStorage();
+     const enemy = Enemy.getEnemyFromLocalStorage();
     const marchand = new Marchand();
   
   let enemyIndex = 0;
@@ -48,13 +48,17 @@ function jouerPartie() {
   // Vérifier si un héros a été sélectionné
  if (hero) {
   
-//   // Afficher les informations du héros dans l'interface utilisateur
+//   // Afficher les informations du héros  dans l'interface utilisateur
    hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement,selectedImageElement);
-  
  } else {
   // Rediriger sur le premier index 
   // window.location.href = "index.html";
  }
+//  if(enemy){
+//   enemy.afficher(pvEnemyElement, degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageElement)
+//  }else{
+//   return null
+//  }
 
   // Fonction pour l'attaque de l'ennemi
   const enemyAttaque = (enemy, hero) => {
