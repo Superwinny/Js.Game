@@ -1,17 +1,17 @@
 
 // Déclaration des variables globales
 let selectedImageElement = document.getElementById('selectedImage');
-let selectedImageEnemy = document.getElementById('selectedImageEnemy');
+let selectedImageEnemy = document.getElementById('enemyImage');
 
 // Modifier les sélecteurs des éléments de l'interface utilisateur
 const ptnVieElement = document.querySelector('.infoGame #ptnVie');
 const potionSoinElement = document.querySelector('.infoGame #potionSoin');
 const armeElement = document.querySelector('.infoGame #arme');
 const goldElement = document.querySelector('.infoGame #gold');
-const pvEnemyElement = document.getElementById('pvEnemy');
-const armeEnemyElement = document.getElementById('armeEnemy');
-const degatsEnemyElement = document.getElementById('degatsEnemy');
-const faiblesseEnemyElement = document.getElementById('faiblesseEnemy');
+const pvEnemyElement = document.querySelector('.infoEnemy #pvEnemy');
+const armeEnemyElement = document.querySelector('.infoEnemy #armeEnemy');
+const degatsEnemyElement = document.querySelector('.infoEnemy #degatsEnemy');
+const faiblesseEnemyElement = document.querySelector('.infoEnemy #faiblesseEnemy');
 const buttonAttack = document.getElementById('buttonAttack');
 const buttonAchat = document.getElementById('buttonAchat');
 

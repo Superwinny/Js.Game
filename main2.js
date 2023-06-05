@@ -1,5 +1,6 @@
 // Sélectionnez les images des héros
 const heroImages = document.querySelectorAll("#choixperso img");
+// Sélectionnez les images des Enemy
 const enemyImages = document.querySelectorAll("#choixennemi img")
 // Sélectionnez le bouton de validation
 const confirmButton = document.getElementById("confirmButton");
