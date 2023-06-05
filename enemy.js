@@ -2,164 +2,139 @@
 /******** Enemy  **************/
 /**********************************************************/
 
-class Enemy {
-        #ptnVie;
-        #imgURL;
-        #arme;
-        #faiblesseAttack;
-        #degats; 
- 
-     constructor(ptnVie, imgURL,  arme, faiblesseAtttack, degats) {
-         this.#ptnVie = ptnVie;
-         this.#imgURL = imgURL;
-         this.#arme = arme;
-         this.#faiblesseAttack = faiblesseAtttack;
-         this.#degats = degats;
-       }
- 
- /******** GET  **************/  
- 
 
- get degats(){
-   return this.#degats;
- }
- get arme(){
-   return this.#arme;
- }
- get img(){
-   return this.#imgURL;
- }
- get ptnVie()
- {
-   return this.#ptnVie;
- }  
- get faiblesseAttack()
- {
-   return this.#faiblesseAttack;
- }  
- 
- 
- 
- afficher(pvEnemyElement,degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageElement){
-    pvEnemyElement.textContent =  'Point de vie' + this.ptnVie;
-    degatsEnemyElement.textContent =  'Dégats ' + this.degats;
-    armeEnemyElement.textContent =  'Arme ' + this.arme;
-    faiblesseEnemyElement.textContent =  'Faiblesse ' + this.faiblesseAttack;
-    selectedImageElement.src =  this.img;
- 
- }
- setEnemyIntoLocalStorage() {
-  const properties = {
-    ptnVie : this.ptnVie,
-    imgUrl: this.img,
-    arme: this.arme,
-    degats: this.degats,
-    faiblesseAtttack: this.faiblesseAtttack,
-    typeEnemy: this.typeEnemy,
+class Enemy {
+  #ptnVie;
+  #imgURL;
+  #arme;
+  #faiblesseAttack;
+  #degats;
+
+  constructor(ptnVie, imgURL, arme, faiblesseAttack, degats) {
+    this.#ptnVie = ptnVie;
+    this.#imgURL = imgURL;
+    this.#arme = arme;
+    this.#faiblesseAttack = faiblesseAttack;
+    this.#degats = degats;
   }
-  localStorage.setItem("enemy",JSON.stringify(properties))
-}
-static getEnemyFromLocalStorage() {
-  const enemyData = localStorage.getItem("enemy");
-  if (enemyData) {
-    const { ptnVie, imgUrl, arme, faiblesseAtttack, degats, typeEnemy } = JSON.parse(enemyData);
-    switch(typeEnemy){
-      case "Loup":
-        return new Loup(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "ZombieAffameur":
-        return new ZombieAffameur(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Zombie":
-        return new Zombie(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Squelette":
-        return new Squelette(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "PetitDragon":
-        return new PetitDragon(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Ours":
-        return new Ours(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Minotor":
-        return new Minotor(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "MasterDragon":
-        return new MasterDragon(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Hydre":
-        return new Hydre(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "GuerrierOrc":
-        return new GuerrierOrc(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "GrosZombie":
-        return new GrosZombie(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Gorille":
-        return new Gorille(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Golem":
-        return new Golem(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Fantome":
-        return new Fantome(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "DragonRouge":
-        return new DragonRouge(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "DragonBleu":
-        return new DragonBleu(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "Demon":
-        return new Demon(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "ChienATroisTete":
-        return new ChienATroisTete(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      case "ChevalierCorrompu":
-        return new ChevalierCorrompu(ptnVie, imgUrl, arme, faiblesseAtttack, degats);
-        break;
-      default:
-        return null;
+
+  /******** GETTERS **************/
+
+  get degats() {
+    return this.#degats;
+  }
+  get arme() {
+    return this.#arme;
+  }
+  get img() {
+    return this.#imgURL;
+  }
+  get ptnVie() {
+    return this.#ptnVie;
+  }
+  get faiblesseAttack() {
+    return this.#faiblesseAttack;
+  }
+
+  afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageElement) {
+    pvEnemyElement.textContent = 'Point de vie : ' + this.ptnVie;
+    degatsEnemyElement.textContent = 'Dégâts : ' + this.degats;
+    armeEnemyElement.textContent = 'Arme : ' + this.arme;
+    faiblesseEnemyElement.textContent = 'Faiblesse : ' + this.faiblesseAttack;
+    selectedImageElement.src = this.img;
+  }
+
+  setEnemyIntoLocalStorage() {
+    const properties = {
+      ptnVie: this.ptnVie,
+      imgUrl: this.img,
+      arme: this.arme,
+      degats: this.degats,
+      faiblesseAttack: this.faiblesseAttack,
+      typeEnemy: this.typeEnemy,
+    };
+    localStorage.setItem("enemy", JSON.stringify(properties));
+  }
+
+  static getEnemyFromLocalStorage() {
+    const enemyData = JSON.parse(localStorage.getItem("enemy"));
+    if (enemyData) {
+      const { type, ptnVie, imgUrl, arme, faiblesseAttack, degats } = enemyData;
+      switch (type) {
+        case "Loup":
+          return new Loup(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "ZombieAffamer":
+          return new ZombieAffamer(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Zombie":
+          return new Zombie(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Squelette":
+          return new Squelette(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "PetitDragon":
+          return new PetitDragon(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Ours":
+          return new Ours(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Minotor":
+          return new Minotor(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "MasterDragon":
+          return new MasterDragon(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Hydre":
+          return new Hydre(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Cerbere":
+          return new Cerbere(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "GuerrierOrc":
+          return new GuerrierOrc(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "GrosZombie":
+          return new GrosZombie(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Gorille":
+          return new Gorille(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Golem":
+          return new Golem(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Fantome":
+          return new Fantome(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "DragonRouge":
+          return new DragonRouge(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "DragonBleu":
+          return new DragonBleu(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "Demon":
+          return new Demon(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "ChienATroisTete":
+          return new ChienATroisTete(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        case "ChevalierCorrompu":
+          return new ChevalierCorrompu(ptnVie, imgUrl, arme, faiblesseAttack, degats);
+        default:
+          return null;
+      }
+    } else {
+      return null;
     }
   }
-  return null;
-}
-}
- 
-  // Méthode pour attaquer
+
   attaquer(cible) {
-    // Obtenir les dégâts de l'ennemi
     const degats = this.degats;
-    // Infliger les dégâts à la cible
     cible.subirDegats(degats);
-    // Vérifier si la cible est morte
+
     if (cible.ptnVie <= 0) {
       console.log(`${cible.constructor.name} est mort.`);
       return;
     }
-    // Obtenir les dégâts de la cible
-    const degatsCible = cible.degats;
 
-    // Infliger les dégâts à l'ennemi
+    const degatsCible = cible.degats;
     this.subirDegats(degatsCible);
 
-    // Vérifier si l'ennemi est mort
     if (this.ptnVie <= 0) {
       console.log(`${this.constructor.name} est mort.`);
       return;
     }
-    // Répéter l'attaque réciproque
+
     this.attaquer(cible);
   }
-  // Méthode pour subir des dégâts
+
   subirDegats(degats) {
     this.#ptnVie -= degats;
   }
-
 }
+ 
+
  
  /**********************************************************/
 /******** Loup **************/
