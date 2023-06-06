@@ -196,19 +196,10 @@ h1 {
   color: #ffcccc;
 }
 
-.stop-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: red;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
-.stop-button:hover {
-  background-color: darkred;
+.small-icon {
+  width: 3%;
+  right: 20px;
+  top: 900px;
+  position: fixed;
 }

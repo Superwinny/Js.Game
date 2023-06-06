@@ -1,17 +1,28 @@
-const sound = new Howl({
+
+  const sound = new Howl({
     src: ['song/game.wav'],
     autoplay: true,
     loop: true,
-    volume: 0.5 // Volume réduit (à ajuster selon vos besoins)
+    volume: 0.5 
   });
   
-  // Gestionnaire d'événements pour le chargement de la page
-  window.addEventListener('load', function() {
-    sound.play();
+  let isPlaying = true; // Variable pour garder une trace de l'état de la musique
+  
+  // Fonction pour mettre en pause ou reprendre la musique
+  const toggleMusic = () => {
+    if (isPlaying) {
+      sound.pause(); // Mettre en pause la musique
+    } else {
+      sound.play(); // Reprendre la musique
+    }
+    isPlaying = !isPlaying; // Inverser l'état de la musique (pause ou lecture)
+  };
+  
+  // Ajoutez un gestionnaire d'événement pour le chargement de la page
+  window.addEventListener('load', () => {
+    sound.play(); // Lecture automatique de la musique au chargement de la page
   });
   
-  // Gestionnaire d'événements pour le clic sur le bouton "Arrêter la musique"
-  const buttonStop = document.getElementById('buttonStop');
-  buttonStop.addEventListener('click', function() {
-    sound.stop();
-  });
+  // Ajoutez un gestionnaire d'événement pour le clic sur l'image
+  const songImage = document.getElementById("song-image");
+  songImage.addEventListener("click", toggleMusic);
