@@ -195,3 +195,20 @@ h1 {
   top: 60%;
   color: #ffcccc;
 }
+
+.stop-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.stop-button:hover {
+  background-color: darkred;
+}
