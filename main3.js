@@ -1,3 +1,158 @@
+// // Parcourez les images et ajoutez un gestionnaire d'événements pour chaque image
+// enemyImages.forEach((image, index) => {
+//   image.addEventListener("click", () => {
+//     // Récupérez le nom de la classe de l'ennemi correspondant à l'image
+//     const enemyClass = image.alt;
+//     // Créez une instance du Enemy 
+//     let enemy;
+
+//     switch (enemyClass) {
+//       case "Loup":
+//         enemy = new Loup(20, "img/imgEnemy/Loup.svg", "Croc", "magic", 5);
+//         break;
+//       case "Zombie Affamer":
+//         enemy = new ZombieAffamer(
+//           40,
+//           "img/imgEnemy/ZombieAffamer.svg",
+//           "Griffes",
+//           "tranchant",
+//           10
+//         );
+//         break;
+//       case "Zombie":
+//         enemy = new Zombie(
+//           35,
+//           "img/imgEnemy/Zombie.svg",
+//           "Mains",
+//           "trnahcant",
+//           8
+//         );
+//         break;
+//       case "Squelette":
+//         enemy = new Squelette(
+//           25,
+//           "img/imgEnemy/Squelette.svg",
+//           "Épée",
+//           "critique",
+//           6
+//         );
+//         break;
+//       case "PetitDragon":
+//         enemy = new PetitDragon(
+//           50,
+//           "img/imgEnemy/PetitDragon.svg",
+//           "Flammes",
+//           "Glace",
+//           12
+//         );
+//         break;
+//       case "Ours":
+//         enemy = new Ours(45, "img/imgEnemy/Ours.svg", "Griffes", "Feu", 10);
+//         break;
+//       case "Minotor":
+//         enemy = new Minotor(
+//           55,
+//           "img/imgEnemy/Minotor.svg",
+//           "Hache",
+//           "critique",
+//           14
+//         );
+//         break;
+//       case "MasterDragon":
+//         enemy = new MasterDragon(
+//           100,
+//           "img/imgEnemy/MasterDragon.svg",
+//           "Feu",
+//           "Glace",
+//           25
+//         );
+//         break;
+//       case "GuerrierOrc":
+//         enemy = new GuerrierOrc(
+//           55,
+//           "img/imgEnemy/GuerrierOrc.svg",
+//           "Hache",
+//           "critique",
+//           12
+//         );
+//         break;
+//       case "GrosZombie":
+//         enemy = new GrosZombie(
+//           60,
+//           "img/imgEnemy/GrosZombie.svg",
+//           "Mains",
+//           "tranchant",
+//           14
+//         );
+//         break;
+//       case "Gorille":
+//         enemy = new Gorille(
+//           50,
+//           "img/imgEnemy/Gorille.svg",
+//           "Poings",
+//           "critique",
+//           12
+//         );
+//         break;
+//       case "Golem":
+//         enemy = new Golem(65, "img/imgEnemy/Golem.svg", "Massue", "magic", 15);
+//         break;
+//       case "Fantome":
+//         enemy = new Fantome(
+//           30,
+//           "img/imgEnemy/Fantome.svg",
+//           "Ectoplasme",
+//           "magic",
+//           8
+//         );
+//         break;
+//       case "DragonRouge":
+//         enemy = new DragonRouge(
+//           90,
+//           "img/imgEnemy/DragonRouge.svg",
+//           "Souffle de feu",
+//           "critique",
+//           20
+//         );
+//         break;
+//       case "Demon":
+//         enemy = new Demon(
+//           65,
+//           "img/imgEnemy/Demon.svg",
+//           "Trident",
+//           "tranchant",
+//           14
+//         );
+//         break;
+//       case "ChienATroisTete":
+//         enemy = new ChienATroisTete(
+//           70,
+//           "img/imgEnemy/ChienATroisTete.svg",
+//           "Crocs",
+//           "tranchant",
+//           16
+//         );
+//         break;
+//       case "ChevalierCorrompu":
+//         enemy = new ChevalierCorrompu(
+//           75,
+//           "img/imgEnemy/ChevalierCorrompu.svg",
+//           "Épée maudite",
+//           "critique",
+//           18
+//         );
+//         break;
+
+//       default:
+//         console.log("Classe invalide.");
+//         return;
+//     }
+
+//     // Enregistrez l'instance du Enemy dans le stockage local
+//     enemy.setEnemyIntoLocalStorage();
+//   });
+// });
+
 
 // Déclaration des variables globales
 let selectedImageElement = document.getElementById('selectedImage');
@@ -15,16 +170,25 @@ const faiblesseEnemyElement = document.querySelector('.infoEnemy #faiblesseEnemy
 const buttonAttack = document.getElementById('buttonAttack');
 const buttonAchat = document.getElementById('buttonAchat');
 
+  // Mettre à jour l'interface utilisateur
+  const mettreAJourInterface = (hero, enemy) => {
+    hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement, selectedImageElement);
+    enemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageEnemy);
+  };
 
+function getEnemy(enemyList,index){
+  return enemyList[index]
+}
 function jouerPartie() {
     const hero = Hero.getHeroFromLocalStorage();
-    const enemy = Enemy.getEnemyFromLocalStorage();
+    let enemy = Enemy.getEnemyFromLocalStorage();
     const marchand = new Marchand();
+    let round = 0
   
   let enemyIndex = 0;
   
    const enemyList = [
-     new Loup(),
+     new Loup(20, "img/imgEnemy/Loup.svg", "Croc", "magic", 5),
      new ZombieAffamer(),
      new Zombie(),
      new Squelette(),
@@ -47,18 +211,16 @@ function jouerPartie() {
   
   // Vérifier si un héros a été sélectionné
  if (hero) {
-  
-//   // Afficher les informations du héros  dans l'interface utilisateur
-   hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement,selectedImageElement);
+   if(!enemy){
+    enemy = getEnemy(enemyList, round)
+    enemy.afficher(pvEnemyElement, degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageEnemy)
+   }
  } else {
   // Rediriger sur le premier index 
-  // window.location.href = "index.html";
+   window.location.href = "index.html";
  }
- if(enemy){
-  enemy.afficher(pvEnemyElement, degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageElement)
- }else{
-  
- }
+
+ mettreAJourInterface(hero, enemy)
 
   // Fonction pour l'attaque de l'ennemi
   const enemyAttaque = (enemy, hero) => {
@@ -76,24 +238,24 @@ function jouerPartie() {
   // Fonction pour attaquer
   const attaquer = () => {
     alert("attaquer clické")
-    const currentEnemy = enemyList[enemyIndex];
 
-    if (currentEnemy && currentEnemy.ptnVie > 0) {
-      hero.attaquer(currentEnemy); // Utiliser la méthode attaquer() de la classe Hero
-      console.log(`Vous attaquez ${currentEnemy.constructor.name} !`);
+    if (enemy && enemy.ptnVie > 0) {
+      hero.attaquer(enemy); // Utiliser la méthode attaquer() de la classe Hero
+      console.log(`Vous attaquez ${enemy.constructor.name} !`);
       console.log(`Dégâts infligés: ${hero.degats}`);
-      console.log(`Points de vie restants: ${currentEnemy.ptnVie}`);
+      console.log(`Points de vie restants: ${enemy.ptnVie}`);
 
-      if (currentEnemy.ptnVie <= 0) {
-        console.log(`${currentEnemy.constructor.name} est vaincu !`);
+      if (enemy.ptnVie <= 0) {
+        console.log(`${enemy.constructor.name} est vaincu !`);
         enemyIndex++;
         if (enemyIndex >= enemyList.length) {
           console.log("Vous avez vaincu tous les ennemis !");
           return;
         }
-        const nextEnemy = enemyList[enemyIndex];
-        console.log(`Prochain ennemi: ${nextEnemy.constructor.name}`);
-        nextEnemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement);
+        // recupere le prochain enemy
+        enemy = getEnemy(enemyList, ++round)
+        // affiche le prochain ennemy
+        mettreAJourInterface(hero, enemy)
 
         // Vérifier si le nombre d'ennemis vaincus est un multiple de 5
         if (enemyIndex > 0 && enemyIndex % 5 === 0) {
@@ -101,11 +263,12 @@ function jouerPartie() {
           marchand.apparaitre();
         }
       } else {
-        enemyAttaque(currentEnemy, hero);
+        enemyAttaque(enemy, hero);
       }
     } else {
       console.log("Il n'y a pas d'ennemi à attaquer !");
     }
+    mettreAJourInterface(hero, enemy)
   };
 
   // Fonction pour acheter
@@ -115,21 +278,11 @@ function jouerPartie() {
     // Afficher le magasin dans l'interface utilisateur et gérer l'achat
   };
 
-  // Mettre à jour l'interface utilisateur
-  const mettreAJourInterface = () => {
-    hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement);
-    const currentEnemy = enemyList[enemyIndex];
-    if (currentEnemy) {
-      currentEnemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement);
-    }
-  };
+
 
   // Gérer les événements de clic sur les boutons
   buttonAttack.addEventListener('click', attaquer);
   buttonAchat.addEventListener('click', acheter);
-
-  // Initialiser l'interface utilisateur
-  mettreAJourInterface();
   
 }
 

@@ -36,6 +36,13 @@ class Enemy {
     return this.#faiblesseAttack;
   }
 
+/******** Setter **************/
+set ptnVie(ptn){
+  this.#ptnVie = ptn;
+}
+
+
+
   afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageEnemy) {
     pvEnemyElement.textContent = 'Point de vie : ' + this.ptnVie;
     degatsEnemyElement.textContent = 'Dégâts : ' + this.degats;

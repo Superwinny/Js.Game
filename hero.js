@@ -69,6 +69,10 @@ set arme(arme){
 set gold(gold){
   this.#gold = gold;
 }
+set typeAttack(typeAttack){
+  this.#typeAttack = typeAttack;
+}
+
 
 acheter(item, classe) {
   if (this.#gold < item.prix) {
@@ -238,21 +242,23 @@ class Chasseur extends Hero {
       return "Chasseur"
     }
 
-    attaquer() {
+    attaquer(enemy) {
       let chanceCritique = Math.random();
       let typeAttack = this.typeAttack;
       if (chanceCritique < 0.2) {
-        degats = Math.floor(Math.random() * 10) + 10;
-        typeAttack = "critique";
+        this.degats = Math.floor(Math.random() * 10) + 10;
+        this.typeAttack = "critique";
       } else {
-        degats = Math.floor(Math.random() * 8) + 5;
-        typeAttack = "normal";
+        this.degats = Math.floor(Math.random() * 8) + 5;
+        this.typeAttack = "normal";
       }
 
       // Effectuez ici les opérations spécifiques à l'attaque du chasseur
       console.log("Le chasseur attaque !");
-      console.log("Dégâts infligés : " + degats);
-      console.log("Type d'attaque : " + typeAttack);
+      console.log("Dégâts infligés : " + this.degats);
+      console.log("Type d'attaque : " + this.typeAttack);
+
+      enemy.ptnVie -= this.degats
     }
   }
 

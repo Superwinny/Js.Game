@@ -3,7 +3,7 @@
     src: ['song/game.wav'],
     autoplay: true,
     loop: true,
-    volume: 0.5 
+    volume: 0.2
   });
   
   let isPlaying = true; // Variable pour garder une trace de l'état de la musique
