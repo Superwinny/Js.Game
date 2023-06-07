@@ -191,14 +191,26 @@ class Guerrier extends Hero {
       return "Guerrier"
     }
 
-    attaquer() {
-      let degats = Math.floor(Math.random() * 10) + 1;
+    attaquer(enemy) {
+      let chanceCritique = Math.random();
       let typeAttack = this.typeAttack;
-      
-      //Effectuez ici les opérations spécifiques à l'attaque du guerrier
-      console.log("Le guerrier attaque !");
-      console.log("Dégâts infligés : " + degats);
-      console.log("Type d'attaque : " + typeAttack);
+      if (chanceCritique < 0.1) {
+        this.degats = Math.floor(Math.random() * 10) + 5;
+        this.typeAttack = "critique";
+      } else {
+        this.degats = Math.floor(Math.random() * 10) + 10;
+        this.typeAttack = "normal";
+      }
+
+
+
+
+
+      // Effectuez ici les opérations spécifiques à l'attaque du mage
+      console.log("Le mage attaque !");
+      console.log("Dégâts infligés : " + this.degats);
+      console.log("Type d'attaque : " + this.typeAttack);
+      enemy.ptnVie -= this.degats
     }
   }
 
@@ -216,14 +228,27 @@ class Mage extends Hero {
       return "Mage"
     }
 
-    attaquer() {
-      let degats = Math.floor(Math.random() * 8) + 5;
-      let typeAttack = this.typeAttack;
+    attaquer(enemy) {
       
+      let chanceCritique = Math.random();
+      let typeAttack = this.typeAttack;
+      if (chanceCritique < 0.1) {
+        this.degats = Math.floor(Math.random() * 10) + 5;
+        this.typeAttack = "critique";
+      } else {
+        this.degats = Math.floor(Math.random() * 8) + 5;
+        this.typeAttack = "normal";
+      }
+
+
+
+
+
       // Effectuez ici les opérations spécifiques à l'attaque du mage
       console.log("Le mage attaque !");
-      console.log("Dégâts infligés : " + degats);
-      console.log("Type d'attaque : " + typeAttack);
+      console.log("Dégâts infligés : " + this.degats);
+      console.log("Type d'attaque : " + this.typeAttack);
+      enemy.ptnVie -= this.degats
     }
   }
 
@@ -245,7 +270,7 @@ class Chasseur extends Hero {
     attaquer(enemy) {
       let chanceCritique = Math.random();
       let typeAttack = this.typeAttack;
-      if (chanceCritique < 0.2) {
+      if (chanceCritique < 0.3) {
         this.degats = Math.floor(Math.random() * 10) + 10;
         this.typeAttack = "critique";
       } else {

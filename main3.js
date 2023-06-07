@@ -41,7 +41,7 @@ function jouerPartie() {
      new Ours(45, "img/imgEnemy/Ours.svg", "Griffes", "Feu", 10),
      new Minotor(55,"img/imgEnemy/Minotor.svg","Hache","critique",14),
      new MasterDragon( 100,"img/imgEnemy/MasterDragon.svg","Feu","Glace",25),
-     new Hydre(75, "img/imEnemy/Hydre.svg", "Crocs venimeux", "Feu", 16),
+     new Hydre(75, "img/imgEnemy/Hydre.svg", "Crocs venimeux", "Feu", 16),
      new GuerrierOrc(55,"img/imgEnemy/GuerrierOrc.svg","Hache","critique",12),
      new GrosZombie(60,"img/imgEnemy/GrosZombie.svg","Mains","tranchant",14),
      new Gorille(50,"img/imgEnemy/Gorille.svg","Poings","critique",12),
@@ -82,8 +82,6 @@ function jouerPartie() {
 
   // Fonction pour attaquer
   const attaquer = () => {
-    alert("attaquer clické")
-
     if (enemy && enemy.ptnVie > 0) {
       hero.attaquer(enemy); // Utiliser la méthode attaquer() de la classe Hero
       console.log(`Vous attaquez ${enemy.constructor.name} !`);
