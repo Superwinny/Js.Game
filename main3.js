@@ -48,7 +48,7 @@ function jouerPartie() {
      new Golem(65, "img/imgEnemy/Golem.svg", "Massue", "magic", 15),
      new Fantome( 30,"img/imgEnemy/Fantome.svg","Ectoplasme","magic",8),
      new DragonRouge( 90,"img/imgEnemy/DragonRouge.svg","Souffle de feu","critique",20),
-     new DragonBleu(85, "img/imEnemy/DragonBleu.svg", "Souffle de glace", "critique", 18),
+     new DragonBleu(85, "img/imgEnemy/DragonBleu.svg", "Souffle de glace", "critique", 18),
      new Demon(65,"img/imgEnemy/Demon.svg","Trident de l'enfer","tranchant",14),
      new ChienATroisTete(70,"img/imgEnemy/ChienATroisTete.svg","Crocs","tranchant",16),
      new ChevalierCorrompu( 75,"img/imgEnemy/ChevalierCorrompu.svg","Épée maudite","critique",18)
@@ -103,7 +103,7 @@ function jouerPartie() {
         // Vérifier si le nombre d'ennemis vaincus est un multiple de 5
         if (enemyIndex > 0 && enemyIndex % 5 === 0) {
           console.log("Le marchand apparaît !");
-          marchand.apparaitre();
+          // marchand.apparaitre();
         }
       } else {
         enemyAttaque(enemy, hero);

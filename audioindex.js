@@ -22,10 +22,4 @@ songImage.addEventListener('click', function() {
   }
 });
 
-// Sélectionnez le bouton "STOP" dans le DOM
-const stopButton = document.getElementById('stopButton');
 
-// Gestionnaire d'événements pour le clic sur le bouton "Arrêter la musique"
-stopButton.addEventListener('click', function() {
-  sound.stop();
-});
