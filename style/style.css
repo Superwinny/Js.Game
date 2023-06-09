@@ -250,6 +250,6 @@ h1 {
     border: 2px solid white;
   }
   #btnValidation {
-    display: none;
+    display: block;
     margin-top: 20px;
   }

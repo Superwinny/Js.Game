@@ -378,34 +378,34 @@ class Marchand {
   
     switch (items.length) {
       case 4:
-        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Boost Santé<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = `Boost Chance Critique<br>Prix: ${magasin[items[2]].prix}`;
-        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
         break;
       case 3:
-        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Boost Santé<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = `Boost Chance Critique<br>Prix: ${magasin[items[2]].prix}`;
-        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
         break;
       case 2:
-        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Boost Santé<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = "Aucun boost disponible";
-        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = "Aucun item disponible";
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
         break;
       case 1:
-        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = "Aucun boost disponible";
-        item3Div.innerHTML = "Aucun boost disponible";
-        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = "Aucun item disponible";
+        item3Div.innerHTML = "Aucun item disponible";
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
         break;
       default:
-        item1Div.innerHTML = "Aucun boost disponible";
-        item2Div.innerHTML = "Aucun boost disponible";
-        item3Div.innerHTML = "Aucun boost disponible";
-        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
+        item1Div.innerHTML = "Aucun item disponible";
+        item2Div.innerHTML = "Aucun item disponible";
+        item3Div.innerHTML = "Aucun item disponible";
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
         break;
     }
   
@@ -413,8 +413,10 @@ class Marchand {
   
     objets.forEach((objet) => {
       objet.addEventListener('click', () => {
+        alert("Vous avez cliqué sur une image !");
         const btnValidation = document.getElementById('btnValidation');
-        btnValidation.style.display = 'block';
+        btnValidation.disabled = false;
+        localStorage.setItem('partieEnCours', 'true');
       });
     });
   
@@ -422,12 +424,14 @@ class Marchand {
     btnValidation.addEventListener('click', () => {
       btnValidation.style.display = 'none';
       // Reprendre la partie où elle s'était arrêtée
-      // ...
+      const partieEnCours = localStorage.getItem('partieEnCours');
+      if (partieEnCours === 'true') {
+        // Reprendre la partie
+      } else {
+        // Nouvelle partie
+      }
+      localStorage.removeItem('partieEnCours');
     });
-  
-    const containerMarchand = document.getElementById('containerMarchand');
-    containerMarchand.appendChild(btnValidation);
-    btnValidation.style.display = 'none';
   }
   
 }
