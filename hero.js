@@ -160,19 +160,39 @@ selectedImageElement.src =  this.img;
     }
     
     
-     utiliserPotion() {
-         if (this.potionSoin > 0) {
-           this.ptnVie += 50; 
-           this.potionSoin--; 
+    utiliserPotion() {
+      if (this.potionSoin > 0) {
+        const pointsSoins = 50; // Nombre de points de vie restaurés par une potion
+        this.ptnVie += pointsSoins;
+        this.potionSoin--;
     
-           console.log(`${this.constructor.name} utilise une potion de soin.`);
-           console.log(`Points de vie actuels : ${this.ptnVie}`);
-           console.log(`Potions de soin restantes : ${this.potionSoin}`);
-         } else {
-           console.log(`${this.constructor.name} n'a pas de potion de soin.`);
-         }
-       }
-      
+        console.log(`${this.constructor.name} utilise une potion de soin.`);
+        console.log(`Points de vie actuels : ${this.ptnVie}`);
+        console.log(`Potions de soin restantes : ${this.potionSoin}`);
+      } else {
+        console.log(`${this.constructor.name} n'a pas de potion de soin.`);
+      }
+    }
+      boostDegats() {
+        const pourcentageBoost = 0.05;
+        const boost = this.degats * pourcentageBoost;
+        this.degats += boost;
+        console.log(`${this.constructor.name} utilise un boost de dégâts.`);
+        console.log(`Dégâts actuels : ${this.degats}`);
+      }
+      boostSante() {
+        const pourcentageBoost = 0.1;
+        const boost = this.maxPtnVie * pourcentageBoost;
+        this.maxPtnVie += boost;
+        this.ptnVie += boost; // Augmenter les points de vie actuels de la même valeur
+        console.log(`${this.constructor.name} utilise un boost de santé.`);
+        console.log(`Santé maximale actuelle : ${this.maxPtnVie}`);
+        console.log(`Points de vie actuels : ${this.ptnVie}`);
+      }
+      boostCritique() {
+        this.chanceCritique += 0.05;
+        console.log(`${this.constructor.name} a augmenté sa chance de critique de 5%. Nouvelle chance de critique : ${this.chanceCritique}`);
+      }
 }
   
 
@@ -319,7 +339,26 @@ class Marchand {
       "Potion de Soin": { prix: 8, effet: "soin" },
     };
   }
+  // acheterPotion(hero) {
+  //   const magasin = this.getMagasin(hero.constructor);
   
+  //   const potion = magasin["Potion de Soin"];
+  //   const prixPotion = potion.prix; // Récupérer le prix de la potion du magasin correspondant
+  
+  //   const nombrePotions = 1; // Nombre de potions à acheter
+  
+  //   // Vérifier si le héros a suffisamment d'argent pour acheter la potion
+  //   if (hero.gold >= prixPotion) {
+  //     hero.gold -= prixPotion; // Déduire le prix de la potion de l'argent du héros
+  //     hero.ajouterPotionSoin(nombrePotions); // Ajouter les potions de soin au stock du héros
+  
+  //     console.log(`${hero.constructor.name} achète ${nombrePotions} potion(s) de soin.`);
+  //     console.log(`Gold restant : ${hero.gold}`);
+  //     console.log(`Potions de soin actuelles : ${hero.potionSoin}`);
+  //   } else {
+  //     console.log(`Pas assez d'argent pour acheter une potion.`);
+  //   }
+  // }
   getMagasin(classe) {
     switch (true) {
       case classe === Guerrier:
@@ -365,73 +404,11 @@ class Marchand {
       console.log(`L'item ${item} n'est pas disponible pour ${hero.constructor.name}.`);
     }
   }
+
+
+  
   apparaitre() {
-    const item1Div = document.getElementById('item1');
-    const item2Div = document.getElementById('item2');
-    const item3Div = document.getElementById('item3');
-    const item4Div = document.getElementById('item4');
-  
-    const classe = Hero.getHeroFromLocalStorage().constructor;
-    const magasin = this.getMagasin(classe);
-  
-    const items = Object.keys(magasin);
-  
-    switch (items.length) {
-      case 4:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
-        break;
-      case 3:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
-        break;
-      case 2:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = "Aucun item disponible";
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
-        break;
-      case 1:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = "Aucun item disponible";
-        item3Div.innerHTML = "Aucun item disponible";
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
-        break;
-      default:
-        item1Div.innerHTML = "Aucun item disponible";
-        item2Div.innerHTML = "Aucun item disponible";
-        item3Div.innerHTML = "Aucun item disponible";
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
-        break;
-    }
-  
-    const objets = document.querySelectorAll('.item img');
-  
-    objets.forEach((objet) => {
-      objet.addEventListener('click', () => {
-        alert("Vous avez cliqué sur une image !");
-        const btnValidation = document.getElementById('btnValidation');
-        btnValidation.disabled = false;
-        localStorage.setItem('partieEnCours', 'true');
-      });
-    });
-  
-    const btnValidation = document.getElementById('btnValidation');
-    btnValidation.addEventListener('click', () => {
-      btnValidation.style.display = 'none';
-      // Reprendre la partie où elle s'était arrêtée
-      const partieEnCours = localStorage.getItem('partieEnCours');
-      if (partieEnCours === 'true') {
-        // Reprendre la partie
-      } else {
-        // Nouvelle partie
-      }
-      localStorage.removeItem('partieEnCours');
-    });
+    
+   
   }
-  
-}
+}   

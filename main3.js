@@ -127,7 +127,7 @@ function jouerPartie() {
     // Générer un nombre aléatoire entre 0 et 1
     let random = Math.random();
     
-    // Probabilité d'apparition du marchand (par exemple, 30%)
+    // Probabilité d'apparition du marchand (30%)
     let proba = 0.3;
     
     // Vérifier si le nombre aléatoire est inférieur à la probabilité d'apparition
