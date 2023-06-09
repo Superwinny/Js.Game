@@ -250,10 +250,10 @@ h1 {
     border: 2px solid white;
   }
   #btnValidation {
-    display: none;
+    display: block;
     width: 7%;
     position: fixed;
-    bottom: 50%;
+    bottom: 10%;
     left: 50%;
     transform: translate(-50%, 50%);
     border: 2px solid transparent;

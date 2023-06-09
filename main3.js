@@ -104,6 +104,9 @@ function jouerPartie() {
         if (enemyIndex > 0 && enemyIndex % 5 === 0) {
           console.log("Le marchand apparaît !");
            marchand.apparaitre();
+           // Rediriger vers la page marchand.html
+           window.location.href = "marchand.html";
+          
         }
       } else {
         enemyAttaque(enemy, hero);
@@ -114,37 +117,10 @@ function jouerPartie() {
     mettreAJourInterface(hero, enemy)
   };
 
-  // Fonction pour acheter
-  const acheter = () => {
-    alert("acheter clické")
-    const magasin = marchand.getMagasin(hero.constructor);
-    // Afficher le magasin dans l'interface utilisateur et gérer l'achat
-  };
-
-  
-  // Vérifier si le nombre d'ennemis vaincus est un multiple de 5
-  if (enemyIndex > 0 && enemyIndex % 5 === 0) {
-    // Générer un nombre aléatoire entre 0 et 1
-    let random = Math.random();
-    
-    // Probabilité d'apparition du marchand (30%)
-    let proba = 0.3;
-    
-    // Vérifier si le nombre aléatoire est inférieur à la probabilité d'apparition
-    if (random < proba) {
-      console.log("Le marchand apparaît !");
-      marchand.apparaitre();
-      
-      // Rediriger vers la page marchand.html
-      window.location.href = "marchand.html";
-      return; // Arrêter l'exécution de la fonction
-    }
-  }
-
 
   // Gérer les événements de clic sur les boutons
   buttonAttack.addEventListener('click', attaquer);
-  buttonAchat.addEventListener('click', acheter);
+ 
   
 }
 

@@ -78,22 +78,28 @@ acheter(item, classe) {
   if (this.#gold < item.prix) {
     return -1; // Retourne -1 si le héros n'a pas assez d'or pour acheter l'item
   }
-  
-  this.#gold -= item.prix; // Déduit le prix de l'item de l'or du héros
-  
+  // Déduit le prix de l'item de l'or du héros
+  this.#gold -= item.prix; 
   // Mettre à jour les informations du héros en fonction du type d'item acheté
   const magasin = new Marchand().getMagasin(classe);
-  
   for (const type in magasin) {
     if (magasin[type] === item) {
       switch (type) {
-        case "Arme":
-          this.#arme = item;
-          console.log(`Nouvelle arme achetée : ${item.nom}`);
+        case "Boost Dégâts":
+          this.boostDegats();
+          console.log(`Boost de dégâts acheté : ${item.effet}`);
           break;
-        case "Potion":
-          this.#potionSoin = item;
-          console.log(`Nouvelle potion achetée : ${item.nom}`);
+        case "Boost Santé":
+          this.boostSante();
+          console.log(`Boost de santé acheté : ${item.effet}`);
+          break;
+        case "Boost Chance Critique":
+          this.boostCritique();
+          console.log(`Boost de chance critique acheté : ${item.effet}`);
+          break;
+        case "Potion de Soin":
+          this.utiliserPotion()
+          console.log(`Potion de soin achetée : ${item.effet}`);
           break;
         default:
           console.log("Type d'item invalide.");
@@ -339,26 +345,7 @@ class Marchand {
       "Potion de Soin": { prix: 8, effet: "soin" },
     };
   }
-  // acheterPotion(hero) {
-  //   const magasin = this.getMagasin(hero.constructor);
   
-  //   const potion = magasin["Potion de Soin"];
-  //   const prixPotion = potion.prix; // Récupérer le prix de la potion du magasin correspondant
-  
-  //   const nombrePotions = 1; // Nombre de potions à acheter
-  
-  //   // Vérifier si le héros a suffisamment d'argent pour acheter la potion
-  //   if (hero.gold >= prixPotion) {
-  //     hero.gold -= prixPotion; // Déduire le prix de la potion de l'argent du héros
-  //     hero.ajouterPotionSoin(nombrePotions); // Ajouter les potions de soin au stock du héros
-  
-  //     console.log(`${hero.constructor.name} achète ${nombrePotions} potion(s) de soin.`);
-  //     console.log(`Gold restant : ${hero.gold}`);
-  //     console.log(`Potions de soin actuelles : ${hero.potionSoin}`);
-  //   } else {
-  //     console.log(`Pas assez d'argent pour acheter une potion.`);
-  //   }
-  // }
   getMagasin(classe) {
     switch (true) {
       case classe === Guerrier:
@@ -394,7 +381,7 @@ class Marchand {
           hero.boostCritique();
           break;
         case "soin":
-          hero.soigner();
+          hero.utiliserPotion();
           break;
         default:
           console.log("Effet d'item invalide.");
@@ -409,6 +396,5 @@ class Marchand {
   
   apparaitre() {
     
-   
   }
 }   
