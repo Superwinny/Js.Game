@@ -72,33 +72,32 @@ set gold(gold){
 set typeAttack(typeAttack){
   this.#typeAttack = typeAttack;
 }
-
-
 acheter(item, classe) {
   if (this.#gold < item.prix) {
     return -1; // Retourne -1 si le héros n'a pas assez d'or pour acheter l'item
   }
-  // Déduit le prix de l'item de l'or du héros
-  this.#gold -= item.prix; 
+
+  this.#gold -= item.prix; // Déduit le prix de l'item de l'or du héros
+
   // Mettre à jour les informations du héros en fonction du type d'item acheté
   const magasin = new Marchand().getMagasin(classe);
   for (const type in magasin) {
     if (magasin[type] === item) {
       switch (type) {
         case "Boost Dégâts":
-          this.boostDegats();
+          this.hero.boostDegats(); // Appeler boostDegats() sur l'instance de l'objet hero
           console.log(`Boost de dégâts acheté : ${item.effet}`);
           break;
         case "Boost Santé":
-          this.boostSante();
+          this.hero.boostSante(); // Appeler boostSante() sur l'instance de l'objet hero
           console.log(`Boost de santé acheté : ${item.effet}`);
           break;
         case "Boost Chance Critique":
-          this.boostCritique();
+          this.hero.boostCritique(); // Appeler boostCritique() sur l'instance de l'objet hero
           console.log(`Boost de chance critique acheté : ${item.effet}`);
           break;
         case "Potion de Soin":
-          this.utiliserPotion()
+          this.hero.utiliserPotion(); // Appeler utiliserPotion() sur l'instance de l'objet hero
           console.log(`Potion de soin achetée : ${item.effet}`);
           break;
         default:
@@ -109,6 +108,42 @@ acheter(item, classe) {
     }
   }
 }
+
+// acheter(item, classe) {
+//   if (this.#gold < item.prix) {
+//     return -1; // Retourne -1 si le héros n'a pas assez d'or pour acheter l'item
+//   }
+//   // Déduit le prix de l'item de l'or du héros
+//   this.#gold -= item.prix; 
+//   // Mettre à jour les informations du héros en fonction du type d'item acheté
+//   const magasin = new Marchand().getMagasin(classe);
+//   for (const type in magasin) {
+//     if (magasin[type] === item) {
+//       switch (type) {
+//         case "Boost Dégâts":
+//           this.boostDegats();
+//           console.log(`Boost de dégâts acheté : ${item.effet}`);
+//           break;
+//         case "Boost Santé":
+//           this.boostSante();
+//           console.log(`Boost de santé acheté : ${item.effet}`);
+//           break;
+//         case "Boost Chance Critique":
+//           this.boostCritique();
+//           console.log(`Boost de chance critique acheté : ${item.effet}`);
+//           break;
+//         case "Potion de Soin":
+//           this.utiliserPotion()
+//           console.log(`Potion de soin achetée : ${item.effet}`);
+//           break;
+//         default:
+//           console.log("Type d'item invalide.");
+//           break;
+//       }
+//       break;
+//     }
+//   }
+// }
 
 afficher(ptnVieElement,potionSoinElement,armeElement,goldElement,selectedImageElement){
 ptnVieElement.textContent =  'Point de vie' + this.ptnVie;
@@ -166,19 +201,6 @@ selectedImageElement.src =  this.img;
     }
     
     
-    utiliserPotion() {
-      if (this.potionSoin > 0) {
-        const pointsSoins = 50; // Nombre de points de vie restaurés par une potion
-        this.ptnVie += pointsSoins;
-        this.potionSoin--;
-    
-        console.log(`${this.constructor.name} utilise une potion de soin.`);
-        console.log(`Points de vie actuels : ${this.ptnVie}`);
-        console.log(`Potions de soin restantes : ${this.potionSoin}`);
-      } else {
-        console.log(`${this.constructor.name} n'a pas de potion de soin.`);
-      }
-    }
       boostDegats() {
         const pourcentageBoost = 0.05;
         const boost = this.degats * pourcentageBoost;
@@ -190,7 +212,11 @@ selectedImageElement.src =  this.img;
         const pourcentageBoost = 0.1;
         const boost = this.maxPtnVie * pourcentageBoost;
         this.maxPtnVie += boost;
-        this.ptnVie += boost; // Augmenter les points de vie actuels de la même valeur
+        if (this.ptnVie + boost > this.maxPtnVie) {
+          this.ptnVie = this.maxPtnVie; // Ajuster la santé actuelle si elle dépasse la santé maximale
+        } else {
+          this.ptnVie += boost;
+        }
         console.log(`${this.constructor.name} utilise un boost de santé.`);
         console.log(`Santé maximale actuelle : ${this.maxPtnVie}`);
         console.log(`Points de vie actuels : ${this.ptnVie}`);
@@ -347,12 +373,12 @@ class Marchand {
   }
   
   getMagasin(classe) {
-    switch (true) {
-      case classe === Guerrier:
+    switch (classe) {
+      case 'Guerrier':
         return this.#magasinGuerrier;
-      case classe === Mage:
+      case 'Mage':
         return this.#magasinMage;
-      case classe === Chasseur:
+      case 'Chasseur':
         return this.#magasinChasseur;
       default:
         console.log("Classe de héros invalide.");
@@ -391,10 +417,9 @@ class Marchand {
       console.log(`L'item ${item} n'est pas disponible pour ${hero.constructor.name}.`);
     }
   }
+   
+  apparaitre(){
 
-
-  
-  apparaitre() {
-    
   }
+
 }   

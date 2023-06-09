@@ -16,7 +16,7 @@ const buttonAttack = document.getElementById('buttonAttack');
 const buttonAchat = document.getElementById('buttonAchat');
 
   // Mettre à jour l'interface utilisateur
-  const mettreAJourInterface = (hero, enemy) => {
+   const mettreAJourInterface = (hero, enemy) => {
     hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement, selectedImageElement);
     enemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageEnemy);
   };
@@ -121,7 +121,6 @@ function jouerPartie() {
   // Gérer les événements de clic sur les boutons
   buttonAttack.addEventListener('click', attaquer);
  
-  
 }
 
  jouerPartie()
