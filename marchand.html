@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,8 @@
     <link href="style/style.css" rel="stylesheet" type="text/css">
     <title>Marchand</title>
 </head>
-<body>
+
+<body id="containerMarchand">
     <section id="vueMarchand">
         <div>
             <img src="img/Marchand.svg" alt="Image du marchand">
@@ -15,20 +17,25 @@
     </section>
     <section>
         <div id="objets">
-            <div id="item1">
-                <img src="img/PotionDeSoin.svg" alt="Item 1">
+            <div id="item1" class="item">
+                <h2>Boost Dégats</h2>
+                <img src="img/DegatsAugmenter.svg" alt="Item 1">
             </div>
-            <div id="item2">
-                <img src="img/PotionDeSoin.svg" alt="Item 2">
+            <div id="item2" class="item">
+                <h2>Boost Santé</h2>
+                <img src="img/SanteAugmenter.svg" alt="Item 2">
             </div>
-            <div id="item3">
-                <img src="img/PotionDeSoin.svg" alt="Item 1">
+            <div id="item3" class="item">
+                <h2>Boost Chance Critique</h2>
+                <img src="img/ChanceCritique.svg" alt="Item 3">
             </div>
-            <div id="item4">
-                <img src="img/PotionDeSoin.svg" alt="Item 2">
+            <div id="item4" class="item">
+                <h2>Potion de Soin</h2>
+                <img src="img/PotionDeSoin.svg" alt="Item 3">
             </div>
+                <button id="btnValidation" style="display: none;">Valider</button>
         </div>
     </section>
-    
 </body>
+
 </html>

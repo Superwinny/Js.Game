@@ -299,24 +299,24 @@ class Marchand {
 
   constructor() {
     this.#magasinGuerrier = {
-      "Épée": { prix: 10, degats: 15 },
-      "Armure": { prix: 20, ptnVie: 20 },
-      "Bouclier": { prix: 15, ptnVie: 5 },
-      "Potion": { prix: 8, effet: "soin" },
+      "Boost Dégâts": { prix: 10, effet: "boostDegats" },
+      "Boost Santé": { prix: 20, effet: "boostSante" },
+      "Boost Chance Critique": { prix: 15, effet: "boostCritique" },
+      "Potion de Soin": { prix: 8, effet: "soin" },
     };
-
+    
     this.#magasinMage = {
-      "Bâton": { prix: 12, degats: 12 },
-      "Gros Bâton": { prix: 22, degats: 22 },
-      "Robe": { prix: 18, ptnVie: 10 },
-      "Potion": { prix: 8, effet: "soin" },
+      "Boost Dégâts": { prix: 12, effet: "boostDegats" },
+      "Boost Santé": { prix: 18, effet: "boostSante" },
+      "Boost Chance Critique": { prix: 10, effet: "boostCritique" },
+      "Potion de Soin": { prix: 8, effet: "soin" },
     };
-
+    
     this.#magasinChasseur = {
-      "Arc": { prix: 15, degats: 10 },
-      "Armure": { prix: 5, ptnVie: 15 },
-      "Dague": { prix: 8, degats: 8 },
-      "Potion": { prix: 8, effet: "soin" },
+      "Boost Dégâts": { prix: 15, effet: "boostDegats" },
+      "Boost Santé": { prix: 5, effet: "boostSante" },
+      "Boost Chance Critique": { prix: 12, effet: "boostCritique" },
+      "Potion de Soin": { prix: 8, effet: "soin" },
     };
   }
   
@@ -334,19 +334,37 @@ class Marchand {
     }
   }
 
-  vendreItem(hero) {
+  vendreItem(hero, item) {
     const magasin = this.getMagasin(hero.constructor);
   
     if (magasin[item]) {
-      const { prix, ...details } = magasin[item];
+      const { prix, effet } = magasin[item];
       console.log(`Le marchand vend un ${item} à ${hero.constructor.name}.`);
       console.log(`Prix: ${prix}`);
-      console.log("Détails: ", details);
+      console.log(`Effet: ${effet}`);
+  
+      // Appliquer l'effet sur le héros
+      switch (effet) {
+        case "boostDegats":
+          hero.boostDegats();
+          break;
+        case "boostSante":
+          hero.boostSante();
+          break;
+        case "boostCritique":
+          hero.boostCritique();
+          break;
+        case "soin":
+          hero.soigner();
+          break;
+        default:
+          console.log("Effet d'item invalide.");
+          break;
+      }
     } else {
       console.log(`L'item ${item} n'est pas disponible pour ${hero.constructor.name}.`);
     }
   }
-
   apparaitre() {
     const item1Div = document.getElementById('item1');
     const item2Div = document.getElementById('item2');
@@ -360,37 +378,56 @@ class Marchand {
   
     switch (items.length) {
       case 4:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
-        item4Div.innerHTML = `Item: Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
+        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Boost Santé<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = `Boost Chance Critique<br>Prix: ${magasin[items[2]].prix}`;
+        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
         break;
       case 3:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Boost Santé<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = `Boost Chance Critique<br>Prix: ${magasin[items[2]].prix}`;
+        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
         break;
       case 2:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
-        item3Div.innerHTML = "Aucun item disponible";
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Boost Santé<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = "Aucun boost disponible";
+        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
         break;
       case 1:
-        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
-        item2Div.innerHTML = "Aucun item disponible";
-        item3Div.innerHTML = "Aucun item disponible";
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        item1Div.innerHTML = `Boost Dégats<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = "Aucun boost disponible";
+        item3Div.innerHTML = "Aucun boost disponible";
+        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
         break;
       default:
-        item1Div.innerHTML = "Aucun item disponible";
-        item2Div.innerHTML = "Aucun item disponible";
-        item3Div.innerHTML = "Aucun item disponible";
-        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        item1Div.innerHTML = "Aucun boost disponible";
+        item2Div.innerHTML = "Aucun boost disponible";
+        item3Div.innerHTML = "Aucun boost disponible";
+        item4Div.innerHTML = `Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
         break;
     }
-  }
   
+    const objets = document.querySelectorAll('.item img');
+  
+    objets.forEach((objet) => {
+      objet.addEventListener('click', () => {
+        const btnValidation = document.getElementById('btnValidation');
+        btnValidation.style.display = 'block';
+      });
+    });
+  
+    const btnValidation = document.getElementById('btnValidation');
+    btnValidation.addEventListener('click', () => {
+      btnValidation.style.display = 'none';
+      // Reprendre la partie où elle s'était arrêtée
+      // ...
+    });
+  
+    const containerMarchand = document.getElementById('containerMarchand');
+    containerMarchand.appendChild(btnValidation);
+    btnValidation.style.display = 'none';
+  }
   
 }

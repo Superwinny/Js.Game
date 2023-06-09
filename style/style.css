@@ -216,21 +216,40 @@ h1 {
   #vueMarchand {
     position: relative;
     text-align: center;
-    top: 100px;
+    top: 50px;
   }
   
   #objets {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 2%;
-    padding: 100px;
+    gap: 10%;
+    padding: 50px 20%;
     margin: 0;
   }
   
+  .item {
+    flex: 1;
+  }
+  
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .item h2 {
+    font-size:100%;
+    margin-top: 20px;
+    color: white;
+  }
+  
   .item img {
-    width: 30%;
+    width: 70%;
     height: auto;
-    border-radius: solid 2px white
-    ;
+    border: 2px solid white;
+  }
+  #btnValidation {
+    display: none;
+    margin-top: 20px;
   }
