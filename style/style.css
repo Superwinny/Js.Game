@@ -208,42 +208,29 @@ h1 {
  /**********************************************************/
   /******** Marchand**************/
   /**********************************************************/
-#containerMarchand{
-  width: 100%;
-  height: auto;
-
-}
-#vueMarchand{
-  position:relative;
-  text-align: center;
-  top: 100px;
+  #containerMarchand {
+    width: 100%;
+    height: auto;
+  }
   
-}
-#objets{
-  display: flex;
-  justify-content:center;
-  gap: 2%;
-
-  padding: 100px;
-  margin: 0;
-
-}
-#item1 img{
-  align-items: center;
+  #vueMarchand {
+    position: relative;
+    text-align: center;
+    top: 100px;
+  }
+  
+  #objets {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    padding: 100px;
+    margin: 0;
+  }
+  
+  .item img {
     width: 30%;
     height: auto;
-    
-}
-#item2 img{
-  width: 30%;
-  height: auto;
-  
-}
-#item3 img{
-  width: 30%;
-  height: auto;
-}
-#item4 img{
-  width: 30%;
-  height: auto;
-}
+    border-radius: solid 2px white
+    ;
+  }
