@@ -346,6 +346,51 @@ class Marchand {
       console.log(`L'item ${item} n'est pas disponible pour ${hero.constructor.name}.`);
     }
   }
+
+  apparaitre() {
+    const item1Div = document.getElementById('item1');
+    const item2Div = document.getElementById('item2');
+    const item3Div = document.getElementById('item3');
+    const item4Div = document.getElementById('item4');
+  
+    const classe = Hero.getHeroFromLocalStorage().constructor;
+    const magasin = this.getMagasin(classe);
+  
+    const items = Object.keys(magasin);
+  
+    switch (items.length) {
+      case 4:
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
+        item4Div.innerHTML = `Item: Potion de Soin<br>Prix: ${magasin["Potion"].prix}`;
+        break;
+      case 3:
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = `Item: ${items[2]}<br>Prix: ${magasin[items[2]].prix}`;
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        break;
+      case 2:
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = `Item: ${items[1]}<br>Prix: ${magasin[items[1]].prix}`;
+        item3Div.innerHTML = "Aucun item disponible";
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        break;
+      case 1:
+        item1Div.innerHTML = `Item: ${items[0]}<br>Prix: ${magasin[items[0]].prix}`;
+        item2Div.innerHTML = "Aucun item disponible";
+        item3Div.innerHTML = "Aucun item disponible";
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        break;
+      default:
+        item1Div.innerHTML = "Aucun item disponible";
+        item2Div.innerHTML = "Aucun item disponible";
+        item3Div.innerHTML = "Aucun item disponible";
+        item4Div.innerHTML = "Item: Potion de Soin<br>Prix: " + magasin["Potion"].prix;
+        break;
+    }
+  }
   
   
 }
