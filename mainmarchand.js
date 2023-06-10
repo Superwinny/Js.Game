@@ -13,15 +13,14 @@ elementP.textContent = "Gold: " + hero.gold;
 // Variable pour stocker l'objet sélectionné
 let objetSelectionne = null;
 
-// Variable pour stocker les boosts déjà achetés
-let boostsAchetes = [];
 
-// Fonction pour mettre à jour l'affichage du stock d'or du héros
+
 function mettreAJourStockGold() {
+  let hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
   const elementP = document.querySelector("#vueGold p");
-  hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
   if (hero) {
-    elementP.textContent = "Gold: " + hero.gold;
+    const goldTotal = hero.gold + (hero.enemyKills * 2); // Calculer le total des gold du héros
+    elementP.textContent = "Gold: " + goldTotal;
   } else {
     elementP.textContent = "Gold: 0";
   }

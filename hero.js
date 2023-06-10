@@ -9,6 +9,7 @@
       #arme;
       #typeAttack;
       #degats;
+      #enemyKills;
     
     constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
         this.#ptnVie = ptnVie;
@@ -17,11 +18,14 @@
         this.#arme = arme;
         this.#typeAttack = typeAttack;
         this.#degats = degats;
+        this.enemyKills = 0; // Initialiser le compteur d'ennemis tués à 0
     
       }
 
 /******** GET  **************/  
-
+get enemyKills() {
+  return this.#enemyKills;
+}
 
 get degats(){
   return this.#degats;
@@ -47,6 +51,9 @@ get gold()
 
 /******** SET  **************/
 
+set enemyKills(kills) {
+  this.#enemyKills = kills;
+}
 
 set degats(dgs){
   this.#degats = dgs;
@@ -212,8 +219,9 @@ class Guerrier extends Hero {
     // Vérification si l'ennemi est vaincu
     if (enemy.ptnVie <= 0) {
       this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
+       this.enemyKills++
   }
-  
+ 
     // Restaurer les valeurs d'origine
     this.typeAttack = typeAttack;
   }
