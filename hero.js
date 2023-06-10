@@ -203,24 +203,32 @@ class Guerrier extends Hero {
       return "Guerrier"
     }
 
-    attaquer(enemy) {
-      let chanceCritique = Math.random();
-      let typeAttack = this.typeAttack;
-      if (chanceCritique < 0.1) {
-        this.degats = Math.floor(Math.random() * 10) + 5;
-        this.typeAttack = "critique";
-      } else {
-        this.degats = Math.floor(Math.random() * 10) + 10;
-        this.typeAttack = "normal";
-      }
-
-      // Effectuez ici les opérations spécifiques à l'attaque du mage
-      console.log("Le mage attaque !");
-      console.log("Dégâts infligés : " + this.degats);
-      console.log("Type d'attaque : " + this.typeAttack);
-      enemy.ptnVie -= this.degats
+  attaquer(enemy) {
+    let chanceCritique = Math.random();
+    let typeAttack = this.typeAttack;
+    if (chanceCritique < 0.2) {
+      this.degats = Math.floor(Math.random() * 10) + 5;
+      this.typeAttack = "critique";
+    } else {
+      this.degats = Math.floor(Math.random() * 10) + 10;
+      this.typeAttack = "normal";
     }
+  
+    // Effectuer ici les opérations spécifiques à l'attaque du guerrier
+    console.log(`${this.constructor.name} attaque ${enemy.constructor.name} avec ${this.arme} pour ${this.degats} points de dégâts.`);
+    enemy.ptnVie -= this.degats;
+  
+    // Vérifier si l'attaque double se produit
+    const chanceAttaqueDouble = 0.2; // Probabilité d'attaque double (20%)
+    if (Math.random() < chanceAttaqueDouble) {
+      console.log(`${this.constructor.name} effectue une attaque double !`);
+      enemy.ptnVie -= this.degats;
+    }
+  
+    // Restaurer les valeurs d'origine
+    this.typeAttack = typeAttack;
   }
+}
 
 
 /**********************************************************/
@@ -237,29 +245,29 @@ class Mage extends Hero {
     }
 
     attaquer(enemy) {
-      
-      let chanceCritique = Math.random();
-      let typeAttack = this.typeAttack;
-      if (chanceCritique < 0.1) {
-        this.degats = Math.floor(Math.random() * 10) + 5;
-        this.typeAttack = "critique";
-      } else {
-        this.degats = Math.floor(Math.random() * 8) + 5;
-        this.typeAttack = "normal";
+      this.degats = Math.floor(Math.random() * 8) + 5;
+      this.typeAttack = "normal";
+    
+      // Effectuer ici les opérations spécifiques à l'attaque du mage
+      console.log(`${this.constructor.name} attaque ${enemy.constructor.name} avec ${this.arme} pour ${this.degats} points de dégâts.`);
+      enemy.ptnVie -= this.degats;
+    
+      // Vérifier la chance d'envoyer une boule de feu
+      const chanceBouleDeFeu = 0.25; // 25% de chance d'envoyer une boule de feu (10 dégâts)
+      if (Math.random() < chanceBouleDeFeu) {
+        console.log(`${this.constructor.name} envoie une boule de feu qui inflige 10 points de dégâts supplémentaires.`);
+        enemy.ptnVie -= 10;
       }
-
-
-
-
-
-      // Effectuez ici les opérations spécifiques à l'attaque du mage
-      console.log("Le mage attaque !");
-      console.log("Dégâts infligés : " + this.degats);
-      console.log("Type d'attaque : " + this.typeAttack);
-      enemy.ptnVie -= this.degats
+    
+      // Vérifier la chance de regagner des points de vie
+      const chanceRegainPtnVie = 0.25; // 25% de chance de regagner des points de vie
+      if (Math.random() < chanceRegainPtnVie) {
+        const regainPtnVie = Math.floor(this.degats * 0.5);
+        this.ptnVie += regainPtnVie;
+        console.log(`${this.constructor.name} regagne ${regainPtnVie} points de vie.`);
+      }
     }
   }
-
 
 /**********************************************************/
 /******** Chasseur **************/
@@ -276,26 +284,26 @@ class Chasseur extends Hero {
     }
 
     attaquer(enemy) {
-      let chanceCritique = Math.random();
-      let typeAttack = this.typeAttack;
-      if (chanceCritique < 0.3) {
-        this.degats = Math.floor(Math.random() * 10) + 10;
+      const chanceCritique = Math.random();
+      const typeAttack = this.typeAttack;
+    
+      if (chanceCritique < 0.35) {
+        const degatsCritique = (Math.floor(Math.random() * 10) + 10) * 2; // Dégâts du critique (double des dégâts normaux)
+        this.degats = degatsCritique;
         this.typeAttack = "critique";
       } else {
         this.degats = Math.floor(Math.random() * 8) + 5;
         this.typeAttack = "normal";
       }
-
-      // Effectuez ici les opérations spécifiques à l'attaque du chasseur
+    
+      // Effectuer ici les opérations spécifiques à l'attaque du chasseur
       console.log("Le chasseur attaque !");
       console.log("Dégâts infligés : " + this.degats);
       console.log("Type d'attaque : " + this.typeAttack);
-
-      enemy.ptnVie -= this.degats
+    
+      enemy.ptnVie -= this.degats;
     }
   }
-
-
   /**********************************************************/
 /******** Marchand **************/
 /**********************************************************/
