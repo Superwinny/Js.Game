@@ -111,9 +111,6 @@ acheter(item, classe) {
 }
 
 
-
-
-
 afficher(ptnVieElement,potionSoinElement,armeElement,goldElement,selectedImageElement){
 ptnVieElement.textContent =  'Point de vie' + this.ptnVie;
 potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
@@ -123,14 +120,6 @@ selectedImageElement.src =  this.img;
 
 }
 
-    attaquer() {
-      let degats = Math.floor(Math.random() * 10) + 1;
-     
-      // Effectuez ici les opérations spécifiques à l'attaque du héros
-      console.log("Le héros attaque !");
-      console.log("Dégâts infligés : " + degats);
-      console.log("Type d'attaque : " + typeAttack);
-    }
 
      setHeroIntoLocalStorage() {
       const properties = {
@@ -217,7 +206,7 @@ class Guerrier extends Hero {
     enemy.ptnVie -= this.degats;
   
     // Vérifier si l'attaque double se produit
-    const chanceAttaqueDouble = 0.2; // Probabilité d'attaque double (20%)
+    const chanceAttaqueDouble = 0.2; 
     if (Math.random() < chanceAttaqueDouble) {
       console.log(`${this.constructor.name} effectue une attaque double !`);
       enemy.ptnVie -= this.degats;
@@ -251,14 +240,14 @@ class Mage extends Hero {
       enemy.ptnVie -= this.degats;
     
       // Vérifier la chance d'envoyer une boule de feu
-      const chanceBouleDeFeu = 0.20; // 25% de chance d'envoyer une boule de feu (10 dégâts)
+      const chanceBouleDeFeu = 0.25; // 25% de chance d'envoyer une boule de feu (10 dégâts)
       if (Math.random() < chanceBouleDeFeu) {
         console.log(`${this.constructor.name} envoie une boule de feu qui inflige 10 points de dégâts supplémentaires.`);
         enemy.ptnVie -= 10;
       }
     
       // Vérifier la chance de regagner des points de vie
-      const chanceRegainPtnVie = 0.20; // 25% de chance de regagner des points de vie
+      const chanceRegainPtnVie = 0.35; // 25% de chance de regagner des points de vie
       if (Math.random() < chanceRegainPtnVie) {
         const regainPtnVie = Math.floor(this.degats * 0.5);
         this.ptnVie += regainPtnVie;
