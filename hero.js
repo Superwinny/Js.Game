@@ -9,8 +9,7 @@
       #arme;
       #typeAttack;
       #degats;
-      #potionSoin;   
-
+    
     constructor(ptnVie, imgURL, gold, arme, typeAttack, degats) {
         this.#ptnVie = ptnVie;
         this.#imgURL = imgURL;
@@ -18,14 +17,12 @@
         this.#arme = arme;
         this.#typeAttack = typeAttack;
         this.#degats = degats;
-        this.#potionSoin = 0; 
+    
       }
 
 /******** GET  **************/  
 
-get potionSoin(){
-  return this.#potionSoin;
-}
+
 get degats(){
   return this.#degats;
 }
@@ -53,10 +50,6 @@ get gold()
 
 set degats(dgs){
   this.#degats = dgs;
-}
-
-set potionSoin(pts){
-  this.#potionSoin = pts;
 }
 
 set ptnVie(ptn){
@@ -174,10 +167,15 @@ selectedImageElement.src =  this.img;
         this.chanceCritique += 0.05;
         console.log(`${this.constructor.name} a augmenté sa chance de critique de 5%. Nouvelle chance de critique : ${this.chanceCritique}`);
       }
+     attaquer(enemy){
+      if (enemy.ptnVie <= 0) {
+        console.log(`${enemy.constructor.name} est vaincu !`);
+        this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
+      }
+     }
+    
 }
   
-
-
 /**********************************************************/
 /******** Guerrier **************/
 /**********************************************************/
@@ -211,6 +209,10 @@ class Guerrier extends Hero {
       console.log(`${this.constructor.name} effectue une attaque double !`);
       enemy.ptnVie -= this.degats;
     }
+    // Vérification si l'ennemi est vaincu
+    if (enemy.ptnVie <= 0) {
+      this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
+  }
   
     // Restaurer les valeurs d'origine
     this.typeAttack = typeAttack;
@@ -253,6 +255,9 @@ class Mage extends Hero {
         this.ptnVie += regainPtnVie;
         console.log(`${this.constructor.name} regagne ${regainPtnVie} points de vie.`);
       }
+      if (enemy.ptnVie <= 0) {
+        this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
+    }
     }
   }
 
@@ -283,7 +288,9 @@ class Chasseur extends Hero {
         this.degats = Math.floor(Math.random() * 8) + 5;
         this.typeAttack = "normal";
       }
-   
+      if (enemy.ptnVie <= 0) {
+        this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
+    }
       enemy.ptnVie -= this.degats;
     }
   }
@@ -365,8 +372,6 @@ class Marchand {
     }
   }
    
-  apparaitre(){
-
-  }
+  
 
 }   

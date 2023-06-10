@@ -103,7 +103,7 @@ function jouerPartie() {
         // Vérifier si le nombre d'ennemis vaincus est un multiple de 5
         if (enemyIndex > 0 && enemyIndex % 5 === 0) {
           console.log("Le marchand apparaît !");
-          // marchand.apparaitre();
+         
            // Rediriger vers la page marchand.html
            window.location.href = "marchand.html";
           
