@@ -214,8 +214,6 @@ class Guerrier extends Hero {
       this.typeAttack = "normal";
     }
   
-    // Effectuer ici les opérations spécifiques à l'attaque du guerrier
-    console.log(`${this.constructor.name} attaque ${enemy.constructor.name} avec ${this.arme} pour ${this.degats} points de dégâts.`);
     enemy.ptnVie -= this.degats;
   
     // Vérifier si l'attaque double se produit
@@ -291,16 +289,12 @@ class Chasseur extends Hero {
         const degatsCritique = (Math.floor(Math.random() * 10) + 10) * 2; // Dégâts du critique (double des dégâts normaux)
         this.degats = degatsCritique;
         this.typeAttack = "critique";
+        console.log(`Le chasseur inflige un coup critique et double les dégâts ! Dégâts totaux : ${this.degats}`);
       } else {
         this.degats = Math.floor(Math.random() * 8) + 5;
         this.typeAttack = "normal";
       }
-    
-      // Effectuer ici les opérations spécifiques à l'attaque du chasseur
-      console.log("Le chasseur attaque !");
-      console.log("Dégâts infligés : " + this.degats);
-      console.log("Type d'attaque : " + this.typeAttack);
-    
+   
       enemy.ptnVie -= this.degats;
     }
   }
