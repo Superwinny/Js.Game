@@ -79,8 +79,9 @@ acheter(item, classe) {
   }
 
   this.#gold -= item.prix; // Déduit le prix de l'item de l'or du héros
-
+  
   // Mettre à jour les informations du héros en fonction du type d'item acheté
+
   const magasin = new Marchand().getMagasin(classe);
   for (const type in magasin) {
     if (magasin[type] === item) {
@@ -117,9 +118,7 @@ potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
 armeElement.textContent =  'Arme ' + this.arme;
 goldElement.textContent =  'Gold ' + this.gold;
 selectedImageElement.src =  this.img;
-
 }
-
 
      setHeroIntoLocalStorage() {
       const properties = {
@@ -130,6 +129,7 @@ selectedImageElement.src =  this.img;
         typeAttack: this.typeAttack,
         degats: this.degats,
         typeHero: this.typeHero,
+        enemyKills: this.enemyKills,
       }
       localStorage.setItem("hero",JSON.stringify(properties))
       console.log(properties)
@@ -157,14 +157,11 @@ selectedImageElement.src =  this.img;
         return null;
       }
     }
-    
-    
     boostDegats(boostValue) {
       this.degats += boostValue;
       console.log(`${this.constructor.name} utilise un boost de dégâts.`);
       console.log(`Dégâts actuels : ${this.degats}`);
     }
-    
     boostSante(boostValue) {
       this.ptnVie += boostValue;
       console.log(`${this.constructor.name} utilise un boost de santé.`);
@@ -180,7 +177,6 @@ selectedImageElement.src =  this.img;
         this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
       }
      }
-    
 }
   
 /**********************************************************/
