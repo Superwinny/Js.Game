@@ -251,14 +251,14 @@ class Mage extends Hero {
       enemy.ptnVie -= this.degats;
     
       // Vérifier la chance d'envoyer une boule de feu
-      const chanceBouleDeFeu = 0.25; // 25% de chance d'envoyer une boule de feu (10 dégâts)
+      const chanceBouleDeFeu = 0.20; // 25% de chance d'envoyer une boule de feu (10 dégâts)
       if (Math.random() < chanceBouleDeFeu) {
         console.log(`${this.constructor.name} envoie une boule de feu qui inflige 10 points de dégâts supplémentaires.`);
         enemy.ptnVie -= 10;
       }
     
       // Vérifier la chance de regagner des points de vie
-      const chanceRegainPtnVie = 0.25; // 25% de chance de regagner des points de vie
+      const chanceRegainPtnVie = 0.20; // 25% de chance de regagner des points de vie
       if (Math.random() < chanceRegainPtnVie) {
         const regainPtnVie = Math.floor(this.degats * 0.5);
         this.ptnVie += regainPtnVie;
@@ -285,7 +285,7 @@ class Chasseur extends Hero {
       const chanceCritique = Math.random();
       const typeAttack = this.typeAttack;
     
-      if (chanceCritique < 0.35) {
+      if (chanceCritique < 0.25) {
         const degatsCritique = (Math.floor(Math.random() * 10) + 10) * 2; // Dégâts du critique (double des dégâts normaux)
         this.degats = degatsCritique;
         this.typeAttack = "critique";
@@ -309,24 +309,24 @@ class Marchand {
 
   constructor() {
     this.#magasinGuerrier = {
-      "Boost Dégâts": { prix: 10, effet: "boostDegats" },
-      "Boost Santé": { prix: 20, effet: "boostSante" },
-      "Boost Chance Critique": { prix: 15, effet: "boostCritique" },
-      "Potion de Soin": { prix: 8, effet: "soin" },
+      "Boost Dégâts": { prix: 20, effet: "boostDegats" },
+      "Boost Santé": { prix: 10, effet: "boostSante" },
+      "Boost Chance Critique": { prix: 12, effet: "boostCritique" },
+      "Potion de Soin": { prix: 5, effet: "soin" },
     };
     
     this.#magasinMage = {
       "Boost Dégâts": { prix: 12, effet: "boostDegats" },
-      "Boost Santé": { prix: 18, effet: "boostSante" },
-      "Boost Chance Critique": { prix: 10, effet: "boostCritique" },
-      "Potion de Soin": { prix: 8, effet: "soin" },
+      "Boost Santé": { prix: 15, effet: "boostSante" },
+      "Boost Chance Critique": { prix: 20, effet: "boostCritique" },
+      "Potion de Soin": { prix: 5, effet: "soin" },
     };
     
     this.#magasinChasseur = {
-      "Boost Dégâts": { prix: 15, effet: "boostDegats" },
-      "Boost Santé": { prix: 5, effet: "boostSante" },
-      "Boost Chance Critique": { prix: 12, effet: "boostCritique" },
-      "Potion de Soin": { prix: 8, effet: "soin" },
+      "Boost Dégâts": { prix: 12, effet: "boostDegats" },
+      "Boost Santé": { prix: 20, effet: "boostSante" },
+      "Boost Chance Critique": { prix: 10, effet: "boostCritique" },
+      "Potion de Soin": { prix: 5, effet: "soin" },
     };
   }
   

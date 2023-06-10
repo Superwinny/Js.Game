@@ -84,9 +84,9 @@ function jouerPartie() {
   const attaquer = () => {
     if (enemy && enemy.ptnVie > 0) {
       hero.attaquer(enemy); // Utiliser la méthode attaquer() de la classe Hero
-      console.log(`Vous attaquez ${enemy.constructor.name} !`);
-      console.log(`Dégâts infligés: ${hero.degats}`);
-      console.log(`Points de vie restants: ${enemy.ptnVie}`);
+      // console.log(`Vous attaquez ${enemy.constructor.name} !`);
+      // console.log(`Dégâts infligés: ${hero.degats}`);
+      // console.log(`Points de vie restants: ${enemy.ptnVie}`);
 
       if (enemy.ptnVie <= 0) {
         console.log(`${enemy.constructor.name} est vaincu !`);
