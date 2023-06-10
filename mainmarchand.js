@@ -1,45 +1,142 @@
+// // Récupérer une référence aux éléments d'item dans la page HTML
+// const boostDegatsElement = document.getElementById("boostDegats");
+// const boostSanteElement = document.getElementById("boostSante");
+// const boostCritiqueElement = document.getElementById("boostChance");
+// const potionSoinElement = document.getElementById("potionSoin");
+
+// let hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
+
+// let elementP = document.querySelector("#vueGold p");
+//     elementP.textContent = "Gold: " + hero.gold;
+
+// // Variable pour stocker l'objet sélectionné
+// let objetSelectionne = null;
+
+// // Fonction pour mettre à jour l'affichage du stock d'or du héros
+// function mettreAJourStockGold() {
+//   const elementP = document.querySelector("#vueGold p");
+//   if (hero) {
+//     elementP.textContent = "Gold: " + hero.gold;
+//   } else {
+//     elementP.textContent = "Gold: 0";
+//   }
+// }
+
+// // Mettre à jour l'affichage initial du stock d'or du héros
+// mettreAJourStockGold();
+
+
+// // Ajouter des gestionnaires d'événements de clic aux items du marchand
+// boostDegatsElement.addEventListener("click", () => selectionnerItem("Boost Dégâts"));
+// boostSanteElement.addEventListener("click", () => selectionnerItem("Boost Santé"));
+// boostCritiqueElement.addEventListener("click", () => selectionnerItem("Boost Chance Critique"));
+// potionSoinElement.addEventListener("click", () => selectionnerItem("Potion de Soin"));
+
+// // Fonction pour sélectionner un item
+// function selectionnerItem(nomItem) {
+//    const hero = Hero.getHeroFromLocalStorage();
+
+//   if (hero) {
+//     let classe = hero.constructor.name;
+
+//     if (classe === "Guerrier" || classe === "Mage" || classe === "Chasseur") {
+//       const magasin = new Marchand().getMagasin(classe);
+
+//       if (magasin.hasOwnProperty(nomItem)) {
+//         const item = magasin[nomItem];
+
+//         if (hero.gold >= item.prix) {
+//           objetSelectionne = item;
+//           console.log(`L'objet ${nomItem} a été sélectionné.`);
+//         } else {
+//           console.log("Le héros n'a pas assez d'or pour acheter cet item.");
+//         }
+//       } else {
+//         console.log("Cet item n'est pas disponible dans le magasin.");
+//       }
+//     } else {
+//       console.log("Classe de héros invalide.");
+//     }
+//   } else {
+//     console.log("Le héros n'a pas été trouvé dans le stockage local.");
+//   }
+// }
+
+// // Gestionnaire d'événements pour le bouton "Acheter"
+// btnValidation.addEventListener("click", () => {
+//   const hero = Hero.getHeroFromLocalStorage();
+
+//   if (hero && objetSelectionne) {
+//     let classe = hero.constructor.name;
+
+//     if (classe === "Guerrier" || classe === "Mage" || classe === "Chasseur") {
+//       hero.acheter(objetSelectionne, classe);
+//       hero.setHeroIntoLocalStorage();
+        
+//       console.log(`Le héros a acheté ${objetSelectionne.nom}.`);
+      
+//        mettreAJourStockGold();
+//       // mettreAJourInterface(hero);
+//     } else {
+//       console.log("Classe de héros invalide.");
+//     }
+//   } else {
+//     console.log("Aucun objet n'est sélectionné.");
+//   }
+// });
+
 // Récupérer une référence aux éléments d'item dans la page HTML
 const boostDegatsElement = document.getElementById("boostDegats");
 const boostSanteElement = document.getElementById("boostSante");
 const boostCritiqueElement = document.getElementById("boostChance");
 const potionSoinElement = document.getElementById("potionSoin");
 
+let hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
+
+let elementP = document.querySelector("#vueGold p");
+elementP.textContent = "Gold: " + hero.gold;
+
+// Variable pour stocker l'objet sélectionné
+let objetSelectionne = null;
+
+
+// Fonction pour mettre à jour l'affichage du stock d'or du héros
+function mettreAJourStockGold() {
+  const elementP = document.querySelector("#vueGold p");
+  hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
+  if (hero) {
+    elementP.textContent = "Gold: " + hero.gold;
+  } else {
+    elementP.textContent = "Gold: 0";
+  }
+}
+
+// Mettre à jour l'affichage initial du stock d'or du héros
+mettreAJourStockGold();
+
 
 // Ajouter des gestionnaires d'événements de clic aux items du marchand
-boostDegatsElement.addEventListener("click", () => acheterItem("Boost Dégâts"));
-boostSanteElement.addEventListener("click", () => acheterItem("Boost Santé"));
-boostCritiqueElement.addEventListener("click", () => acheterItem("Boost Chance Critique"));
-potionSoinElement.addEventListener("click", () => acheterItem("Potion de Soin"));
+boostDegatsElement.addEventListener("click", () => selectionnerItem("Boost Dégâts"));
+boostSanteElement.addEventListener("click", () => selectionnerItem("Boost Santé"));
+boostCritiqueElement.addEventListener("click", () => selectionnerItem("Boost Chance Critique"));
+potionSoinElement.addEventListener("click", () => selectionnerItem("Potion de Soin"));
 
-
- function acheterItem(nomItem, mettreAJourInterface) {
-  // Récupérer le héros depuis le stockage local
+// Fonction pour sélectionner un item
+function selectionnerItem(nomItem) {
   const hero = Hero.getHeroFromLocalStorage();
 
-  // Vérifier si le héros existe
   if (hero) {
-    // Récupérer le magasin correspondant à la classe du héros
     let classe = hero.constructor.name;
 
-    // Vérifier si la classe du héros est valide
     if (classe === "Guerrier" || classe === "Mage" || classe === "Chasseur") {
       const magasin = new Marchand().getMagasin(classe);
 
-      // Vérifier si l'item existe dans le magasin
       if (magasin.hasOwnProperty(nomItem)) {
         const item = magasin[nomItem];
 
-        // Vérifier si le héros a assez d'or pour acheter l'item
         if (hero.gold >= item.prix) {
-          // Acheter l'item
-          hero.acheter(item, classe);
-
-          // Mettre à jour les informations du héros dans le stockage local
-          hero.setHeroIntoLocalStorage();
-          // mettreAJourInterface(hero);
-         
-
-          console.log(`Le héros a acheté ${nomItem}.`);
+          objetSelectionne = item;
+          console.log(`L'objet ${nomItem} a été sélectionné.`);
         } else {
           console.log("Le héros n'a pas assez d'or pour acheter cet item.");
         }
@@ -53,3 +150,28 @@ potionSoinElement.addEventListener("click", () => acheterItem("Potion de Soin"))
     console.log("Le héros n'a pas été trouvé dans le stockage local.");
   }
 }
+
+// Gestionnaire d'événements pour le bouton "Acheter"
+btnValidation.addEventListener("click", () => {
+  const hero = Hero.getHeroFromLocalStorage();
+
+  if (hero && objetSelectionne) {
+    let classe = hero.constructor.name;
+
+    if (classe === "Guerrier" || classe === "Mage" || classe === "Chasseur") {
+      hero.acheter(objetSelectionne, classe);
+      hero.setHeroIntoLocalStorage();
+
+      console.log(`Le héros a acheté ${objetSelectionne.nom}.`);
+      objetSelectionne = null;
+
+      mettreAJourStockGold(); // Mettre à jour les gold sur la vue du marchand
+
+      // mettreAJourInterface(hero);
+    } else {
+      console.log("Classe de héros invalide.");
+    }
+  } else {
+    console.log("Aucun objet n'est sélectionné.");
+  }
+});

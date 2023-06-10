@@ -263,3 +263,14 @@ h1 {
     font-size: 15px;
     padding: 5px 5px;
 }
+
+#vueGold{
+  width: 100%;
+  height: auto;
+}
+#vueGold p{
+  position: fixed;
+  color: white;
+ 
+  left: 250px;
+}

@@ -35,6 +35,8 @@ heroImages.forEach((image, index) => {
         console.log("Classe invalide.");
         return;
     }
+    
+    
 
     // Enregistrez l'instance du héros dans le stockage local
     hero.setHeroIntoLocalStorage();
