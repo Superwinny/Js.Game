@@ -72,6 +72,7 @@ set gold(gold){
 set typeAttack(typeAttack){
   this.#typeAttack = typeAttack;
 }
+
 acheter(item, classe) {
   if (this.#gold < item.prix) {
     return -1; // Retourne -1 si le héros n'a pas assez d'or pour acheter l'item
@@ -85,19 +86,19 @@ acheter(item, classe) {
     if (magasin[type] === item) {
       switch (type) {
         case "Boost Dégâts":
-          this.hero.boostDegats(); // Appeler boostDegats() sur l'instance de l'objet hero
+          this.boostDegats(); // Appeler boostDegats() sur l'objet courant de la classe Hero
           console.log(`Boost de dégâts acheté : ${item.effet}`);
           break;
         case "Boost Santé":
-          this.hero.boostSante(); // Appeler boostSante() sur l'instance de l'objet hero
+          this.boostSante(); // Appeler boostSante() sur l'objet courant de la classe Hero
           console.log(`Boost de santé acheté : ${item.effet}`);
           break;
         case "Boost Chance Critique":
-          this.hero.boostCritique(); // Appeler boostCritique() sur l'instance de l'objet hero
+          this.boostCritique(); // Appeler boostCritique() sur l'objet courant de la classe Hero
           console.log(`Boost de chance critique acheté : ${item.effet}`);
           break;
         case "Potion de Soin":
-          this.hero.utiliserPotion(); // Appeler utiliserPotion() sur l'instance de l'objet hero
+          this.utiliserPotion(); // Appeler utiliserPotion() sur l'objet courant de la classe Hero
           console.log(`Potion de soin achetée : ${item.effet}`);
           break;
         default:
@@ -109,41 +110,9 @@ acheter(item, classe) {
   }
 }
 
-// acheter(item, classe) {
-//   if (this.#gold < item.prix) {
-//     return -1; // Retourne -1 si le héros n'a pas assez d'or pour acheter l'item
-//   }
-//   // Déduit le prix de l'item de l'or du héros
-//   this.#gold -= item.prix; 
-//   // Mettre à jour les informations du héros en fonction du type d'item acheté
-//   const magasin = new Marchand().getMagasin(classe);
-//   for (const type in magasin) {
-//     if (magasin[type] === item) {
-//       switch (type) {
-//         case "Boost Dégâts":
-//           this.boostDegats();
-//           console.log(`Boost de dégâts acheté : ${item.effet}`);
-//           break;
-//         case "Boost Santé":
-//           this.boostSante();
-//           console.log(`Boost de santé acheté : ${item.effet}`);
-//           break;
-//         case "Boost Chance Critique":
-//           this.boostCritique();
-//           console.log(`Boost de chance critique acheté : ${item.effet}`);
-//           break;
-//         case "Potion de Soin":
-//           this.utiliserPotion()
-//           console.log(`Potion de soin achetée : ${item.effet}`);
-//           break;
-//         default:
-//           console.log("Type d'item invalide.");
-//           break;
-//       }
-//       break;
-//     }
-//   }
-// }
+
+
+
 
 afficher(ptnVieElement,potionSoinElement,armeElement,goldElement,selectedImageElement){
 ptnVieElement.textContent =  'Point de vie' + this.ptnVie;
@@ -201,26 +170,17 @@ selectedImageElement.src =  this.img;
     }
     
     
-      boostDegats() {
-        const pourcentageBoost = 0.05;
-        const boost = this.degats * pourcentageBoost;
-        this.degats += boost;
-        console.log(`${this.constructor.name} utilise un boost de dégâts.`);
-        console.log(`Dégâts actuels : ${this.degats}`);
-      }
-      boostSante() {
-        const pourcentageBoost = 0.1;
-        const boost = this.maxPtnVie * pourcentageBoost;
-        this.maxPtnVie += boost;
-        if (this.ptnVie + boost > this.maxPtnVie) {
-          this.ptnVie = this.maxPtnVie; // Ajuster la santé actuelle si elle dépasse la santé maximale
-        } else {
-          this.ptnVie += boost;
-        }
-        console.log(`${this.constructor.name} utilise un boost de santé.`);
-        console.log(`Santé maximale actuelle : ${this.maxPtnVie}`);
-        console.log(`Points de vie actuels : ${this.ptnVie}`);
-      }
+    boostDegats(boostValue) {
+      this.degats += boostValue;
+      console.log(`${this.constructor.name} utilise un boost de dégâts.`);
+      console.log(`Dégâts actuels : ${this.degats}`);
+    }
+    
+    boostSante(boostValue) {
+      this.ptnVie += boostValue;
+      console.log(`${this.constructor.name} utilise un boost de santé.`);
+      console.log(`Points de vie actuels : ${this.ptnVie}`);
+    }
       boostCritique() {
         this.chanceCritique += 0.05;
         console.log(`${this.constructor.name} a augmenté sa chance de critique de 5%. Nouvelle chance de critique : ${this.chanceCritique}`);
@@ -253,10 +213,6 @@ class Guerrier extends Hero {
         this.degats = Math.floor(Math.random() * 10) + 10;
         this.typeAttack = "normal";
       }
-
-
-
-
 
       // Effectuez ici les opérations spécifiques à l'attaque du mage
       console.log("Le mage attaque !");
