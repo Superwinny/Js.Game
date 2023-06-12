@@ -6,7 +6,7 @@ const boostCritiqueElement = document.getElementById("boostChance");
 const potionSoinElement = document.getElementById("potionSoin");
 
 let hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
-
+let enemy = Enemy.getEnemyFromLocalStorage(); 
 
 let elementP = document.querySelector("#vueGold p");
 elementP.textContent = "Gold: " + hero.gold;
@@ -106,5 +106,14 @@ btnValidation.addEventListener("click", () => {
 });
 
 function continueGame() {
-  window.location.href = "index3.html"; // Rediriger vers index3.html
+  let enemy = Enemy.getEnemyFromLocalStorage()
+
+  if (enemy) {
+    // Les informations de l'ennemi sont présentes dans le local storage, vous pouvez poursuivre le jeu
+    window.location.href = "index3.html"; // Rediriger vers la page du jeu
+    enemy.setEnemyIntoLocalStorage() 
+  } else {
+    console.log("Aucune information d'ennemi disponible dans le stockage local.");
+    // Afficher un message d'erreur ou prendre une autre action appropriée
+  }
 }
