@@ -113,10 +113,10 @@ acheter(item, classe) {
 }
 
 
-afficher(ptnVieElement,potionSoinElement,armeElement,goldElement,selectedImageElement,degatsElement){
+afficher(ptnVieElement,armeElement,goldElement,selectedImageElement,degatsElement){
 ptnVieElement.textContent =  'Point de vie' + this.ptnVie;
-potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
-armeElement.textContent =  'Arme ' + this.arme;
+// potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
+ armeElement.textContent =  'Arme ' + this.arme;
 goldElement.textContent =  'Gold ' + this.gold;
 selectedImageElement.src =  this.img;
 degatsElement.textContent = 'Degats' + this.degats;

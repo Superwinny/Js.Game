@@ -23,13 +23,13 @@ heroImages.forEach((image, index) => {
     switch (heroClass) {
       case "Guerrier":
         hero = new Guerrier(
-          100,"img/Guerrier.svg",10,"hache","tranchant",10);
+          100,"img/Guerrier.svg",10,"Hache","tranchant",12);
         break;
       case "Mage":
-        hero = new Mage(80, "img/Mage.svg", 10, "Baguette", "Magique", 6);
+        hero = new Mage(80, "img/Mage.svg", 10, "Baton", "Magique",8);
         break;
       case "Chasseur":
-        hero = new Chasseur(90,"img/Chasseur.svg",10,"Couteau","classique",8);
+        hero = new Chasseur(90,"img/Chasseur.svg",10,"Arc","classique",10);
         break;
       default:
         console.log("Classe invalide.");
