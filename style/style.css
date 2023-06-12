@@ -275,3 +275,25 @@ h1 {
   left: 250px;
 }
 
+#continueGame {
+  top: 100px;
+  position: fixed;
+  right: 50px;
+  display: block;
+  width: 150px;
+  height: 40px;
+  margin-top: 20px;
+  background-color: #fff;
+  color: #333;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  transition: border-color 0.3s ease;
+  font-size: 16px;
+}
+
+#continueGame:hover {
+  background-color: #1d1d1d;
+  color: #fff;
+  border-color: #ff3333;
+}
+

@@ -7,6 +7,7 @@ const potionSoinElement = document.getElementById("potionSoin");
 
 let hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
 
+
 let elementP = document.querySelector("#vueGold p");
 elementP.textContent = "Gold: " + hero.gold;
 
@@ -103,3 +104,7 @@ btnValidation.addEventListener("click", () => {
     console.log("Aucun objet n'est sélectionné.");
   }
 });
+
+function continueGame() {
+  window.location.href = "index3.html"; // Rediriger vers index3.html
+}
