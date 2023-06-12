@@ -49,14 +49,14 @@ function selectionnerItem(nomItem) {
       if (magasin.hasOwnProperty(nomItem)) {
         const item = magasin[nomItem];
 
-        if (item.type === "boost" && boostsAchetes.includes(nomItem)) {
+        if (item.effet === "boost" && boostsAchetes.includes(nomItem)) {
           console.log("Le héros a déjà acheté ce boost.");
         } else if (hero.gold >= item.prix) {
           objetSelectionne = item;
           console.log(`L'objet ${nomItem} a été sélectionné.`);
 
           // Désactiver le bouton d'achat pour le boost déjà acheté
-          if (item.type === "boost") {
+          if (item.effet === "boost") {
             document.getElementById(nomItem).disabled = true;
           }
         } else {
@@ -90,7 +90,7 @@ btnValidation.addEventListener("click", () => {
         console.log(`Le héros a acheté ${objetSelectionne.effet}.`);
         mettreAJourStockGold();
 
-        if (objetSelectionne && objetSelectionne.type === "boost") {
+        if (objetSelectionne && objetSelectionne.type === "boost" ) {
           boostsAchetes.push(objetSelectionne.effet);
         }
         objetSelectionne = null;

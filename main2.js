@@ -26,10 +26,10 @@ heroImages.forEach((image, index) => {
           100,"img/Guerrier.svg",200,"hache","tranchant",10);
         break;
       case "Mage":
-        hero = new Mage(80, "img/Mage.svg", 10, "Baguette", "Magique", 6);
+        hero = new Mage(80, "img/Mage.svg", 200, "Baguette", "Magique", 6);
         break;
       case "Chasseur":
-        hero = new Chasseur(90,"img/Chasseur.svg",10,"Couteau","classique",8);
+        hero = new Chasseur(90,"img/Chasseur.svg",200,"Couteau","classique",8);
         break;
       default:
         console.log("Classe invalide.");

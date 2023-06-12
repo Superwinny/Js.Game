@@ -88,15 +88,15 @@ acheter(item, classe) {
       console.log(`Boost de dégâts acheté : ${item.effet}`);
       break;
     case "boostSante":
-      this.boostSante(); // Appeler boostSante() sur l'objet courant de la classe Hero
+      this.boostSante(item.value); // Appeler boostSante() sur l'objet courant de la classe Hero
       console.log(`Boost de santé acheté : ${item.effet}`);
       break;
     case "boostCritique":
-      this.boostCritique(); // Appeler boostCritique() sur l'objet courant de la classe Hero
+      this.boostCritique(item.value); // Appeler boostCritique() sur l'objet courant de la classe Hero
       console.log(`Boost de chance critique acheté : ${item.effet}`);
       break;
-    case "potionDeSoin":
-      this.utiliserPotion(); // Appeler utiliserPotion() sur l'objet courant de la classe Hero
+    case "potionSoin":
+      this.heal(item.value); // Appeler heal() sur l'objet courant de la classe Hero
       console.log(`Potion de soin achetée : ${item.effet}`);
       break;
     default:
@@ -151,19 +151,23 @@ selectedImageElement.src =  this.img;
         return null;
       }
     }
-    boostDegats(boostValue) {
-      this.degats += boostValue;
+    boostDegats(value) {
+      this.degats += value;
       console.log(`${this.constructor.name} utilise un boost de dégâts.`);
       console.log(`Dégâts actuels : ${this.degats}`);
     }
-    boostSante(boostValue) {
-      this.ptnVie += boostValue;
+    boostSante(value) {
+      this.ptnVie += value;
       console.log(`${this.constructor.name} utilise un boost de santé.`);
       console.log(`Points de vie actuels : ${this.ptnVie}`);
     }
       boostCritique() {
         this.chanceCritique += 0.05;
         console.log(`${this.constructor.name} a augmenté sa chance de critique de 5%. Nouvelle chance de critique : ${this.chanceCritique}`);
+      }
+      heal(value){
+        this.ptnVie += value;
+        console.log(`Points de vie actuels : ${this.ptnVie}`);
       }
      attaquer(enemy){
       if (enemy.ptnVie <= 0) {
@@ -304,23 +308,23 @@ class Marchand {
   constructor() {
     this.#magasinGuerrier = {
       "boostDegats": { prix: 20, effet: "boostDegats", value: 10 , type: "boost"},
-      "boostSante ": { prix: 10, effet: "boostSante",value: 10 ,type: "boost"},
+      "boostSante": { prix: 10, effet: "boostSante",value: 10 ,type: "boost"},
       "boostChance": { prix: 12, effet: "boostCritique", value: 10, type: "boost"},
-      "potionSoin": { prix: 5, effet: "soin",value: 10,type: "boost" },
+      "potionSoin": { prix: 5, effet: "soin" ,value: 60, type: "soin"},
     };
     
     this.#magasinMage = {
-      "boostDegats": { prix: 12, effet: "boostDegats" },
-      "Boost Santé": { prix: 15, effet: "boostSante" },
-      "Boost Chance Critique": { prix: 20, effet: "boostCritique" },
-      "Potion de Soin": { prix: 5, effet: "soin" },
+      "boostDegats": { prix: 12, effet: "boostDegats", value: 10, type: "boost" },
+      "boostSante": { prix: 15, effet: "boostSante", value: 10, type: "boost" },
+      "boostChance": { prix: 20, effet: "boostCritique", value: 10, type: "boost"},
+      "potionSoin": { prix: 5, effet: "soin", value: 40, type: "soin" },
     };
     
     this.#magasinChasseur = {
-      "boostDegats": { prix: 12, effet: "boostDegats" },
-      "Boost Santé": { prix: 20, effet: "boostSante" },
-      "Boost Chance Critique": { prix: 10, effet: "boostCritique" },
-      "Potion de Soin": { prix: 5, effet: "soin" },
+      "boostDegats": { prix: 12, effet: "boostDegats", value: 10 , type: "boost" },
+      "boostSante": { prix: 20, effet: "boostSante", value: 10 , type: "boost" },
+      "boostChance": { prix: 10, effet: "boostCritique", value: 10 , type: "boost" },
+      "potionSoin": { prix: 5, effet: "soin", value: 50 , type: "soin" },
     };
   }
   
@@ -358,8 +362,8 @@ class Marchand {
         case "boostCritique":
           hero.boostCritique();
           break;
-        case "soin":
-          hero.utiliserPotion();
+        case "potionSoin":
+          hero.heal();
           break;
         default:
           console.log("Effet d'item invalide.");
