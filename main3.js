@@ -4,6 +4,8 @@ let selectedImageElement = document.getElementById('selectedImage');
 let selectedImageEnemy = document.getElementById('enemyImage');
 
 // Modifier les sélecteurs des éléments de l'interface utilisateur
+const degatsElement = document.querySelector('.infoGame #degats');
+
 const ptnVieElement = document.querySelector('.infoGame #ptnVie');
 const potionSoinElement = document.querySelector('.infoGame #potionSoin');
 const armeElement = document.querySelector('.infoGame #arme');
@@ -17,7 +19,7 @@ const buttonAchat = document.getElementById('buttonAchat');
 
   // Mettre à jour l'interface utilisateur
    const mettreAJourInterface = (hero, enemy) => {
-    hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement, selectedImageElement);
+    hero.afficher(ptnVieElement, potionSoinElement, armeElement, goldElement, selectedImageElement,degatsElement);
     enemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageEnemy);
   };
 

@@ -82,20 +82,27 @@ acheter(item, classe) {
   
   // Mettre à jour les informations du héros en fonction du type d'item acheté
 
-  switch (item.effet) {
-    case "boostDegats":
-      this.boostDegats(item.value); // Appeler boostDegats() sur l'objet courant de la classe Hero
-      console.log(`Boost de dégâts acheté : ${item.effet}`);
+  switch (item.type) {
+    case "boost":
+      switch (item.effet) {
+        case "boostDegats":
+          this.boostDegats(item.value); // Appeler boostDegats() sur l'objet courant de la classe Hero
+          console.log(`Boost de dégâts acheté : ${item.effet}`);
+          break;
+        case "boostSante":
+          this.boostSante(item.value); // Appeler boostSante() sur l'objet courant de la classe Hero
+          console.log(`Boost de santé acheté : ${item.effet}`);
+          break;
+        case "boostCritique":
+          this.boostCritique(item.value); // Appeler boostCritique() sur l'objet courant de la classe Hero
+          console.log(`Boost de chance critique acheté : ${item.effet}`);
+          break;
+        default:
+          console.log("Type de boost invalide.");
+          break;
+      }
       break;
-    case "boostSante":
-      this.boostSante(item.value); // Appeler boostSante() sur l'objet courant de la classe Hero
-      console.log(`Boost de santé acheté : ${item.effet}`);
-      break;
-    case "boostCritique":
-      this.boostCritique(item.value); // Appeler boostCritique() sur l'objet courant de la classe Hero
-      console.log(`Boost de chance critique acheté : ${item.effet}`);
-      break;
-    case "potionSoin":
+    case "soin":
       this.heal(item.value); // Appeler heal() sur l'objet courant de la classe Hero
       console.log(`Potion de soin achetée : ${item.effet}`);
       break;
@@ -106,12 +113,13 @@ acheter(item, classe) {
 }
 
 
-afficher(ptnVieElement,potionSoinElement,armeElement,goldElement,selectedImageElement){
+afficher(ptnVieElement,potionSoinElement,armeElement,goldElement,selectedImageElement,degatsElement){
 ptnVieElement.textContent =  'Point de vie' + this.ptnVie;
 potionSoinElement.textContent =  'Potion de soin ' + this.potionSoin;
 armeElement.textContent =  'Arme ' + this.arme;
 goldElement.textContent =  'Gold ' + this.gold;
 selectedImageElement.src =  this.img;
+degatsElement.textContent = 'Degats' + this.degats;
 }
 
      setHeroIntoLocalStorage() {
