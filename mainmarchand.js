@@ -13,7 +13,7 @@ elementP.textContent = "Gold: " + hero.gold;
 // Variable pour stocker l'objet sélectionné
 let objetSelectionne = null;
 
-
+let boostsAchetes = []
 
 function mettreAJourStockGold() {
   let hero = Hero.getHeroFromLocalStorage(); // Récupérer le héros depuis le stockage local
@@ -31,10 +31,10 @@ mettreAJourStockGold();
 
 
 // Ajouter des gestionnaires d'événements de clic aux items du marchand
-boostDegatsElement.addEventListener("click", () => selectionnerItem("Boost Dégâts"));
-boostSanteElement.addEventListener("click", () => selectionnerItem("Boost Santé"));
-boostCritiqueElement.addEventListener("click", () => selectionnerItem("Boost Chance Critique"));
-potionSoinElement.addEventListener("click", () => selectionnerItem("Potion de Soin"));
+boostDegatsElement.addEventListener("click", () => selectionnerItem("boostDegats"));
+boostSanteElement.addEventListener("click", () => selectionnerItem("boostSante"));
+boostCritiqueElement.addEventListener("click", () => selectionnerItem("boostChance"));
+potionSoinElement.addEventListener("click", () => selectionnerItem("potionSoin"));
 
 // Fonction pour sélectionner un item
 function selectionnerItem(nomItem) {
@@ -81,18 +81,20 @@ btnValidation.addEventListener("click", () => {
     let classe = hero.constructor.name;
 
     if (classe === "Guerrier" || classe === "Mage" || classe === "Chasseur") {
-      if (objetSelectionne.type === "boost" && boostsAchetes.includes(objetSelectionne.nom)) {
+      if (objetSelectionne.type === "boost" && boostsAchetes.includes(objetSelectionne.effet)) {
         console.log("Le héros a déjà acheté ce boost.");
       } else {
         hero.acheter(objetSelectionne, classe);
+        
         hero.setHeroIntoLocalStorage();
-        console.log(`Le héros a acheté ${objetSelectionne.nom}.`);
-        objetSelectionne = null;
+        console.log(`Le héros a acheté ${objetSelectionne.effet}.`);
         mettreAJourStockGold();
 
         if (objetSelectionne && objetSelectionne.type === "boost") {
-          boostsAchetes.push(objetSelectionne.nom);
+          boostsAchetes.push(objetSelectionne.effet);
         }
+        objetSelectionne = null;
+
       }
     } else {
       console.log("Classe de héros invalide.");

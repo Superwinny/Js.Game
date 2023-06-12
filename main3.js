@@ -111,6 +111,7 @@ function jouerPartie() {
       } else {
         enemyAttaque(enemy, hero);
       }
+      enemy.setEnemyIntoLocalStorage() 
     } else {
       console.log("Il n'y a pas d'ennemi à attaquer !");
     }

@@ -23,7 +23,7 @@ heroImages.forEach((image, index) => {
     switch (heroClass) {
       case "Guerrier":
         hero = new Guerrier(
-          100,"img/Guerrier.svg",10,"hache","tranchant",10);
+          100,"img/Guerrier.svg",200,"hache","tranchant",10);
         break;
       case "Mage":
         hero = new Mage(80, "img/Mage.svg", 10, "Baguette", "Magique", 6);

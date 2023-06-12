@@ -82,32 +82,26 @@ acheter(item, classe) {
   
   // Mettre à jour les informations du héros en fonction du type d'item acheté
 
-  const magasin = new Marchand().getMagasin(classe);
-  for (const type in magasin) {
-    if (magasin[type] === item) {
-      switch (type) {
-        case "Boost Dégâts":
-          this.boostDegats(); // Appeler boostDegats() sur l'objet courant de la classe Hero
-          console.log(`Boost de dégâts acheté : ${item.effet}`);
-          break;
-        case "Boost Santé":
-          this.boostSante(); // Appeler boostSante() sur l'objet courant de la classe Hero
-          console.log(`Boost de santé acheté : ${item.effet}`);
-          break;
-        case "Boost Chance Critique":
-          this.boostCritique(); // Appeler boostCritique() sur l'objet courant de la classe Hero
-          console.log(`Boost de chance critique acheté : ${item.effet}`);
-          break;
-        case "Potion de Soin":
-          this.utiliserPotion(); // Appeler utiliserPotion() sur l'objet courant de la classe Hero
-          console.log(`Potion de soin achetée : ${item.effet}`);
-          break;
-        default:
-          console.log("Type d'item invalide.");
-          break;
-      }
+  switch (item.effet) {
+    case "boostDegats":
+      this.boostDegats(item.value); // Appeler boostDegats() sur l'objet courant de la classe Hero
+      console.log(`Boost de dégâts acheté : ${item.effet}`);
       break;
-    }
+    case "boostSante":
+      this.boostSante(); // Appeler boostSante() sur l'objet courant de la classe Hero
+      console.log(`Boost de santé acheté : ${item.effet}`);
+      break;
+    case "boostCritique":
+      this.boostCritique(); // Appeler boostCritique() sur l'objet courant de la classe Hero
+      console.log(`Boost de chance critique acheté : ${item.effet}`);
+      break;
+    case "potionDeSoin":
+      this.utiliserPotion(); // Appeler utiliserPotion() sur l'objet courant de la classe Hero
+      console.log(`Potion de soin achetée : ${item.effet}`);
+      break;
+    default:
+      console.log("Type d'item invalide.");
+      break;
   }
 }
 
@@ -309,21 +303,21 @@ class Marchand {
 
   constructor() {
     this.#magasinGuerrier = {
-      "Boost Dégâts": { prix: 20, effet: "boostDegats" },
-      "Boost Santé": { prix: 10, effet: "boostSante" },
-      "Boost Chance Critique": { prix: 12, effet: "boostCritique" },
-      "Potion de Soin": { prix: 5, effet: "soin" },
+      "boostDegats": { prix: 20, effet: "boostDegats", value: 10 , type: "boost"},
+      "boostSante ": { prix: 10, effet: "boostSante",value: 10 ,type: "boost"},
+      "boostChance": { prix: 12, effet: "boostCritique", value: 10, type: "boost"},
+      "potionSoin": { prix: 5, effet: "soin",value: 10,type: "boost" },
     };
     
     this.#magasinMage = {
-      "Boost Dégâts": { prix: 12, effet: "boostDegats" },
+      "boostDegats": { prix: 12, effet: "boostDegats" },
       "Boost Santé": { prix: 15, effet: "boostSante" },
       "Boost Chance Critique": { prix: 20, effet: "boostCritique" },
       "Potion de Soin": { prix: 5, effet: "soin" },
     };
     
     this.#magasinChasseur = {
-      "Boost Dégâts": { prix: 12, effet: "boostDegats" },
+      "boostDegats": { prix: 12, effet: "boostDegats" },
       "Boost Santé": { prix: 20, effet: "boostSante" },
       "Boost Chance Critique": { prix: 10, effet: "boostCritique" },
       "Potion de Soin": { prix: 5, effet: "soin" },
