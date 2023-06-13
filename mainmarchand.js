@@ -10,6 +10,7 @@ let hero = Hero.getHeroFromLocalStorage();
 let enemy = Enemy.getEnemyFromLocalStorage(); 
 
 
+
 let elementP = document.querySelector("#vueGold p");
 elementP.textContent = "Gold: " + hero.gold;
 
@@ -75,21 +76,6 @@ function selectionnerItem(nomItem) {
     console.log("Le héros n'a pas été trouvé dans le stockage local.");
   }
 }
-function getEnemyFromLocalStorage() {
-  const enemyJSON = localStorage.getItem("enemy"); // Récupérer les données JSON de l'ennemi depuis le stockage local
-
-  if (enemyJSON) {
-    const enemyData = JSON.parse(enemyJSON); // Convertir les données JSON en objet JavaScript
-
-    // Vérifier si les propriétés requises sont présentes
-    if (enemyData && enemyData.ptnVie && enemyData.imgUrl && enemyData.arme && enemyData.faiblesseAttack && enemyData.degats) {
-      const enemy = new Enemy(enemyData.ptnVie, enemyData.imgUrl, enemyData.arme, enemyData.faiblesseAttack, enemyData.degats); // Créer une instance de la classe Enemy avec les données récupérées
-      return enemy;
-    }
-  }
-
-  return null; // Retourner null si les informations d'ennemi ne sont pas présentes dans le stockage local ou si les propriétés requises sont manquantes
-}
 
 // Gestionnaire d'événements pour le bouton "Acheter"
 btnValidation.addEventListener("click", () => {
@@ -123,13 +109,44 @@ btnValidation.addEventListener("click", () => {
     console.log("Aucun objet n'est sélectionné.");
   }
 });
+function getEnemy(enemyList,index){
+  return enemyList[index]
+}
+
+const mettreAJourInterface = (hero, enemy) => {
+  if (enemy) {
+    enemy.afficher(pvEnemyElement, degatsEnemyElement, armeEnemyElement, faiblesseEnemyElement, selectedImageEnemy);
+  }
+};
+
+function getEnemyFromLocalStorage() {
+  const enemyData = JSON.parse(localStorage.getItem("enemy"));
+  if (enemyData) {
+    const enemy =  new Enemy(
+      enemyData.ptnVie,
+      enemyData.imgUrl,
+      enemyData.arme,
+      enemyData.faiblesseAttack,
+      enemyData.degats
+    );
+    return enemy;
+  } else {
+    return null;
+  }
+}
 
 continueGame.addEventListener("click", () => {
-  let enemyIndex = 0;
+  const enemy = getEnemyFromLocalStorage();
+  let enemyIndex = localStorage.getItem("enemyIndex");
+  if (enemyIndex === null) {
+    enemyIndex = 0;
+  } else {
+    enemyIndex = parseInt(enemyIndex);
+  }
   const enemyList = [
     new Loup(20, "img/imgEnemy/Loup.svg", "Croc", "magic", 5),
     new Squelette(25,"img/imgEnemy/Squelette.svg","Épée","critique",6),
-    new Fantome( 30,"img/imgEnemy/Fantome.svg","Ectoplasme","magic",8),
+    new Fantome(30,"img/imgEnemy/Fantome.svg","Ectoplasme","magic",8),
     new Zombie(35,"img/imgEnemy/Zombie.svg","Mains","trnahcant",8),
     new ZombieAffamer(40,"img/imgEnemy/ZombieAffamer.svg","Griffes","tranchant",10),
     new Ours(45, "img/imgEnemy/Ours.svg", "Griffes", "Feu", 10),
@@ -142,13 +159,11 @@ continueGame.addEventListener("click", () => {
     new Golem(65, "img/imgEnemy/Golem.svg", "Massue", "magic", 15),
     new Hydre(75, "img/imgEnemy/Hydre.svg", "Crocs venimeux", "tranchant", 16),
     new ChienATroisTete(70,"img/imgEnemy/ChienTroisTete.svg","Crocs","tranchant",16),
-    new ChevalierCorrompu( 75,"img/imgEnemy/ChevalierCoronpu.svg","Épée maudite","critique",18),
-    new DragonRouge( 90,"img/imgEnemy/DragonRouge.svg","Souffle de feu","critique",20),
+    new ChevalierCorrompu(75,"img/imgEnemy/ChevalierCoronpu.svg","Épée maudite","critique",18),
+    new DragonRouge(90,"img/imgEnemy/DragonRouge.svg","Souffle de feu","critique",20),
     new DragonBleu(85, "img/imgEnemy/DragonBleu.svg", "Souffle de glace", "critique", 18),
-    new MasterDragon( 100,"img/imgEnemy/MasterDragon.svg","Feu","Glace",25),
+    new MasterDragon(100,"img/imgEnemy/MasterDragon.svg","Feu","Glace",25),
   ];
-
-  const enemy = getEnemy(enemyList, enemyIndex);
 
   if (enemy) {
     enemyIndex++;
@@ -157,8 +172,15 @@ continueGame.addEventListener("click", () => {
       return;
     }
 
-    mettreAJourInterface(enemy);
-    enemy.setEnemyIntoLocalStorage();
+    const nextEnemy = enemyList[enemyIndex];
+    mettreAJourInterface(nextEnemy);
+
+    if (nextEnemy) {
+      nextEnemy.setEnemyIntoLocalStorage();
+    } else {
+      console.log("Aucun ennemi disponible dans la liste.");
+      // Afficher un message d'erreur ou prendre une autre action appropriée
+    }
 
     // Rediriger vers la page du jeu
     window.location.href = "index3.html";
@@ -167,7 +189,3 @@ continueGame.addEventListener("click", () => {
     // Afficher un message d'erreur ou prendre une autre action appropriée
   }
 });
-
-
-  
-
