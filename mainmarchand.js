@@ -138,10 +138,10 @@ function getEnemyFromLocalStorage() {
 continueGame.addEventListener("click", () => {
   const enemy = getEnemyFromLocalStorage();
   let enemyIndex = localStorage.getItem("enemyIndex");
-  if (enemyIndex === null) {
-    enemyIndex = 0;
-  } else {
+  if (enemyIndex !== null) {
     enemyIndex = parseInt(enemyIndex);
+  } else {
+    enemyIndex = 0;
   }
   const enemyList = [
     new Loup(20, "img/imgEnemy/Loup.svg", "Croc", "magic", 5),
