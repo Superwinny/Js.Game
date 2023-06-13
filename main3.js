@@ -28,6 +28,46 @@ function getEnemy(enemyList,index){
   return enemyList[index]
 }
 
+// Déclaration d'une variable pour suivre l'état du clignotement
+let isFlashing = false;
+
+// Fonction pour clignoter l'image de l'ennemi
+function flashEnemyImage() {
+  if (isFlashing) {
+    return; // Empêcher le clignotement si le clignotement est déjà en cours
+  }
+
+  isFlashing = true;
+  let visible = true;
+  const flashInterval = setInterval(() => {
+    if (visible) {
+      selectedImageEnemy.style.opacity = 0.2; // Réduire l'opacité de l'image pour la rendre moins visible
+    } else {
+      selectedImageEnemy.style.opacity = 1; // Rétablir l'opacité de l'image
+    }
+    visible = !visible;
+  }, 300); // Temps en millisecondes pour chaque clignotement (ici, 1000 ms)
+
+  // Arrêter le clignotement après un certain délai (par exemple, 2 secondes)
+  setTimeout(() => {
+    clearInterval(flashInterval); // Arrêter l'intervalle de clignotement
+    selectedImageEnemy.style.opacity = 1; // Rétablir l'opacité de l'image au cas où elle serait réduite
+    isFlashing = false; // Réinitialiser l'état du clignotement
+  }, 2000); // Temps en millisecondes avant d'arrêter le clignotement (ici, 2 secondes)
+}
+function flashEnemyImageMort() {
+  let opacity = 1;
+  const flashIntervalMort = setInterval(() => {
+    opacity -= 0.1; // Réduire l'opacité de 0.1 à chaque intervalle (à ajuster selon vos préférences)
+    selectedImageEnemy.style.opacity = opacity;
+
+    if (opacity <= 0) {
+      clearInterval(flashIntervalMort); // Arrêter l'intervalle lorsque l'opacité atteint 0
+      selectedImageEnemy.style.display = "none"; // Masquer complètement l'image
+    }
+  }, 100); // Temps en millisecondes pour chaque intervalle (à ajuster selon vos préférences)
+}
+
 function jouerPartie() {
    
     const hero = Hero.getHeroFromLocalStorage();
@@ -61,7 +101,6 @@ function jouerPartie() {
   
   // Vérifier si un héros a été sélectionné
  if (hero) {
-  
    if(!enemy){
     enemy = getEnemy(enemyList, round)
     enemy.afficher(pvEnemyElement, degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageEnemy)
@@ -91,35 +130,45 @@ function jouerPartie() {
   
   // Fonction pour attaquer
   const attaquer = () => {
-  
+   
     if (enemy && enemy.ptnVie > 0) {
+      
       hero.attaquer(enemy);
-
+      flashEnemyImage();
+  
       if (enemy.ptnVie <= 0) {
+        
         console.log(`${enemy.constructor.name} est vaincu !`);
+        flashEnemyImageMort()
         enemyIndex++;
-
+  
         if (enemyIndex >= enemyList.length) {
           console.log("Vous avez vaincu tous les ennemis !");
           return;
         }
-
+  
         enemy = getEnemy(enemyList, ++round);
         mettreAJourInterface(hero, enemy);
-
+  
+       
+  
         if (enemyIndex > 0 && enemyIndex % 5 === 0) {
           console.log("Le marchand apparaît !");
           enemy.setEnemyIntoLocalStorage();
           hero.setHeroIntoLocalStorage();
-          mettreAJourInterface(hero, enemy)
+          mettreAJourInterface(hero, enemy);
           window.location.href = "marchand.html";
         }
+       
       } else {
+      
         enemyAttaque(enemy, hero);
+        
       }
-
+  
       mettreAJourInterface(hero, enemy);
     } else {
+      
       console.log("Il n'y a pas d'ennemi à attaquer !");
     }
   };
@@ -128,4 +177,5 @@ function jouerPartie() {
 
   
 }
+
  jouerPartie()
