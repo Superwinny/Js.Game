@@ -29,6 +29,7 @@ function getEnemy(enemyList,index){
 }
 
 function jouerPartie() {
+   
     const hero = Hero.getHeroFromLocalStorage();
     let enemy = Enemy.getEnemyFromLocalStorage();
     const marchand = new Marchand();
@@ -60,6 +61,7 @@ function jouerPartie() {
   
   // Vérifier si un héros a été sélectionné
  if (hero) {
+  
    if(!enemy){
     enemy = getEnemy(enemyList, round)
     enemy.afficher(pvEnemyElement, degatsEnemyElement,armeEnemyElement,faiblesseEnemyElement,selectedImageEnemy)
@@ -82,10 +84,14 @@ function jouerPartie() {
       console.log(`${hero.constructor.name} est mort ! Partie terminée.`);
       return;
     }
+   
   };
-
+  
+  
+  
   // Fonction pour attaquer
   const attaquer = () => {
+  
     if (enemy && enemy.ptnVie > 0) {
       hero.attaquer(enemy);
 
@@ -105,6 +111,7 @@ function jouerPartie() {
           console.log("Le marchand apparaît !");
           enemy.setEnemyIntoLocalStorage();
           hero.setHeroIntoLocalStorage();
+          mettreAJourInterface(hero, enemy)
           window.location.href = "marchand.html";
         }
       } else {
@@ -116,7 +123,7 @@ function jouerPartie() {
       console.log("Il n'y a pas d'ennemi à attaquer !");
     }
   };
-
+ 
   buttonAttack.addEventListener("click", attaquer);
 
   

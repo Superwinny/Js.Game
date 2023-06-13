@@ -136,7 +136,7 @@ function getEnemyFromLocalStorage() {
 }
 
 continueGame.addEventListener("click", () => {
-  const enemy = getEnemyFromLocalStorage();
+  const storedEnemy = getEnemyFromLocalStorage(); // Récupérer l'ennemi depuis le stockage local
   let enemyIndex = localStorage.getItem("enemyIndex");
   if (enemyIndex !== null) {
     enemyIndex = parseInt(enemyIndex);
@@ -165,27 +165,17 @@ continueGame.addEventListener("click", () => {
     new MasterDragon(100,"img/imgEnemy/MasterDragon.svg","Feu","Glace",25),
   ];
 
-  if (enemy) {
-    enemyIndex++;
-    if (enemyIndex >= enemyList.length) {
-      console.log("Vous avez vaincu tous les ennemis !");
-      return;
-    }
-
+  if (storedEnemy && enemyIndex < enemyList.length) {
+    enemyList[enemyIndex] = storedEnemy; // Remplacer l'ennemi de la liste avec l'ennemi récupéré du stockage local
     const nextEnemy = enemyList[enemyIndex];
     mettreAJourInterface(nextEnemy);
 
-    if (nextEnemy) {
-      nextEnemy.setEnemyIntoLocalStorage();
-    } else {
-      console.log("Aucun ennemi disponible dans la liste.");
-      // Afficher un message d'erreur ou prendre une autre action appropriée
-    }
+    nextEnemy.setEnemyIntoLocalStorage(); // Mettre à jour l'ennemi dans le stockage local avec les modifications éventuelles
 
     // Rediriger vers la page du jeu
     window.location.href = "index3.html";
   } else {
-    console.log("Aucun ennemi disponible dans la liste.");
+    console.log("Aucun ennemi disponible dans le stockage local ou tous les ennemis ont été vaincus.");
     // Afficher un message d'erreur ou prendre une autre action appropriée
   }
 });
