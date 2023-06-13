@@ -6,6 +6,7 @@ let selectedImageEnemy = document.getElementById('enemyImage');
 // Modifier les sélecteurs des éléments de l'interface utilisateur
 const degatsElement = document.querySelector('.infoGame #degats');
 
+
 const ptnVieElement = document.querySelector('.infoGame #ptnVie');
 // const potionSoinElement = document.querySelector('.infoGame #potionSoin');
  const armeElement = document.querySelector('.infoGame #arme');
@@ -26,12 +27,13 @@ const buttonAchat = document.getElementById('buttonAchat');
 function getEnemy(enemyList,index){
   return enemyList[index]
 }
+
 function jouerPartie() {
     const hero = Hero.getHeroFromLocalStorage();
     let enemy = Enemy.getEnemyFromLocalStorage();
     const marchand = new Marchand();
     let round = 0
-  
+    
   let enemyIndex = 0;
   
    const enemyList = [
@@ -85,44 +87,38 @@ function jouerPartie() {
   // Fonction pour attaquer
   const attaquer = () => {
     if (enemy && enemy.ptnVie > 0) {
-      hero.attaquer(enemy); // Utiliser la méthode attaquer() de la classe Hero
-    
+      hero.attaquer(enemy);
 
       if (enemy.ptnVie <= 0) {
         console.log(`${enemy.constructor.name} est vaincu !`);
         enemyIndex++;
+
         if (enemyIndex >= enemyList.length) {
           console.log("Vous avez vaincu tous les ennemis !");
           return;
         }
-        // recupere le prochain enemy
-        enemy = getEnemy(enemyList, ++round)
-        // affiche le prochain ennemy
-        mettreAJourInterface(hero, enemy)
 
-        // Vérifier si le nombre d'ennemis vaincus est un multiple de 5
+        enemy = getEnemy(enemyList, ++round);
+        mettreAJourInterface(hero, enemy);
+
         if (enemyIndex > 0 && enemyIndex % 5 === 0) {
           console.log("Le marchand apparaît !");
-         
-           // Rediriger vers la page marchand.html
-           window.location.href = "marchand.html";
-          
+          enemy.setEnemyIntoLocalStorage();
+          hero.setHeroIntoLocalStorage();
+          window.location.href = "marchand.html";
         }
       } else {
         enemyAttaque(enemy, hero);
       }
-      enemy.setEnemyIntoLocalStorage() 
-      hero.setHeroIntoLocalStorage()
+
+      mettreAJourInterface(hero, enemy);
     } else {
       console.log("Il n'y a pas d'ennemi à attaquer !");
     }
-    mettreAJourInterface(hero, enemy)
   };
 
+  buttonAttack.addEventListener("click", attaquer);
 
-  // Gérer les événements de clic sur les boutons
-  buttonAttack.addEventListener('click', attaquer);
- 
+  
 }
-
  jouerPartie()

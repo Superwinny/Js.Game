@@ -67,6 +67,7 @@ set ptnVie(ptn){
   static getEnemyFromLocalStorage() {
     const enemyData = JSON.parse(localStorage.getItem("enemy"));
     if (enemyData) {
+      console.log(enemyData) 
       const { type, ptnVie, imgUrl, arme, faiblesseAttack, degats } = enemyData;
       switch (type) {
         case "Loup":
