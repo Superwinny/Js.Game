@@ -1,3 +1,5 @@
+
+
 //Sélectionner la div du message
 const messageContainer = document.getElementById("message-container");
 
@@ -6,7 +8,6 @@ let selectedImageElement = document.getElementById('selectedImage');
 let selectedImageEnemy = document.getElementById('enemyImage');
 
 // Modifier les sélecteurs des éléments de l'interface utilisateur
-
 const degatsElement = document.querySelector('.infoGame #degats');
 const ptnVieElement = document.querySelector('.infoGame #ptnVie');
  const armeElement = document.querySelector('.infoGame #arme');
@@ -167,20 +168,24 @@ function jouerPartie() {
 
   // Fonction pour l'attaque de l'ennemi
   const enemyAttaque = async (enemy, hero) => {
+    
+  
     hero.ptnVie -= enemy.degats;
     const attackMessage = `${enemy.constructor.name} attaque ${hero.constructor.name} et inflige ${enemy.degats} points de dégâts.`;
     messageContainer.innerHTML += `<p>${attackMessage}</p>`;
     await flashHeroImage();
-    
-    
-  
     if (hero.ptnVie <= 0) {
+      const popup = document.getElementById('popup');
+      const gameOverImage = document.getElementById('gameOverImage');
+      const selectedImageSection = document.getElementById('selectedImageSection');
+      popup.style.display = 'flex';
+      gameOverImage.style.display = 'block';
+      selectedImageSection.style.opacity = '0.5'; // Réduire l'opacité de la section
       console.log(`${hero.constructor.name} est mort ! Partie terminée.`);
+
       return;
     }
   };
-  
-
   // Fonction pour attaquer
   const attaquer = async () => {
     if (enemy && enemy.ptnVie > 0) {
@@ -200,7 +205,7 @@ function jouerPartie() {
         enemy = getEnemy(enemyList, ++round);
         mettreAJourInterface(hero, enemy);
       
-        if (enemyIndex > 0 && enemyIndex % 5 === 0 && Math.random() <= 0.5) {
+        if (enemyIndex > 0 && enemyIndex % 5 === 0 && Math.random() <= 0.7) {
           console.log("Le marchand apparaît !");
           enemy.setEnemyIntoLocalStorage();
           hero.setHeroIntoLocalStorage();
