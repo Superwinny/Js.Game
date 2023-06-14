@@ -169,7 +169,7 @@ function jouerPartie() {
   const enemyAttaque = async (enemy, hero) => {
     hero.ptnVie -= enemy.degats;
     await flashHeroImage();
-  
+    
     const message1 = `${enemy.constructor.name} attaque ${hero.constructor.name} !`;
     const message2 = `Dégâts infligés: ${enemy.degats}`;
     const message3 = `Points de vie restants: ${hero.ptnVie}`;
@@ -190,7 +190,7 @@ function jouerPartie() {
     if (enemy && enemy.ptnVie > 0) {
       hero.attaquer(enemy);
       await flashEnemyImage();
-
+    
       if (enemy.ptnVie <= 0) {
         console.log(`${enemy.constructor.name} est vaincu !`);
         enemyIndex++;
@@ -215,6 +215,7 @@ function jouerPartie() {
       }
 
       mettreAJourInterface(hero, enemy);
+     
     } else {
       console.log("Il n'y a pas d'ennemi à attaquer !");
     }

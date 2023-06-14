@@ -190,18 +190,18 @@ degatsElement.textContent = 'Degats' + this.degats;
 /**********************************************************/
 
 class Guerrier extends Hero {
-    constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
-      super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
-      
-    }
-  
-    get typeHero() {
-      return "Guerrier"
-    }
+  constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
+    super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
+  }
+
+  get typeHero() {
+    return "Guerrier";
+  }
 
   attaquer(enemy) {
     let chanceCritique = Math.random();
     let typeAttack = this.typeAttack;
+
     if (chanceCritique < 0.2) {
       this.degats = Math.floor(Math.random() * 10) + 5;
       this.typeAttack = "critique";
@@ -209,26 +209,33 @@ class Guerrier extends Hero {
       this.degats = Math.floor(Math.random() * 10) + 10;
       this.typeAttack = "normal";
     }
-  
+
+    // Effectuer ici les opérations spécifiques à l'attaque du guerrier
+    const guerrierAttackMessage = `${this.constructor.name} attaque ${enemy.constructor.name} et inflige ${this.degats} points de dégâts.`;
+    messageContainer.innerHTML += `<p>${guerrierAttackMessage}</p>`;
+    console.log(guerrierAttackMessage);
+
     enemy.ptnVie -= this.degats;
-  
+
     // Vérifier si l'attaque double se produit
-    const chanceAttaqueDouble = 0.2; 
+    const chanceAttaqueDouble = 0.2;
     if (Math.random() < chanceAttaqueDouble) {
-      console.log(`${this.constructor.name} effectue une attaque double !`);
+      const attaqueDoubleMessage = `${this.constructor.name} effectue une attaque double !`;
+      messageContainer.innerHTML += `<p>${attaqueDoubleMessage}</p>`;
+      console.log(attaqueDoubleMessage);
       enemy.ptnVie -= this.degats;
     }
+
     // Vérification si l'ennemi est vaincu
     if (enemy.ptnVie <= 0) {
       this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
-       this.enemyKills++
-  }
- 
+      this.enemyKills++;
+    }
+
     // Restaurer les valeurs d'origine
     this.typeAttack = typeAttack;
   }
 }
-
 
 /**********************************************************/
 /******** Mage **************/
@@ -246,64 +253,93 @@ class Mage extends Hero {
     attaquer(enemy) {
       this.degats = Math.floor(Math.random() * 8) + 5;
       this.typeAttack = "normal";
-    
+  
       // Effectuer ici les opérations spécifiques à l'attaque du mage
-      console.log(`${this.constructor.name} attaque ${enemy.constructor.name} avec ${this.arme} pour ${this.degats} points de dégâts.`);
+      const mageAttackMessage = `${this.constructor.name} attaque ${enemy.constructor.name} et inflige ${this.degats} points de dégâts.`;
+      messageContainer.innerHTML += `<p>${mageAttackMessage}</p>`;
+      console.log(mageAttackMessage);
+  
+      
       enemy.ptnVie -= this.degats;
-    
+  
       // Vérifier la chance d'envoyer une boule de feu
       const chanceBouleDeFeu = 0.25; // 25% de chance d'envoyer une boule de feu (10 dégâts)
       if (Math.random() < chanceBouleDeFeu) {
-        console.log(`${this.constructor.name} envoie une boule de feu qui inflige 10 points de dégâts supplémentaires.`);
         enemy.ptnVie -= 10;
+        const bouleDeFeuMessage = `${this.constructor.name} envoie une boule de feu qui inflige 10 points de dégâts supplémentaires.`;
+        messageContainer.innerHTML += `<p>${bouleDeFeuMessage}</p>`;
+        console.log(bouleDeFeuMessage);
       }
-    
+  
       // Vérifier la chance de regagner des points de vie
-      const chanceRegainPtnVie = 0.35; // 25% de chance de regagner des points de vie
+      const chanceRegainPtnVie = 0.35; // 35% de chance de regagner des points de vie
       if (Math.random() < chanceRegainPtnVie) {
         const regainPtnVie = Math.floor(this.degats * 0.5);
         this.ptnVie += regainPtnVie;
-        console.log(`${this.constructor.name} regagne ${regainPtnVie} points de vie.`);
+        const regainPtnVieMessage = `${this.constructor.name} regagne ${regainPtnVie} points de vie.`;
+        messageContainer.innerHTML += `<p>${regainPtnVieMessage}</p>`;
+        console.log(regainPtnVieMessage);
       }
+  
       if (enemy.ptnVie <= 0) {
         this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
-    }
+      }
+  
+      const heroAttackMessage2 = `Dégâts infligés: ${this.degats}`;
+      const heroAttackMessage3 = `Points de vie restants: ${enemy.ptnVie}`;
+  
+      messageContainer.innerHTML += `<p>${heroAttackMessage2}</p>`;
+      messageContainer.innerHTML += `<p>${heroAttackMessage3}</p>`;
     }
   }
+  
 
 /**********************************************************/
 /******** Chasseur **************/
 /**********************************************************/
 
 class Chasseur extends Hero {
-    constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
-      super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
-      
-    }
-
-    get typeHero() {
-      return "Chasseur"
-    }
-
-    attaquer(enemy) {
-      const chanceCritique = Math.random();
-      const typeAttack = this.typeAttack;
-    
-      if (chanceCritique < 0.25) {
-        const degatsCritique = (Math.floor(Math.random() * 10) + 10) * 2; // Dégâts du critique (double des dégâts normaux)
-        this.degats = degatsCritique;
-        this.typeAttack = "critique";
-        console.log(`Le chasseur inflige un coup critique et double les dégâts ! Dégâts totaux : ${this.degats}`);
-      } else {
-        this.degats = Math.floor(Math.random() * 8) + 5;
-        this.typeAttack = "normal";
-      }
-      if (enemy.ptnVie <= 0) {
-        this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
-    }
-      enemy.ptnVie -= this.degats;
-    }
+  constructor(ptnVie, imgUrl, gold, arme, typeAttack, degats) {
+    super(ptnVie, imgUrl, gold, arme, typeAttack, degats);
   }
+
+  get typeHero() {
+    return "Chasseur";
+  }
+
+  attaquer(enemy) {
+    const chanceCritique = Math.random();
+    const typeAttack = this.typeAttack;
+
+    // Effectuer ici les opérations spécifiques à l'attaque du chasseur
+    const chasseurAttackMessage = `${this.constructor.name} attaque ${enemy.constructor.name} et inflige ${this.degats} points de dégâts.`;
+    messageContainer.innerHTML += `<p>${chasseurAttackMessage}</p>`;
+    console.log(chasseurAttackMessage);
+
+    if (chanceCritique < 0.25) {
+      const degatsCritique = (Math.floor(Math.random() * 10) + 10) * 2; // Dégâts du critique (double des dégâts normaux)
+      this.degats = degatsCritique;
+      this.typeAttack = "critique";
+
+      // Effectuer ici les opérations spécifiques à l'attaque du chasseur lors d'un coup critique
+      const chasseurCritiqueMessage = `Le chasseur inflige un coup critique et double les dégâts ! Dégâts totaux : ${this.degats}`;
+      messageContainer.innerHTML += `<p>${chasseurCritiqueMessage}</p>`;
+      console.log(chasseurCritiqueMessage);
+    } else {
+      this.degats = Math.floor(Math.random() * 8) + 5;
+      this.typeAttack = "normal";
+    }
+
+    if (enemy.ptnVie <= 0) {
+      this.gold += 2; // Ajouter 2 gold au héros après avoir vaincu un ennemi
+    }
+
+    enemy.ptnVie -= this.degats;
+
+    // Restaurer les valeurs d'origine
+    this.typeAttack = typeAttack;
+  }
+}
   /**********************************************************/
 /******** Marchand **************/
 /**********************************************************/
