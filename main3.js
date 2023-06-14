@@ -168,15 +168,11 @@ function jouerPartie() {
   // Fonction pour l'attaque de l'ennemi
   const enemyAttaque = async (enemy, hero) => {
     hero.ptnVie -= enemy.degats;
+    const attackMessage = `${enemy.constructor.name} attaque ${hero.constructor.name} et inflige ${enemy.degats} points de dégâts.`;
+    messageContainer.innerHTML += `<p>${attackMessage}</p>`;
     await flashHeroImage();
     
-    const message1 = `${enemy.constructor.name} attaque ${hero.constructor.name} !`;
-    const message2 = `Dégâts infligés: ${enemy.degats}`;
-    const message3 = `Points de vie restants: ${hero.ptnVie}`;
-  
-    messageContainer.innerHTML += `<p>${message1}</p>`;
-    messageContainer.innerHTML += `<p>${message2}</p>`;
-    messageContainer.innerHTML += `<p>${message3}</p>`;
+    
   
     if (hero.ptnVie <= 0) {
       console.log(`${hero.constructor.name} est mort ! Partie terminée.`);
@@ -197,7 +193,7 @@ function jouerPartie() {
         await flashEnemyImageMort();
       
         if (enemyIndex >= enemyList.length) {
-          console.log("Vous avez vaincu tous les ennemis !");
+        
           return;
         }
       
