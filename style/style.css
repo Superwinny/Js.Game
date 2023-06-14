@@ -218,8 +218,8 @@ h1 {
 #buttonAttack {
   width: 7%;
   position: fixed;
-  top: 300px;
-  left: 47%;
+  top: 550px;
+  left: 45%;
   transform: translateX(-50%);
   border: 2px solid transparent;
   border-radius: 50px;
@@ -361,3 +361,17 @@ h1 {
   border-color: #ff3333;
 }
 
+#message-container {
+  position: fixed;
+  top: 40%;
+  left: 46%;
+  width: 20%;
+  height: 20%;
+  margin-top: -10%;
+  margin-left: -10%;
+  overflow: auto;
+  background-color:#1d1d1d;
+  z-index: 9999;
+  color: #f1f1f1;
+  border: white 2px solid;
+}
