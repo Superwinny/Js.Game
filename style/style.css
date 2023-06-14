@@ -5,19 +5,55 @@ body {
   margin: 0;
   padding: 0;
 }
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: auto;
+  z-index: -1;
+  border: #000000;
+}
 
+#overlay img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-right: 2px solid white;
+}
 h1 {
 
   color: #13fdd7;
   font-size: 70px;
   text-align: center;
-  padding-top: 150px;
+   padding-top: 150px;
 }
+  #h1-titre{
 
+    color: #13fdd7;
+    font-size: 70px;
+    text-align: right;
+    padding-top: 200px;
+    padding-right: 200px;
+  }
+
+  #h2-guerrier{
+    color: rgb(197, 41, 41);
+  
+  }
+  #h2-mage{
+    color: rgb(23, 107, 185);
+  
+  }
+  #h2-chasseur{
+    color: rgb(27, 170, 27);
+  
+  }
 #btnplay {
   display: flex;
-  justify-content: center;
-  padding: 150px;
+ right: 400px;
+ top: 500px;
+ position:absolute;
 }
 
 .btn.btn-primary.btn-lg {
