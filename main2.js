@@ -5,6 +5,8 @@ const enemyImages = document.querySelectorAll("#choixennemi img")
 // Sélectionnez le bouton de validation
 const confirmButton = document.getElementById("confirmButton");
 
+// Masquer le bouton de validation au chargement initial de la page
+confirmButton.style.display = "none";
 // Ajoutez un gestionnaire d'événements au bouton de validation
 confirmButton.addEventListener("click", () => {
   // Redirigez l'utilisateur vers l'index3.html
@@ -14,6 +16,11 @@ confirmButton.addEventListener("click", () => {
 // Parcourez les images et ajoutez un gestionnaire d'événements pour chaque image
 heroImages.forEach((image, index) => {
   image.addEventListener("click", () => {
+    heroImages.forEach((img) => {
+      img.style.border = "none";
+    });
+      
+    confirmButton.style.display = "block";
     // Récupérez le nom de la classe du héros correspondant à l'image
     const heroClass = image.alt;
 
@@ -24,12 +31,15 @@ heroImages.forEach((image, index) => {
       case "Guerrier":
         hero = new Guerrier(
           100,"img/Guerrier.svg",10,"Hache","tranchant",12);
+          image.style.border = "2px solid rgb(197, 41, 41)";
         break;
       case "Mage":
         hero = new Mage(80, "img/Mage.svg", 10, "Baton", "Magique",8);
+        image.style.border = "2px solid  rgb(23, 107, 185)";
         break;
       case "Chasseur":
         hero = new Chasseur(90,"img/Chasseur.svg",10,"Arc","classique",10);
+        image.style.border = "2px solid  rgb(27, 170, 27)";
         break;
       default:
         console.log("Classe invalide.");

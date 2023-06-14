@@ -59,7 +59,7 @@ set ptnVie(ptn){
       arme: this.arme,
       degats: this.degats,
       faiblesseAttack: this.faiblesseAttack,
-      typeEnemy: this.typeEnemy,
+      typeEnemy: this.constructor.name,
     };
     localStorage.setItem("enemy", JSON.stringify(properties));
   }
@@ -68,8 +68,8 @@ set ptnVie(ptn){
     const enemyData = JSON.parse(localStorage.getItem("enemy"));
     if (enemyData) {
       console.log(enemyData) 
-      const { type, ptnVie, imgUrl, arme, faiblesseAttack, degats } = enemyData;
-      switch (type) {
+      const { typeEnemy, ptnVie, imgUrl, arme, faiblesseAttack, degats } = enemyData;
+      switch (typeEnemy) {
         case "Loup":
           return new Loup(ptnVie, imgUrl, arme, faiblesseAttack, degats);
         case "ZombieAffamer":

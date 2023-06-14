@@ -4,11 +4,9 @@ let selectedImageElement = document.getElementById('selectedImage');
 let selectedImageEnemy = document.getElementById('enemyImage');
 
 // Modifier les sélecteurs des éléments de l'interface utilisateur
+
 const degatsElement = document.querySelector('.infoGame #degats');
-
-
 const ptnVieElement = document.querySelector('.infoGame #ptnVie');
-// const potionSoinElement = document.querySelector('.infoGame #potionSoin');
  const armeElement = document.querySelector('.infoGame #arme');
 const goldElement = document.querySelector('.infoGame #gold');
 const pvEnemyElement = document.querySelector('.infoEnemy #pvEnemy');
@@ -32,7 +30,7 @@ function getEnemy(enemyList,index){
 let isFlashing = false;
 
 // Fonction pour clignoter l'image de l'ennemi
-function flashEnemyImage() {
+async function flashEnemyImage() {
   if (isFlashing) {
     return; // Empêcher le clignotement si le clignotement est déjà en cours
   }
@@ -41,31 +39,32 @@ function flashEnemyImage() {
   let visible = true;
   const flashInterval = setInterval(() => {
     if (visible) {
-      selectedImageEnemy.style.opacity = 0.2; // Réduire l'opacité de l'image pour la rendre moins visible
+      selectedImageEnemy.style.opacity = 0.2; 
     } else {
-      selectedImageEnemy.style.opacity = 1; // Rétablir l'opacité de l'image
+      selectedImageEnemy.style.opacity = 1; 
     }
     visible = !visible;
-  }, 300); // Temps en millisecondes pour chaque clignotement (ici, 1000 ms)
+  }, 300); // Temps en millisecondes pour chaque clignotement 
 
-  // Arrêter le clignotement après un certain délai (par exemple, 2 secondes)
-  setTimeout(() => {
+  // Arrêter le clignotement après un certain délai 
+  await setTimeout(() => {
     clearInterval(flashInterval); // Arrêter l'intervalle de clignotement
     selectedImageEnemy.style.opacity = 1; // Rétablir l'opacité de l'image au cas où elle serait réduite
     isFlashing = false; // Réinitialiser l'état du clignotement
-  }, 2000); // Temps en millisecondes avant d'arrêter le clignotement (ici, 2 secondes)
+  }, 2000); // Temps en millisecondes avant d'arrêter le clignotement 
 }
 function flashEnemyImageMort() {
+  return 
   let opacity = 1;
   const flashIntervalMort = setInterval(() => {
-    opacity -= 0.1; // Réduire l'opacité de 0.1 à chaque intervalle (à ajuster selon vos préférences)
+    opacity -= 0.1; // Réduire l'opacité de 0.1 à chaque intervalle 
     selectedImageEnemy.style.opacity = opacity;
 
     if (opacity <= 0) {
       clearInterval(flashIntervalMort); // Arrêter l'intervalle lorsque l'opacité atteint 0
       selectedImageEnemy.style.display = "none"; // Masquer complètement l'image
     }
-  }, 100); // Temps en millisecondes pour chaque intervalle (à ajuster selon vos préférences)
+  }, 100); // Temps en millisecondes pour chaque intervalle 
 }
 
 function jouerPartie() {
@@ -73,7 +72,7 @@ function jouerPartie() {
     const hero = Hero.getHeroFromLocalStorage();
     let enemy = Enemy.getEnemyFromLocalStorage();
     const marchand = new Marchand();
-    let round = 0
+    let round = 0 // TODO: get from local storage
     
   let enemyIndex = 0;
   
